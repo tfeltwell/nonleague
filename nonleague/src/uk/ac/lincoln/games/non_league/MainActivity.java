@@ -104,13 +104,13 @@ public class MainActivity extends Activity {
         }
         
         Log.v(TAG,"Generating League");
-        League new_league = new League(town_names,team_names, first_names, last_names,14);
+        League new_league = new League(town_names,team_names, first_names, last_names,road_names,stadium_names,14);
         Log.v(TAG,"Teams in the League:");
         for(int i=0;i<new_league.teams.size();i++) {
         	 Log.v(TAG,new_league.teams.get(i).name);
         }
         
-        // Force select player team. TODO make dynamic or user selected
+        // Force select player team.
         Player player = new Player("Tom Kirmhan");
         int teamID = new Random().nextInt(new_league.teams.size());
         player.setTeam(new_league.teams.get(teamID));
@@ -120,18 +120,17 @@ public class MainActivity extends Activity {
         	Log.v(TAG,player.team.footballers.get(i).getFull());
         }
         
-        Log.v(TAG,"Fixtures in the League:");
+        /*Log.v(TAG,"Fixtures in the League:");
         for(int i=0;i<new_league.fixtures.size();i++) {
         	 Log.v(TAG,new_league.fixtures.get(i).team_1.name+" vs "+new_league.fixtures.get(i).team_2.name);
-        }
+        }*/
         
         Log.v(TAG,"Running Fixtures:");
         Match fixture = new_league.nextFixture();
         MatchResult result;
         while(fixture!=null){
         	result = fixture.run();
-        	//Log.d("TEST","GOT HERE"+result.team_1.name);
-        	Log.v(TAG,result.team_1.name + " "+String.valueOf(result.result_1)+"-"+String.valueOf(result.result_2)+" "+result.team_2.name);
+        	//Log.v(TAG,result.team_1.name + " "+String.valueOf(result.result_1)+"-"+String.valueOf(result.result_2)+" "+result.team_2.name);
         	fixture = new_league.nextFixture();
         }
         

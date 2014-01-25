@@ -20,12 +20,14 @@ public class Team {
 	
 	public double win_bias;
 	public String name;
+	public String stadium_name;
 	public ArrayList<Footballer> footballers;
 	
-	public Team(String team_name){
+	public Team(String team_name, String stadium_name){
 		this.player_control = false;
 		win_bias = 0.5 - Math.random(); //gain a random bias between -0.5 and +0.5
 		this.name = team_name;
+		this.stadium_name = stadium_name;
 		footballers = new ArrayList<Footballer>();
 	}
 	

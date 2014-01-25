@@ -30,18 +30,19 @@ public class League {
 	public ArrayList<Match> fixtures;
 	public ArrayList<Team> teams;
 	
-	public League(ArrayList<String> town_names, ArrayList<String> team_names, ArrayList<String> first_names, ArrayList<String> last_names, int league_size){//TODO probably pass the player team in here.
+	public League(ArrayList<String> town_names, ArrayList<String> team_names, ArrayList<String> first_names, ArrayList<String> last_names, ArrayList<String> road_names, ArrayList<String> stadium_names, int league_size){//TODO probably pass the player team in here.
 		//build league from X number of teams. Build fixture list.
 					
 		teams = new ArrayList<Team>();
 		fixtures = new ArrayList<Match>();
-		String team_name;
+		String team_name, stadium_name;
 		
 		for(int i=0;i<league_size;i++) {//note the value here is the size of the league
 			team_name = town_names.get((new Random()).nextInt(town_names.size()));//random town name
 			if (Math.random()<0.3)
 				team_name = team_name +" "+ team_names.get((new Random()).nextInt(team_names.size()));
-			teams.add(new Team(team_name));
+			stadium_name = stadium_names.get(new Random().nextInt(stadium_names.size())) +" "+ road_names.get(new Random().nextInt(road_names.size()));
+			teams.add(new Team(team_name,stadium_name));
 		}
 		// Generate squads
 		for(int i=0;i<teams.size();i++){
