@@ -16,7 +16,7 @@ public class Team {
 	public Team(){
 		this.player_control = false;
 		win_bias = 0.5 - Math.random(); //gain a random bias between -0.5 and +0.5
-		this.name = "BLAH UTD";
+		this.name = "BLAH UTDx" + String.valueOf(win_bias);
 	}
 	
 	public boolean isPlayerControlled() {return this.player_control;}

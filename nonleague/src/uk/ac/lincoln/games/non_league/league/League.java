@@ -17,16 +17,18 @@ import uk.ac.lincoln.games.non_league.team.Team;
  *
  */
 public class League {
-	private ArrayList<Match> fixtures;
-	private ArrayList<Team> teams;
+	public ArrayList<Match> fixtures;
+	public ArrayList<Team> teams;
 	
 	public League(){//TODO probably pass the player team in here.
 		//build league from X number of teams. Build fixture list.
+		teams = new ArrayList<Team>();
+		fixtures = new ArrayList<Match>();
 		for(int i=0;i<20;i++) {
 			teams.add(new Team());
 		}
 		//build a list of fixtures
-		ArrayList<Match> fixtures_a = new ArrayList();
+		ArrayList<Match> fixtures_a = new ArrayList<Match>();
 		for(int i=0;i<teams.size();i++){
 			Team team_a = teams.get(i);
 			for(int j=0;j<teams.size();j++) {
@@ -54,7 +56,7 @@ public class League {
 		for(int i=0;i<fixtures.size();i++) {
 			if(!fixtures.get(i).has_run) return fixtures.get(i); //return first non-run match
 		}
-		//there are no un-run matches
+		//there are no un-run matches in this league
 		return null;
 	}
 }
