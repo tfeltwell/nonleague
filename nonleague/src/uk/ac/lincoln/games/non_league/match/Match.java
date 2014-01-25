@@ -27,9 +27,6 @@ public class Match {
 	}
 	
 	public MatchResult run() {
-		MatchResult result = new MatchResult();
-		result.team_1 = this.team_1;
-		result.team_2 = this.team_2;
 		if(this.team_1.isPlayerControlled()||this.team_2.isPlayerControlled()) {
 			//load the live match engine.
 			//return that result
@@ -49,21 +46,26 @@ public class Match {
 		
 		int res_1 = Integer.valueOf(actual_result.substring(0,1));
 		int res_2 = Integer.valueOf(actual_result.substring(2));
+		int result_1 = 0;
+		int result_2 = 0;
 		
 		if(res_1 == res_2) {//tie
-			result.result_1 = res_1;
-			result.result_2 = res_2;
-		}
-		//there was a winner, who was it (using bias)
-		if((team_1.win_bias+(Math.random()*2))>(team_2.win_bias+(Math.random()*2))) {
-			result.result_1 = res_1;//winner
-			result.result_2 = res_2;//loser
-		}
-		else{
-			result.result_1 = res_2;//loser
-			result.result_2 = res_1;//winner
+			result_1 = res_1;
+			result_2 = res_2;
+		} 
+		else {
+			//there was a winner, who was it (using bias)
+			if((team_1.win_bias+(Math.random()*2))>(team_2.win_bias+(Math.random()*2))) {
+				result_1 = res_1;//winner
+				result_2 = res_2;//loser
+			}
+			else{
+				result_1 = res_2;//loser
+				result_2 = res_1;//winner
+			}
 		}
 		
+		MatchResult result = new MatchResult(team_1,team_2,result_1,result_2);
 		//fill matchresult with score & return
 		this.result = result;
 		this.has_run = true;
