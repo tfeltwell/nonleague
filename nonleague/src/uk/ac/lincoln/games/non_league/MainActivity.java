@@ -1,21 +1,59 @@
 package uk.ac.lincoln.games.non_league;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
+
 import uk.ac.lincoln.games.non_league.league.*;
 
 import android.os.Bundle;
 import android.app.Activity;
+import android.content.res.AssetManager;
 import android.util.Log;
 import android.view.Menu;
 
 public class MainActivity extends Activity {
-	private static final String TAG = "uk.ac.lincoln.games.non_league.MainActivity";
+	public static final String TAG = "uk.ac.lincoln.games.non_league.MainActivity";
+	private ArrayList<String> team_names;
+	private ArrayList<String> town_names;
 	
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Log.e(TAG,"Generating League");
-        League new_league = new League();
+        
+        //Load data from assets
+        
+        team_names = new ArrayList<String>();
+        town_names = new ArrayList<String>();
+		
+		//get the potential team names and suffixes
+		try{
+			InputStream input = this.getAssets().open("teamnames.txt");
+			BufferedReader buffreader = new BufferedReader(new InputStreamReader(input));
+			String line = buffreader.readLine();
+			while(line!=null) {
+				team_names.add(line);
+				line = buffreader.readLine();
+			}
+			input.close();
+			input = this.getAssets().open("townnames.txt");
+			buffreader = new BufferedReader(new InputStreamReader(input));
+			line = buffreader.readLine();
+			while(line!=null) {
+				town_names.add(line);
+				line = buffreader.readLine();
+			}
+			input.close();
+		} catch (IOException e) {
+            Log.e(TAG,e.getMessage());
+            //crash
+        }
+        
+        Log.v(TAG,"Generating League");
+        League new_league = new League(town_names,team_names);
         
         Log.v(TAG,"Teams in the League:");
         for(int i=0;i<new_league.teams.size();i++) {

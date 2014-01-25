@@ -1,8 +1,15 @@
 package uk.ac.lincoln.games.non_league.league;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Random;
 
+import android.content.res.AssetManager;
+import android.util.Log;
+
+import uk.ac.lincoln.games.non_league.MainActivity;
 import uk.ac.lincoln.games.non_league.match.Match;
 import uk.ac.lincoln.games.non_league.team.Team;
 
@@ -20,12 +27,18 @@ public class League {
 	public ArrayList<Match> fixtures;
 	public ArrayList<Team> teams;
 	
-	public League(){//TODO probably pass the player team in here.
+	public League(ArrayList<String> town_names, ArrayList<String> team_names){//TODO probably pass the player team in here.
 		//build league from X number of teams. Build fixture list.
+					
 		teams = new ArrayList<Team>();
 		fixtures = new ArrayList<Match>();
+		String team_name;
+		
 		for(int i=0;i<20;i++) {
-			teams.add(new Team());
+			team_name = town_names.get((new Random()).nextInt(town_names.size()));//random town name
+			if (Math.random()<0.3)
+				team_name = team_name +" "+ team_names.get((new Random()).nextInt(team_names.size()));
+			teams.add(new Team(team_name));
 		}
 		//build a list of fixtures
 		ArrayList<Match> fixtures_a = new ArrayList<Match>();
