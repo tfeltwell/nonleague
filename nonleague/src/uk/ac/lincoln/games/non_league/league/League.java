@@ -30,14 +30,14 @@ public class League {
 	public ArrayList<Match> fixtures;
 	public ArrayList<Team> teams;
 	
-	public League(ArrayList<String> town_names, ArrayList<String> team_names){//TODO probably pass the player team in here.
+	public League(ArrayList<String> town_names, ArrayList<String> team_names,int league_size){//TODO probably pass the player team in here.
 		//build league from X number of teams. Build fixture list.
 					
 		teams = new ArrayList<Team>();
 		fixtures = new ArrayList<Match>();
 		String team_name;
 		
-		for(int i=0;i<20;i++) {
+		for(int i=0;i<league_size;i++) {//note the value here is the size of the league
 			team_name = town_names.get((new Random()).nextInt(town_names.size()));//random town name
 			if (Math.random()<0.3)
 				team_name = team_name +" "+ team_names.get((new Random()).nextInt(team_names.size()));
@@ -50,6 +50,7 @@ public class League {
 		
 		//build a list of fixtures
 		ArrayList<Match> fixtures_a = new ArrayList<Match>();
+		ArrayList<Match> fixtures_b = new ArrayList<Match>();
 		for(int i=0;i<teams.size();i++){
 			Team team_a = teams.get(i);
 			for(int j=0;j<teams.size();j++) {
@@ -61,16 +62,18 @@ public class League {
 					if (fixtures_a.get(k).team_1.equals(team_a)&&fixtures_a.get(k).team_2.equals(team_b)){was_found = true; break;}
 					if (fixtures_a.get(k).team_1.equals(team_b)&&fixtures_a.get(k).team_2.equals(team_a)){was_found = true; break;}//bk - yeah, i know. it was midnight ok
 				}
-				if(!was_found)//oh man this feels wrong
-					fixtures_a.add(new Match(team_a,team_b));
+				if(!was_found) {//oh man this feels wrong
+					fixtures_a.add(new Match(team_a,team_b));//home at a
+					fixtures_b.add(new Match(team_b,team_a));//home at b
+				}
 			}
 		}
 		//ok so now we have a list of all possible fixtures between these teams
 		//randomise these fixtures, add them twice in order.
 		Collections.shuffle(fixtures_a);
+		Collections.shuffle(fixtures_b);
 		fixtures.addAll(fixtures_a);
-		Collections.shuffle(fixtures_a);
-		fixtures.addAll(fixtures_a);
+		fixtures.addAll(fixtures_b);
 	}
 	
 	public Match nextFixture(){
@@ -91,13 +94,15 @@ public class League {
 		for(int i=0;i<teams.size();i++) {
 			table.add(new LeagueTableItem(teams.get(i)));
 		}
-		for(int i=0;i<fixtures.size();i++) {
+		for(int i=0;i<fixtures.size();i++) { 
 			if(!fixtures.get(i).has_run||fixtures.get(i).result==null)//only run matches go into the table
 				break;
 			MatchResult result = fixtures.get(i).result;
+			//Log.d("bk","Storing result of "+result.team_1.name+" vs "+result.team_2.name);
 			for(int j=0;j<table.size();j++) {
 				if(table.get(j).team.equals(result.team_1)||table.get(j).team.equals(result.team_2)){
-					table.get(j).calc(result);
+					//Log.d("bk","Adding result to "+table.get(j).team.name);
+					table.get(j).calc(result); 
 				}
 			}
 		}
