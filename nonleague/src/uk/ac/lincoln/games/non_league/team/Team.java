@@ -34,8 +34,26 @@ public class Team {
 	public void generateSquad(ArrayList<String> first_names, ArrayList<String> last_names){
 		//footballers.add(new Footballer( first_names.get(new Random().nextInt(first_names.size())),last_names.get(new Random().nextInt(last_names.size()),20,"Striker")));
 		Random rand = new Random();
+		// Assuming 4-4-2 (defenders, midfielders, strikers)
 		for(int i=0;i<11;i++){
-			footballers.add(new Footballer(first_names.get(rand.nextInt(first_names.size())),last_names.get(rand.nextInt(last_names.size())),20,"Striker"));
+			String pos = "";
+			if(i < 4){
+				pos = "Defender";
+			}
+			else{
+				if(i >= 4 && i < 8){
+					pos = "Midfield";
+				}
+				else{
+					if(i <10){
+						pos = "Striker";
+					}
+					else{
+						pos = "Goalkeeper";
+					}	
+				}
+			}
+			footballers.add(new Footballer(first_names.get(rand.nextInt(first_names.size())),last_names.get(rand.nextInt(last_names.size())),rand.nextInt(15)+18,pos));
 		}
 	}
 	
