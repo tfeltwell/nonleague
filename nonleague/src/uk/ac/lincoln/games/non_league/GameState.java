@@ -108,6 +108,7 @@ public class GameState {
 	
 	public static synchronized GameState getGameState(Context c) {
 		if(game_state==null) {
+			Log.v(TAG,"Game State initialised to empty");
 			game_state = new GameState(c);
 		}
 		return game_state;

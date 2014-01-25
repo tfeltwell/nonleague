@@ -30,10 +30,6 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         GameState state = GameState.getGameState(this);
-       
-        
-        
-        
         // Force select player team. TODO this should be player entry
         Player player = new Player("Tom Kirmhan");
         int teamID = new Random().nextInt(state.league.teams.size());
@@ -56,8 +52,8 @@ public class MainActivity extends Activity {
           }
         });
         
-        for(int i=0;i<new_league.teams.size();i++){
-        	Log.v(TAG,new_league.teams.get(i).name +" play at "+new_league.teams.get(i).stadium_name);
+        for(int i=0;i<state.league.teams.size();i++){
+        	Log.v(TAG,state.league.teams.get(i).name +" play at "+state.league.teams.get(i).stadium_name);
         }
         
         /*Log.v(TAG,"Fixtures in the League:");

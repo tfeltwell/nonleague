@@ -16,14 +16,14 @@ public class TeamStatus extends Activity {
 	 @Override
 	 protected void onCreate(Bundle savedInstanceState) {
 	        super.onCreate(savedInstanceState);
-	        Log.d("DEBUG","got here");
+	        setContentView(R.layout.activity_teamstatus);
 	        state = GameState.getGameState(this);
 	        
 	        ((TextView) findViewById(R.id.teamName)).setText(state.player.team.name);
 	        ((TextView) findViewById(R.id.stadiumName)).setText(state.player.team.stadium_name);
+	        Log.d("DEBUG","got here");
 	        
 	        
-	        setContentView(R.layout.activity_teamstatus);
 	 }
 	 
 }

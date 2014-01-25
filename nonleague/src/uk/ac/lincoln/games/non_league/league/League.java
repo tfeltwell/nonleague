@@ -6,6 +6,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Iterator;
 import java.util.Random;
 
 import android.content.res.AssetManager;
@@ -110,5 +111,23 @@ public class League {
 		//order table
 		Collections.sort(table);
 		return table;
+	}
+	
+	/**
+	 * Return 5 match form for this team (WWDDL)
+	 * @param t
+	 * @return
+	 */
+	public String getForm(Team t) {
+		String form = "-----";
+		Iterator<Match> i = fixtures.iterator();
+		Match m;
+		while(i.hasNext()) {
+			m = i.next();
+			if (!m.has_run)
+				break;//no more past results to check
+			if (m.team_1)
+		}
+		
 	}
 }
