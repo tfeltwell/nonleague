@@ -30,4 +30,5 @@ proguard/
 
 # Text file and Unix temp files (annoyingly)
 .txt~
+*/*.txt~
 
