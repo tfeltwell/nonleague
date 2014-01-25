@@ -21,6 +21,7 @@ public class TeamStatus extends Activity {
 	        
 	        ((TextView) findViewById(R.id.teamName)).setText(state.player.team.name);
 	        ((TextView) findViewById(R.id.stadiumName)).setText(state.player.team.stadium_name);
+	        ((TextView) findViewById(R.id.recentForm)).setText(state.league.getForm(state.player.team));
 	        Log.d("DEBUG","got here");
 	        
 	        

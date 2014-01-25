@@ -126,8 +126,15 @@ public class League {
 			m = i.next();
 			if (!m.has_run)
 				break;//no more past results to check
-			if (m.team_1)
+			if (!m.isTeam(t))
+				continue;//not playing
+			else {
+				form.concat(m.result.resultForTeam(t));
+			}
 		}
-		
+		if(form.length()>5) {
+			form = form.substring(form.length()-5);
+		}
+		return form;
 	}
 }
