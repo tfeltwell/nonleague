@@ -43,4 +43,23 @@ public class MatchResult {
 	public String matchDescription() {
 		return "XXX received a drumming by YYY";//TODO
 	}
+	
+	public String resultForTeam(Team t){
+		if(!(t.equals(team_1)||t.equals(team_2))) return null;//team not in this match
+		
+		if(result_1==result_2) return("D");
+		
+		if(result_1>result_2) {
+			if(t.equals(team_1))
+				return "W";
+			else
+				return "L";
+		}
+		else{
+			if(t.equals(team_1))
+				return "L";
+			else
+				return "W";
+		}
+	}
 }

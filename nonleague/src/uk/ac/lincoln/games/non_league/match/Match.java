@@ -71,4 +71,7 @@ public class Match {
 		this.has_run = true;
 		return result;
 	}
+	public boolean isTeam(Team t) {//is t in this match
+		return(t.equals(team_1)||t.equals(team_2));	
+	}
 }
