@@ -11,6 +11,7 @@ import android.util.Log;
 
 import uk.ac.lincoln.games.non_league.MainActivity;
 import uk.ac.lincoln.games.non_league.match.Match;
+import uk.ac.lincoln.games.non_league.match.MatchResult;
 import uk.ac.lincoln.games.non_league.team.Team;
 
 /**
@@ -71,5 +72,30 @@ public class League {
 		}
 		//there are no un-run matches in this league
 		return null;
+	}
+	
+	/**
+	 * Get current league table (list of items)
+	 * @return
+	 */
+	public ArrayList<LeagueTableItem> getLeagueTable() {
+		ArrayList<LeagueTableItem> table = new ArrayList<LeagueTableItem>();
+		
+		for(int i=0;i<teams.size();i++) {
+			table.add(new LeagueTableItem(teams.get(i)));
+		}
+		for(int i=0;i<fixtures.size();i++) {
+			if(!fixtures.get(i).has_run||fixtures.get(i).result==null)//only run matches go into the table
+				break;
+			MatchResult result = fixtures.get(i).result;
+			for(int j=0;j<table.size();j++) {
+				if(table.get(j).team.equals(result.team_1)||table.get(j).team.equals(result.team_2)){
+					table.get(j).calc(result);
+				}
+			}
+		}
+		//order table
+		Collections.sort(table);
+		return table;
 	}
 }

@@ -76,6 +76,14 @@ public class MainActivity extends Activity {
         	Log.v(TAG,result.team_1.name + " "+String.valueOf(result.result_1)+"-"+String.valueOf(result.result_2)+" "+result.team_2.name);
         	fixture = new_league.nextFixture();
         }
+        
+        Log.v(TAG,"Printing League Table:");
+        ArrayList<LeagueTableItem> table = new_league.getLeagueTable();
+        Log.v(TAG,"Name\t\tW\tL\tD\tPoints");
+        for(int i=0;i<table.size();i++) {
+        	LeagueTableItem line = table.get(i);
+        	Log.v(TAG,line.team.name+"\t\t"+String.valueOf(line.wins)+"\t"+String.valueOf(line.losses)+"\t"+String.valueOf(line.draws)+"\t"+String.valueOf(line.points));
+       }
     }
 
 
