@@ -120,6 +120,10 @@ public class MainActivity extends Activity {
         	Log.v(TAG,player.team.footballers.get(i).getFull());
         }
         
+        for(int i=0;i<new_league.teams.size();i++){
+        	Log.v(TAG,new_league.teams.get(i).name +" play at "+new_league.teams.get(i).stadium_name);
+        }
+        
         /*Log.v(TAG,"Fixtures in the League:");
         for(int i=0;i<new_league.fixtures.size();i++) {
         	 Log.v(TAG,new_league.fixtures.get(i).team_1.name+" vs "+new_league.fixtures.get(i).team_2.name);
