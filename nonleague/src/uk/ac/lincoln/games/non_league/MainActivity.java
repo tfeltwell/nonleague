@@ -59,10 +59,10 @@ public class MainActivity extends Activity {
         /*Log.v(TAG,"Fixtures in the League:");
         for(int i=0;i<new_league.fixtures.size();i++) {
         	 Log.v(TAG,new_league.fixtures.get(i).team_1.name+" vs "+new_league.fixtures.get(i).team_2.name);
-        }*/
-        /*
+        }
+        
         Log.v(TAG,"Running Fixtures:");
-        Match fixture = new_league.nextFixture();
+        Match fixture = state.league.nextFixture();
         MatchResult result;
         while(fixture!=null){
         	result = fixture.run();
@@ -74,8 +74,8 @@ public class MainActivity extends Activity {
         		Log.v(TAG,result.team_2_scorers.get(i).getFull()+" of "+result.team_2.name+" scored!");
         	}
         	//Log.v(TAG,result.team_1.name + " "+String.valueOf(result.result_1)+"-"+String.valueOf(result.result_2)+" "+result.team_2.name);
-        	fixture = new_league.nextFixture();
-        }
+        	fixture = state.league.nextFixture();
+        }/*
         
         Log.v(TAG,"Printing League Table:");
         ArrayList<LeagueTableItem> table = new_league.getLeagueTable();

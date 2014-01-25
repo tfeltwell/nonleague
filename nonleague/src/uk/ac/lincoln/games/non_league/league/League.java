@@ -129,12 +129,23 @@ public class League {
 			if (!m.isTeam(t))
 				continue;//not playing
 			else {
-				form.concat(m.result.resultForTeam(t));
+				form = form.concat(m.result.resultForTeam(t));
+				//Log.d("DEBUG",form);
 			}
 		}
 		if(form.length()>5) {
 			form = form.substring(form.length()-5);
 		}
 		return form;
+	}
+	
+	public int getPosition(Team t) {
+		ArrayList<LeagueTableItem> table = this.getLeagueTable();
+		for(int i=0;i<table.size();i++) {
+			if(table.get(i).team.equals(t)){
+				return i+1;
+			}
+		}
+		return table.size()+1;
 	}
 }
