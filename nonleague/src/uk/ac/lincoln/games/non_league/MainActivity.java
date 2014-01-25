@@ -7,6 +7,8 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 
 import uk.ac.lincoln.games.non_league.league.*;
+import uk.ac.lincoln.games.non_league.match.Match;
+import uk.ac.lincoln.games.non_league.match.MatchResult;
 
 import android.os.Bundle;
 import android.app.Activity;
@@ -63,6 +65,16 @@ public class MainActivity extends Activity {
         Log.v(TAG,"Fixtures in the League:");
         for(int i=0;i<new_league.fixtures.size();i++) {
         	 Log.v(TAG,new_league.fixtures.get(i).team_1.name+" vs "+new_league.fixtures.get(i).team_2.name);
+        }
+        
+        Log.v(TAG,"Running Fixtures:");
+        Match fixture = new_league.nextFixture();
+        MatchResult result;
+        while(fixture!=null){
+        	result = fixture.run();
+        	//Log.d("TEST","GOT HERE"+result.team_1.name);
+        	Log.v(TAG,result.team_1.name + " "+String.valueOf(result.result_1)+"-"+String.valueOf(result.result_2)+" "+result.team_2.name);
+        	fixture = new_league.nextFixture();
         }
     }
 
