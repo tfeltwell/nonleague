@@ -1,7 +1,9 @@
 package uk.ac.lincoln.games.non_league.league;
 
+import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Random;
@@ -41,6 +43,11 @@ public class League {
 				team_name = team_name +" "+ team_names.get((new Random()).nextInt(team_names.size()));
 			teams.add(new Team(team_name));
 		}
+		for(int i=0;i<teams.size();i++){
+			// Randomly select 11 names
+			teams.get(i).generateSquad();
+		}
+		
 		//build a list of fixtures
 		ArrayList<Match> fixtures_a = new ArrayList<Match>();
 		for(int i=0;i<teams.size();i++){

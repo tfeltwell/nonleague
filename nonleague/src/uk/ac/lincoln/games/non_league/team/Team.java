@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 import android.content.res.AssetManager;
 
-import uk.ac.lincoln.games.non_league.
+import uk.ac.lincoln.games.non_league.footballer.*;
 
 /**
  * Leagues have many teams. Teams have many players.
@@ -23,12 +23,20 @@ public class Team {
 		this.player_control = false;
 		win_bias = 0.5 - Math.random(); //gain a random bias between -0.5 and +0.5
 		this.name = team_name;
+		
+		// Generate players 11
+		generateSquad();
+	}
+	
+	public void generateSquad(){
+		
 	}
 	
 	public boolean isPlayerControlled() {return this.player_control;}
 	
 	public void setPlayerControlled(boolean value){
-		player_control = value;
+		this.player_control = value;
+		this.win_bias = 0.6 - Math.random(); // Slightly higher bias. Happy to refactor this
 		}
 	
 	

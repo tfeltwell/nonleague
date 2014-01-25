@@ -22,6 +22,10 @@ public class MainActivity extends Activity {
 	public static final String TAG = "uk.ac.lincoln.games.non_league.MainActivity";
 	private ArrayList<String> team_names;
 	private ArrayList<String> town_names;
+	private ArrayList<String> first_names;
+	private ArrayList<String> last_names;
+	private ArrayList<String> stadium_names;
+	private ArrayList<String> road_names;
 	
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,8 +36,13 @@ public class MainActivity extends Activity {
         
         team_names = new ArrayList<String>();
         town_names = new ArrayList<String>();
+        first_names = new ArrayList<String>();
+        last_names = new ArrayList<String>();
+        stadium_names = new ArrayList<String>();
+        road_names = new ArrayList<String>();
+        
 		
-		//get the potential team names and suffixes
+		//get the potential team names and suffixes, first names, last names and stadium names
 		try{
 			InputStream input = this.getAssets().open("teamnames.txt");
 			BufferedReader buffreader = new BufferedReader(new InputStreamReader(input));
@@ -51,6 +60,44 @@ public class MainActivity extends Activity {
 				line = buffreader.readLine();
 			}
 			input.close();
+			
+			// Footballer names
+			input = this.getAssets().open("firstnames.txt");
+			buffreader = new BufferedReader(new InputStreamReader(input));
+			line = buffreader.readLine();
+			while(line!=null) {
+				first_names.add(line);
+				line = buffreader.readLine();
+			}
+			input.close();
+			input = this.getAssets().open("surnames.txt");
+			buffreader = new BufferedReader(new InputStreamReader(input));
+			line = buffreader.readLine();
+			while(line!=null) {
+				last_names.add(line);
+				line = buffreader.readLine();
+			}
+			input.close();
+			
+			// Stadium names
+			
+			input = this.getAssets().open("roadnames.txt");
+			buffreader = new BufferedReader(new InputStreamReader(input));
+			line = buffreader.readLine();
+			while(line!=null) {
+				road_names.add(line);
+				line = buffreader.readLine();
+			}
+			input.close();
+			input = this.getAssets().open("stadiumnames.txt");
+			buffreader = new BufferedReader(new InputStreamReader(input));
+			line = buffreader.readLine();
+			while(line!=null) {
+				stadium_names.add(line);
+				line = buffreader.readLine();
+			}
+			input.close();
+			
 		} catch (IOException e) {
             Log.e(TAG,e.getMessage());
             //crash
