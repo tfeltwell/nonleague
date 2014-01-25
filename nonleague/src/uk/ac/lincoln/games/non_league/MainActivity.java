@@ -66,6 +66,13 @@ public class MainActivity extends Activity {
         MatchResult result;
         while(fixture!=null){
         	result = fixture.run();
+        	Log.v(TAG,"Game between "+result.team_1.name+" and "+result.team_2.name+" played at "+result.team_1.stadium_name+" | Score: "+result.result_1+" - "+result.result_2);
+        	for(int i=0;i<result.team_1_scorers.size();i++){
+        		Log.v(TAG,result.team_1_scorers.get(i).getFull()+" of "+result.team_1.name+" scored!");
+        	}
+        	for(int i=0;i<result.team_2_scorers.size();i++){
+        		Log.v(TAG,result.team_2_scorers.get(i).getFull()+" of "+result.team_2.name+" scored!");
+        	}
         	//Log.v(TAG,result.team_1.name + " "+String.valueOf(result.result_1)+"-"+String.valueOf(result.result_2)+" "+result.team_2.name);
         	fixture = new_league.nextFixture();
         }
