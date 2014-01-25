@@ -30,6 +30,7 @@ import uk.ac.lincoln.games.non_league.team.Team;
 public class League {
 	public ArrayList<Match> fixtures;
 	public ArrayList<Team> teams;
+	public int CursorPos;
 	
 	public League(ArrayList<String> town_names, ArrayList<String> team_names, ArrayList<String> first_names, ArrayList<String> last_names, ArrayList<String> road_names, ArrayList<String> stadium_names, int league_size){//TODO probably pass the player team in here.
 		//build league from X number of teams. Build fixture list.
@@ -136,5 +137,19 @@ public class League {
 			form = form.substring(form.length()-5);
 		}
 		return form;
+	}
+	
+	public Team findTeamsNextFixture(Team currentTeam){
+		
+		for(int i=0;i<fixtures.size();i++){
+			if(fixtures.get(i).has_run == false){
+				if(fixtures.get(i).team_1 == currentTeam || fixtures.get(i).team_2 == currentTeam){
+					if(fixtures.get(i).team_1 == currentTeam){ return fixtures.get(i).team_2; }
+					else{ return fixtures.get(i).team_1; }
+				}
+			}
+		}
+		return null;
+		
 	}
 }
