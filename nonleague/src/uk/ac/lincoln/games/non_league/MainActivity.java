@@ -114,7 +114,7 @@ public class MainActivity extends Activity {
         Player player = new Player("Tom Kirmhan");
         int teamID = new Random().nextInt(new_league.teams.size());
         player.setTeam(new_league.teams.get(teamID));
-        Log.v(TAG,player.getPlayerName()+" is supporting: "+player.getTeamName());
+        Log.v(TAG,player.getPlayerName()+" is following "+player.getTeamName()+" from "+player.team.stadium_name);
         Log.v(TAG,player.getTeamName()+" players:");
         for(int i=0;i<player.team.footballers.size();i++){
         	Log.v(TAG,player.team.footballers.get(i).getFull());
