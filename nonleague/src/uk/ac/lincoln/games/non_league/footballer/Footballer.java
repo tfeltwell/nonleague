@@ -23,6 +23,6 @@ public class Footballer {
 	
 	public String getLast(){ return last; }
 	
-	public String getFull() { return first + last; }
+	public String getFull() { return first+" "+last; }
 
 }

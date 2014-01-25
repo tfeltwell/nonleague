@@ -104,7 +104,7 @@ public class MainActivity extends Activity {
         }
         
         Log.v(TAG,"Generating League");
-        League new_league = new League(town_names,team_names);
+        League new_league = new League(town_names,team_names, first_names, last_names);
         
         Log.v(TAG,"Teams in the League:");
         for(int i=0;i<new_league.teams.size();i++) {
@@ -112,10 +112,14 @@ public class MainActivity extends Activity {
         }
         
         // Force select player team. TODO make dynamic or user selected
-        Player player = new Player("Ben Felthan");
+        Player player = new Player("Tom Kirmhan");
         int teamID = new Random().nextInt(new_league.teams.size());
         player.setTeam(new_league.teams.get(teamID));
-        Log.v(TAG,"Player is supporting:"+player.getTeamName());
+        Log.v(TAG,player.getPlayerName()+" is supporting: "+player.getTeamName());
+        Log.v(TAG,player.getTeamName()+" players:");
+        for(int i=0;i<player.team.footballers.size();i++){
+        	Log.v(TAG,player.team.footballers.get(i).getFull());
+        }
         
         Log.v(TAG,"Fixtures in the League:");
         for(int i=0;i<new_league.fixtures.size();i++) {

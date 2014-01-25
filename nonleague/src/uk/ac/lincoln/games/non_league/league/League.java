@@ -30,7 +30,7 @@ public class League {
 	public ArrayList<Match> fixtures;
 	public ArrayList<Team> teams;
 	
-	public League(ArrayList<String> town_names, ArrayList<String> team_names){//TODO probably pass the player team in here.
+	public League(ArrayList<String> town_names, ArrayList<String> team_names, ArrayList<String> first_names, ArrayList<String> last_names){//TODO probably pass the player team in here.
 		//build league from X number of teams. Build fixture list.
 					
 		teams = new ArrayList<Team>();
@@ -43,9 +43,9 @@ public class League {
 				team_name = team_name +" "+ team_names.get((new Random()).nextInt(team_names.size()));
 			teams.add(new Team(team_name));
 		}
+		// Generate squads
 		for(int i=0;i<teams.size();i++){
-			// Randomly select 11 names
-			teams.get(i).generateSquad();
+			teams.get(i).generateSquad(first_names,last_names);
 		}
 		
 		//build a list of fixtures

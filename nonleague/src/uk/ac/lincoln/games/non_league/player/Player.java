@@ -12,7 +12,7 @@ import uk.ac.lincoln.games.non_league.team.*;
 public class Player {
 
 	String name;
-	Team team;
+	public Team team;
 	
 	
 	public Player(String playerName){
@@ -28,4 +28,6 @@ public class Player {
 	}
 	
 	public String getTeamName(){return team.name;}
+	
+	public String getPlayerName(){return name;}
 }
