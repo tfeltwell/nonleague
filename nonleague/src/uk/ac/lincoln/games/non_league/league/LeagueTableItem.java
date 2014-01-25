@@ -27,6 +27,7 @@ public class LeagueTableItem implements Comparable<LeagueTableItem> {
 			gf+=result.result_1;
 			ga+=result.result_1;
 			points+=1;
+			return;
 		}
 		if(result.result_1>result.result_2){// 1 > 2
 			if(result.team_1==this.team){

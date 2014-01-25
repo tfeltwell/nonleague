@@ -104,8 +104,7 @@ public class MainActivity extends Activity {
         }
         
         Log.v(TAG,"Generating League");
-        League new_league = new League(town_names,team_names, first_names, last_names);
-        
+        League new_league = new League(town_names,team_names, first_names, last_names,14);
         Log.v(TAG,"Teams in the League:");
         for(int i=0;i<new_league.teams.size();i++) {
         	 Log.v(TAG,new_league.teams.get(i).name);
