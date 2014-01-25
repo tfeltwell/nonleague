@@ -37,7 +37,7 @@ public class MainActivity extends Activity {
         Log.v(TAG,player.getPlayerName()+" is following "+player.getTeamName()+" from "+player.team.stadium_name);
         Log.v(TAG,player.getTeamName()+" players:");
         for(int i=0;i<player.team.footballers.size();i++){
-        	Log.v(TAG,player.team.footballers.get(i).getFull());
+        	Log.v(TAG,player.team.footballers.get(i).getFull()+" - "+player.team.footballers.get(i).getPosition());
         }
         state.setPlayer(player);
         

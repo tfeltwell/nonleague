@@ -38,7 +38,7 @@
         android:text="Go to Game" />
 
     <TextView
-        android:id="@+id/textView1"
+        android:id="@+id/matchResultItemText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
@@ -50,8 +50,8 @@
         android:id="@+id/TextView01"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/textView1"
-        android:layout_alignBottom="@+id/textView1"
+        android:layout_alignBaseline="@+id/matchResultItemText"
+        android:layout_alignBottom="@+id/matchResultItemText"
         android:layout_toRightOf="@+id/stadiumName"
         android:text="Next Fixture"
         android:textAppearance="?android:attr/textAppearanceMedium" />
@@ -61,7 +61,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignRight="@+id/fixtureStadiumName"
-        android:layout_below="@+id/textView1"
+        android:layout_below="@+id/matchResultItemText"
         android:text="Opponent"
         android:textAppearance="?android:attr/textAppearanceSmall" />
 
@@ -79,7 +79,7 @@
         android:id="@+id/leaguePosition"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/textView1"
+        android:layout_alignLeft="@+id/matchResultItemText"
         android:layout_below="@+id/opponentName"
         android:text="position"
         android:textAppearance="?android:attr/textAppearanceSmall" />
