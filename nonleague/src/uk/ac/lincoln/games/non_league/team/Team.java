@@ -24,4 +24,10 @@ public class Team {
 	}
 	
 	public boolean isPlayerControlled() {return this.player_control;}
+	
+	public void setPlayerControlled(boolean value){
+		player_control = value;
+		}
+	
+	
 }

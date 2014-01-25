@@ -5,10 +5,12 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.Random;
 
 import uk.ac.lincoln.games.non_league.league.*;
 import uk.ac.lincoln.games.non_league.match.Match;
 import uk.ac.lincoln.games.non_league.match.MatchResult;
+import uk.ac.lincoln.games.non_league.player.*;
 
 import android.os.Bundle;
 import android.app.Activity;
@@ -61,6 +63,12 @@ public class MainActivity extends Activity {
         for(int i=0;i<new_league.teams.size();i++) {
         	 Log.v(TAG,new_league.teams.get(i).name);
         }
+        
+        // Force select player team. TODO make dynamic or user selected
+        Player player = new Player("Ben Felthan");
+        int teamID = new Random().nextInt(new_league.teams.size());
+        player.setTeam(new_league.teams.get(teamID));
+        Log.v(TAG,"Player is supporting:"+player.getTeamName());
         
         Log.v(TAG,"Fixtures in the League:");
         for(int i=0;i<new_league.fixtures.size();i++) {
