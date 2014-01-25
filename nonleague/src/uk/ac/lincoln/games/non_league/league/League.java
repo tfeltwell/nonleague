@@ -139,13 +139,12 @@ public class League {
 		return form;
 	}
 	
-	public Team findTeamsNextFixture(Team currentTeam){
+	public Match findTeamsNextFixture(Team currentTeam){
 		
 		for(int i=0;i<fixtures.size();i++){
 			if(fixtures.get(i).has_run == false){
 				if(fixtures.get(i).team_1 == currentTeam || fixtures.get(i).team_2 == currentTeam){
-					if(fixtures.get(i).team_1 == currentTeam){ return fixtures.get(i).team_2; }
-					else{ return fixtures.get(i).team_1; }
+					return fixtures.get(i);
 				}
 			}
 		}
