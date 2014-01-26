@@ -38,18 +38,18 @@ public class Team {
 		for(int i=0;i<11;i++){
 			String pos = "";
 			if(i < 4){
-				pos = "Defender";
+				pos = "defender";
 			}
 			else{
 				if(i >= 4 && i < 8){
-					pos = "Midfield";
+					pos = "midfield";
 				}
 				else{
 					if(i <10){
-						pos = "Striker";
+						pos = "striker";
 					}
 					else{
-						pos = "Goalkeeper";
+						pos = "goalkeeper";
 					}	
 				}
 			}
@@ -63,6 +63,19 @@ public class Team {
 		this.player_control = value;
 		this.win_bias = 0.6 - Math.random(); // Slightly higher bias. Happy to refactor this
 		}
+	
+	public String getFootballerAtPosition(String position){
+		Random rand = new Random();
+		ArrayList<String> foundPlayer = new ArrayList<String>();
+		for(int i=0;i<footballers.size();i++){
+				if(footballers.get(i).getPosition().contentEquals(position)){
+					foundPlayer.add(footballers.get(i).getFull());
+				}
+		}
+		if(foundPlayer.size()<=0){ return null; }
+		int i = rand.nextInt(foundPlayer.size());
+		return foundPlayer.get(i);
+	}
 	
 	
 }

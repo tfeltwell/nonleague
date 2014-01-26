@@ -8,6 +8,8 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.TextView;
+import java.util.ArrayList;
+import java.util.Random;
 import uk.ac.lincoln.games.non_league.match.Match;
 import uk.ac.lincoln.games.non_league.match.MatchResult;
 import uk.ac.lincoln.games.non_league.team.*;
@@ -32,8 +34,25 @@ public class PlayerMatchResult extends Activity {
 	        		state.league.nextFixture().run();
 	        	}
 	        }
-	        MatchResult result = state.league.nextFixture().run();
+	        Match thisMatch = state.league.nextFixture();
+	        MatchResult result = thisMatch.run();
 	        ((TextView)this.findViewById(R.id.resultScoreline)).setText(result.team_1.name+" "+String.valueOf(result.result_1)+" - "+String.valueOf(result.result_2)+" "+result.team_2.name);
+	        // Match summary statements
+	        String resultAsString = result.resultForPlayerTeam(state.player);
+	        Log.v("FUCK",resultAsString);
+	        Log.v("KEYSET",String.valueOf(state.news_items.keySet()));
+	        ArrayList<String> all_items = state.news_items.get(resultAsString);
+	        String news_item = all_items.get(new Random().nextInt(all_items.size()));
+	        // Tokens: yourteam, opposition, goalkeeper, defender, midfielder, attacker, stadium
+	        news_item = news_item.replace("{yourteam}",String.valueOf(state.player.team.name));
+	        news_item = news_item.replace("{opposition}",String.valueOf(result.findOpposition(state.player.team).name));
+	        news_item = news_item.replace("{goalkeeper}",String.valueOf(state.player.team.getFootballerAtPosition("goalkeeper")));
+	        news_item = news_item.replace("{defender}",String.valueOf(state.player.team.getFootballerAtPosition("defender")));
+	        news_item = news_item.replace("{attacker}",String.valueOf(state.player.team.getFootballerAtPosition("striker")));
+	        news_item = news_item.replace("{midfielder}",String.valueOf(state.player.team.getFootballerAtPosition("midfield")));
+	        news_item = news_item.replace("{stadium}",String.valueOf(thisMatch.team_1.stadium_name));
+	        ((TextView)this.findViewById(R.id.resultNewsItem)).setText(news_item);
+	        
 	        //Go see other weekly results.
 	        
 	        Button go = (Button)this.findViewById(R.id.seeOtherResultsButton);

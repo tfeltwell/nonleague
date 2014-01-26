@@ -2,6 +2,7 @@ package uk.ac.lincoln.games.non_league.match;
 
 import uk.ac.lincoln.games.non_league.team.*;
 import uk.ac.lincoln.games.non_league.footballer.*;
+import uk.ac.lincoln.games.non_league.player.*;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -61,5 +62,23 @@ public class MatchResult {
 			else
 				return "W";
 		}
+	}
+	
+	// Return the nice "1-0" result, with players team score first
+	public String resultForPlayerTeam(Player p){
+		if(!(p.team.equals(team_1)||p.team.equals(team_2))) return null;//team not in this match
+		if(team_1.equals(p.team)){
+			return result_1 +"-"+result_2;
+		}
+		else{
+			return result_2 +"-"+result_1;
+		}
+	}
+	
+	public Team findOpposition(Team t){
+		if(!(t.equals(team_1)||t.equals(team_2))) return null;//team not in this match
+		
+		if(t.equals(team_1)){ return team_2; }
+		else{ return team_1; }
 	}
 }
