@@ -3,13 +3,22 @@ nonleague
 
 Non-League Football Supporter
 
-At the moment, when you compile and run it, it does Main Activity. This is like an example that runs some stuff to show the simulation.
-Effectively the sequence of events simulates the running of a league.
-Teams are invented based on Conor's name algorithm
-Teams are assigned fixtures
+The Game is functional to a 0.1 standard now, and fairly stable.
 
-At the bottom it runs an effective league (loop nextfixture), then prints a league table to the log.
+You can choose rituals, run matches, see results.
 
-There is something funky going on somewhere, however it doesn't matter just yet. Results are generated, for matches, that runs a league.
+A few bugs that would be good to fix:
 
-next we need to figure out a way for the player to have a team and that it pauses at these moments. And a whole user interface... if anything the user interface is a good bit to focus on.
+- If the season ends, the game crashes. We should figure out a way to have a game over screen (final placement etc, restart)
+
+
+and tasks in priority
+- Adding Conor's messages to the news item screen (PlayerMatchResult)
+- Graphics
+- An animation or pause before releasing score.
+- Save/load would be nice for the GameState class.
+
+-----------
+Licences:
+
+Pie photo CC by-nc-aa, jasmine, http://www.flickr.com/photos/jasmine/16346093/
