@@ -36,7 +36,11 @@ public class PlayerMatchResult extends Activity {
 	        }
 	        Match thisMatch = state.league.nextFixture();
 	        MatchResult result = thisMatch.run();
-	        ((TextView)this.findViewById(R.id.resultScoreline)).setText(result.team_1.name+" "+String.valueOf(result.result_1)+" - "+String.valueOf(result.result_2)+" "+result.team_2.name);
+	        ((TextView)this.findViewById(R.id.resultTeam1)).setText(result.team_1.name);
+	        ((TextView)this.findViewById(R.id.resultTeam2)).setText(result.team_2.name);
+	        ((TextView)this.findViewById(R.id.resultTeam1Score)).setText(String.valueOf(result.result_1));
+	        ((TextView)this.findViewById(R.id.resultTeam2Score)).setText(String.valueOf(result.result_2));
+	        //+" "+String.valueOf(result.result_1)+" - "+String.valueOf(result.result_2)+" "+result.team_2.name);
 	        // Match summary statements
 	        String resultAsString = result.resultForPlayerTeam(state.player);
 	        Log.v("FUCK",resultAsString);

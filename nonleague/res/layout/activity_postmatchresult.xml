@@ -63,7 +63,9 @@
         android:layout_centerHorizontal="true"
         android:background="@drawable/back"
         android:layout_margin="30dp"
-        android:text="TextView" />
+        android:text="TextView" 
+        android:padding="15dp"
+        />
 
     <Button
         android:id="@+id/seeOtherResultsButton"
