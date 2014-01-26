@@ -66,6 +66,14 @@ public class LeagueTableView extends Activity{
 	            //        LayoutParams.FILL_PARENT,
 	            //        LayoutParams.WRAP_CONTENT));
 	            tr.addView(labelTV);
+	            //played
+	            labelTV = new TextView(this);
+	            labelTV.setText(String.valueOf(m.getGamesPlayed()));
+	            labelTV.setGravity(Gravity.RIGHT);
+	            labelTV.setPadding(0, 0, 15, 0);
+	            if(m.team.equals(state.player.team)) labelTV.setTypeface(null,Typeface.BOLD);
+	            //labelTV.setLayoutParams(new LayoutParams(LayoutParams.FILL_PARENT, LayoutParams.WRAP_CONTENT));
+	            tr.addView(labelTV);
 	            //wins
 	            labelTV = new TextView(this);
 	            labelTV.setText(String.valueOf(m.wins));

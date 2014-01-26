@@ -71,6 +71,7 @@ public class League {
 				}
 			}
 		}
+		
 		//ok so now we have a list of all possible fixtures between these teams
 		//randomise these fixtures, add them twice in order.
 		Collections.shuffle(fixtures_a);

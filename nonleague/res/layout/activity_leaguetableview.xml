@@ -18,6 +18,12 @@
             android:textStyle="bold" 
             android:textAppearance="?android:attr/textAppearanceSmall" />
         <TextView
+            android:text="Pd "
+            android:gravity="right" 
+            android:paddingRight="10dip" 
+             android:textStyle="bold" 
+            android:textAppearance="?android:attr/textAppearanceSmall" />
+        <TextView
             android:text="W "
             android:gravity="right" 
             android:paddingRight="10dip" 
