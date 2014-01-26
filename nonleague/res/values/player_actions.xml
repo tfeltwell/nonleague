@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
     <resources>
         <string-array name="clothes">
-            <item>None</item>
+            <item>No Special Clothes</item>
             <item >Lucky Pants</item>
             <item >Football Scarf</item>
             <item >Rain Jacket</item>
@@ -12,7 +12,7 @@
             <item >Bare Chest</item>
         </string-array>
         <string-array name="food">
-            <item>None</item>
+            <item>No Special Meal</item>
             <item>Cheese Pie</item>
             <item>Chicken Pie</item>
             <item>Butter Pie</item>
@@ -23,11 +23,10 @@
             <item>Pie and Pea Wet</item>
         </string-array>
         <string-array name="drink">
-            <item>None</item>
+            <item>No Special Drink</item>
             <item>Pint of Mild</item>
             <item>Bovril</item>
             <item>Fizzy Pop</item>
-            <item>Pie Barm</item>
             <item>Warm Lager</item>
             <item>Milky Tea</item>
         </string-array>

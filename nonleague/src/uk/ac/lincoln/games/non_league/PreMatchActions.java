@@ -7,7 +7,6 @@ import java.util.Random;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ArrayAdapter;
@@ -15,9 +14,6 @@ import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TextView;
 import uk.ac.lincoln.games.non_league.match.Match;
-import uk.ac.lincoln.games.non_league.match.MatchResult;
-import uk.ac.lincoln.games.non_league.team.*;
-import uk.ac.lincoln.games.non_league.util.MultiSpinner;
 
 /**
  * This screen shows the current status of the player's team, and info about the next match.
@@ -54,17 +50,22 @@ public class PreMatchActions extends Activity{
 	        spinner_clothes.setPrompt("Special Clothes?");
 	        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(
 	                this, R.array.clothes, android.R.layout.simple_spinner_item);
+	        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+	        spinner_clothes.setAdapter(adapter);
 	        
 	        Spinner spinner_food = (Spinner) findViewById(R.id.spinner_food);
 	        spinner_clothes.setPrompt("Special Prematch Food?");
 	        adapter = ArrayAdapter.createFromResource(
 	                this, R.array.food, android.R.layout.simple_spinner_item);
+	        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+	        spinner_food.setAdapter(adapter);
 	        
 	        Spinner spinner_drink = (Spinner) findViewById(R.id.spinner_drink);
 	        spinner_clothes.setPrompt("Special Prematch Drink?");
 	        adapter = ArrayAdapter.createFromResource(
 	                this, R.array.drink, android.R.layout.simple_spinner_item);
-	        
+	        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+	        spinner_drink.setAdapter(adapter);
 	        //TODO Go to match
 	        
 	        Button go = (Button)this.findViewById(R.id.goKickOff);
@@ -76,6 +77,6 @@ public class PreMatchActions extends Activity{
 	          }
 	        });
 	 }
-	 public void onItemsSelected(boolean[] selected){/*shhh ;)*/}
+
 	 
 }

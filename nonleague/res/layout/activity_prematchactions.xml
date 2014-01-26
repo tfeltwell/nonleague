@@ -27,7 +27,7 @@
         android:id="@+id/secondTeamPreMatch"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/firstTeamPreMatch"
+        android:layout_centerHorizontal="true"
         android:layout_below="@+id/preMatchVs"
         android:layout_marginTop="17dp"
         android:text="Large Text"
@@ -37,25 +37,42 @@
         android:id="@+id/preMatchStadium"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/secondTeamPreMatch"
+        android:layout_centerHorizontal="true"
         android:layout_below="@+id/secondTeamPreMatch"
         android:layout_marginTop="18dp"
         android:text="Medium Text"
         android:textAppearance="?android:attr/textAppearanceMedium" />
-
+	<TextView
+        android:id="@+id/preMatchRituals"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/preMatchStadium"
+        android:layout_marginTop="28dp"
+        android:text="Choose your pre-match Rituals:"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
     <Spinner
       android:id="@+id/spinner_clothes"
+      android:layout_centerHorizontal="true"
+      android:layout_below="@+id/preMatchRituals"
+      android:layout_marginTop="18dp"
       android:layout_width="fill_parent"
       android:layout_height="wrap_content"
       android:drawSelectorOnTop = "true"/>
     <Spinner
       android:id="@+id/spinner_food"
+      android:layout_centerHorizontal="true"
+      android:layout_below="@+id/spinner_clothes"
+      android:layout_marginTop="18dp"
       android:layout_width="fill_parent"
       android:layout_height="wrap_content"
       android:drawSelectorOnTop = "true"/>
     <Spinner
       android:id="@+id/spinner_drink"
-      android:layout_width="fill_parent"
+      android:layout_centerHorizontal="true"
+      android:layout_marginTop="18dp"
+      android:layout_below="@+id/spinner_food"
+      android:layout_width="fill_parent" 
       android:layout_height="wrap_content"
       android:drawSelectorOnTop = "true"/>
 
