@@ -25,10 +25,19 @@
         <string-array name="drink">
             <item>No Special Drink</item>
             <item>Pint of Mild</item>
-            <item>Bovril</item>
+            <item>Hot Meaty Drink</item>
             <item>Fizzy Pop</item>
             <item>Warm Lager</item>
             <item>Milky Tea</item>
+        </string-array>
+        <string-array name="misc">
+            <item>No Special Activity</item>
+            <item>Buy a Match Programme</item>
+            <item>Buy a Supporters Magazine</item>
+            <item>Bring your Dog</item>
+            <item>Bet on your team</item>
+            <item>Bet against your team</item>
+            <item>Bring your Nephew</item>
         </string-array>
     </resources>
     

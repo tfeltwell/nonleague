@@ -54,18 +54,25 @@ public class PreMatchActions extends Activity{
 	        spinner_clothes.setAdapter(adapter);
 	        
 	        Spinner spinner_food = (Spinner) findViewById(R.id.spinner_food);
-	        spinner_clothes.setPrompt("Special Prematch Food?");
+	        spinner_food.setPrompt("Special Prematch Food?");
 	        adapter = ArrayAdapter.createFromResource(
 	                this, R.array.food, android.R.layout.simple_spinner_item);
 	        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 	        spinner_food.setAdapter(adapter);
 	        
 	        Spinner spinner_drink = (Spinner) findViewById(R.id.spinner_drink);
-	        spinner_clothes.setPrompt("Special Prematch Drink?");
+	        spinner_drink.setPrompt("Special Prematch Drink?");
 	        adapter = ArrayAdapter.createFromResource(
 	                this, R.array.drink, android.R.layout.simple_spinner_item);
 	        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 	        spinner_drink.setAdapter(adapter);
+	        
+	        Spinner spinner_misc = (Spinner) findViewById(R.id.spinner_misc);
+	        spinner_misc.setPrompt("Special Prematch Activity?");
+	        adapter = ArrayAdapter.createFromResource(
+	                this, R.array.misc, android.R.layout.simple_spinner_item);
+	        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+	        spinner_misc.setAdapter(adapter);
 	        //TODO Go to match
 	        
 	        Button go = (Button)this.findViewById(R.id.goKickOff);

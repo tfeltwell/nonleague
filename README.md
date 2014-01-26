@@ -22,3 +22,4 @@ and tasks in priority
 Licences:
 
 Pie photo CC by-nc-aa, jasmine, http://www.flickr.com/photos/jasmine/16346093/
+Grey texture nc-by http://www.lovetextures.com/faqs/
