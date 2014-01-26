@@ -174,7 +174,7 @@ Midfield general {midfielder} kept things ticking over in the {yourteam} engine 
 {opposition} struggled to deal with the range of passing displayed by cultured midfielder {midfielder} at {stadium}.
 Clinical centre forward {attacker} earned all the plaudits, as {yourteam} bagged the three points today at {stadium}.
 Controversial striker {attacker} was the inspiration for his side, as {yourteam} earned a well-deserved victory at {stadium}.
-2-1	
+2-1
 {yourteam} have inspirational goalkeeper {goalkeeper} to thank, as they took home the spoils at {stadium}.
 Goalkeeper {goalkeeper} will feel relieved, as his glaring errors went largely unpunished against {opposition} at {stadium}.
 Resolute defender {defender} put his body on the line time and again, as his side left {stadium} with all three points.
