@@ -49,7 +49,7 @@ public class MainActivity extends Activity {
           @Override
           public void onClick(View v) {
         	  
-        	  Intent myIntent = new Intent(MainActivity.this,TeamStatus.class);
+        	  Intent myIntent = new Intent(MainActivity.this,WelcomeActivity.class);
         	  
         	  MainActivity.this.startActivity(myIntent);
           }
