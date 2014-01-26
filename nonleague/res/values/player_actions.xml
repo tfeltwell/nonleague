@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+    <resources>
+        <string-array name="clothes">
+            <item>None</item>
+            <item >Lucky Pants</item>
+            <item >Football Scarf</item>
+            <item >Rain Jacket</item>
+            <item >Team Socks</item>
+            <item >Team Away Shirt</item>
+            <item >Team Home Shirt</item>
+            <item >Team Goalie Shirt</item>
+            <item >Bare Chest</item>
+        </string-array>
+        <string-array name="food">
+            <item>None</item>
+            <item>Cheese Pie</item>
+            <item>Chicken Pie</item>
+            <item>Butter Pie</item>
+            <item>Pie Barm</item>
+            <item>Curry Pie</item>
+            <item>Steak Pie</item>
+            <item>Chip Pie</item>
+            <item>Pie and Pea Wet</item>
+        </string-array>
+        <string-array name="drink">
+            <item>None</item>
+            <item>Pint of Mild</item>
+            <item>Bovril</item>
+            <item>Fizzy Pop</item>
+            <item>Pie Barm</item>
+            <item>Warm Lager</item>
+            <item>Milky Tea</item>
+        </string-array>
+    </resources>
+    
+    

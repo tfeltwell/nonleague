@@ -42,12 +42,12 @@ public class TeamStatus extends Activity {
 	        ((TextView) findViewById(R.id.fixtureStadiumName)).setText(nextFixture.team_1.stadium_name);
 	        Log.d("DEBUG","got here");
 	        
-	        //TODO the button should go to the prematch and viz.
+	        //go to prematch screen
 	        Button go = (Button)this.findViewById(R.id.buttonGoToGame);
 	        go.setOnClickListener(new OnClickListener() {
 	          @Override
 	          public void onClick(View v) {
-	        	  Intent myIntent = new Intent(TeamStatus.this,PlayerMatchResult.class);
+	        	  Intent myIntent = new Intent(TeamStatus.this,PreMatchActions.class);
 	        	  TeamStatus.this.startActivity(myIntent);
 	          }
 	        });

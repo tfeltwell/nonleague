@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <TextView
+        android:id="@+id/firstTeamPreMatch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="16dp"
+        android:text="Large Text"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <TextView
+        android:id="@+id/preMatchVs"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/firstTeamPreMatch"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="16dp"
+        android:text="-vs-"
+        android:textAppearance="?android:attr/textAppearanceSmall" />
+
+    <TextView
+        android:id="@+id/secondTeamPreMatch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/firstTeamPreMatch"
+        android:layout_below="@+id/preMatchVs"
+        android:layout_marginTop="17dp"
+        android:text="Large Text"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <TextView
+        android:id="@+id/preMatchStadium"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/secondTeamPreMatch"
+        android:layout_below="@+id/secondTeamPreMatch"
+        android:layout_marginTop="18dp"
+        android:text="Medium Text"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <Spinner
+      android:id="@+id/spinner_clothes"
+      android:layout_width="fill_parent"
+      android:layout_height="wrap_content"
+      android:drawSelectorOnTop = "true"/>
+    <Spinner
+      android:id="@+id/spinner_food"
+      android:layout_width="fill_parent"
+      android:layout_height="wrap_content"
+      android:drawSelectorOnTop = "true"/>
+    <Spinner
+      android:id="@+id/spinner_drink"
+      android:layout_width="fill_parent"
+      android:layout_height="wrap_content"
+      android:drawSelectorOnTop = "true"/>
+
+    <Button
+        android:id="@+id/goKickOff"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:text="Kick-Off" />
+
+</RelativeLayout>
