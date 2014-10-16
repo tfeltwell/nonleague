@@ -4,7 +4,6 @@ This branch contains a rewrite of Non-League Football Supporter to use the multi
 
 The branch is currently **non-functional**. Please refer to the master branch of the project for a functional native Android implementation.
 
-	
 
 Non-League Football Supporter
 -----------------------------
