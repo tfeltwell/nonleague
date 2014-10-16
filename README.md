@@ -1,8 +1,13 @@
-nonleague
+Non-League Football Supporter - GDX edition
 =========
+This branch contains a rewrite of Non-League Football Supporter to use the multi-platform LibGDX framework.
+
+The branch is currently **non-functional**. Please refer to the master branch of the project for a functional native Android implementation.
+
+
 
 Non-League Football Supporter
-
+-----------------------------
 The Game is functional to a 0.1 standard now, and fairly stable.
 
 You can choose rituals, run matches, see results.
