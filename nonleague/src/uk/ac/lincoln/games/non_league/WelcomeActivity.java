@@ -34,7 +34,7 @@ public class WelcomeActivity extends Activity {
         setContentView(R.layout.activity_introduction);
         
         GameState state = GameState.getGameState(this);
-        
+
         ((TextView)this.findViewById(R.id.welcomeTeam)).setText(state.player.team.name);
         String stadium = state.player.team.stadium_name;
         String teamname = state.player.team.name;
