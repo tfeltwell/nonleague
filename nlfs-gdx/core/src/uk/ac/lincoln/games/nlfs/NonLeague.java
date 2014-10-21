@@ -88,7 +88,7 @@ public class NonLeague extends ApplicationAdapter {
 		stage.addActor(new Background());
 		stage.addActor(table);
 		// Create a button with the "default" TextButtonStyle. A 3rd parameter can be used to specify a name other than "default".
-		final TextButton button = new TextButton("Click me!", skin);
+		final TextButton button = new TextButton("Click me!!", skin);
 		table.add(button).width(200).height(40);
 		// Add a listener to the bu tton. ChangeListener is fired when the button's checked state changes, eg when clicked,
 		// Button#setChecked() is called, via a key press, etc. If the event.cancel() is called, the checked state will be reverted.

@@ -22,6 +22,8 @@ public class MatchResult {
 				
 	}
 	
+	
+	
 	private void calculateScorers(){
 		if(result_1 > 0){
 			for(int i=0;i<result_1;i++){
