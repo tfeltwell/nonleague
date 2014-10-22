@@ -1,0 +1,12 @@
+Road
+Park
+Stadium
+Sports Ground
+Meadow
+Mill
+Green
+Farm
+Fields
+Way
+Ground
+Street

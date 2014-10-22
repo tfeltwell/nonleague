@@ -24,6 +24,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 
 public class NonLeague extends ApplicationAdapter {
+	Assets assets;
 	SpriteBatch batch;
 	Texture img;
 	Skin skin;
@@ -50,6 +51,7 @@ public class NonLeague extends ApplicationAdapter {
 	
 	@Override
 	public void create () {
+		assets = new Assets();//data files
 		batch = new SpriteBatch();
 		stage = new Stage(new FitViewport(360,640));
 		
