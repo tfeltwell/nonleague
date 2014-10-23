@@ -1,18 +1,32 @@
 package uk.ac.lincoln.games.nlfs.logic;
 
+import java.util.Random;
+
+import com.badlogic.gdx.Gdx;
+
+import uk.ac.lincoln.games.nlfs.Assets;
+
 public class Footballer {
-	private String first;
-	private String last;
+	private String first_name, surname;
 	private int age;
-	private Position position;
 	
+	private Position position;
+	public Team team;
 	public static enum Position {GK,DF,MF,ST}
-		
-	public Footballer(String firstN, String lastN, int newAge, Position newPos){
-		first = firstN;
-		last = lastN;
-		age = newAge;
-		position = newPos;
+	
+	/**
+	 * Generate a random new Footballer, of given position.
+	 * @param assets
+	 * @param pos
+	 */
+	public Footballer(Assets assets, Team team, Position pos){
+		position = pos;
+		this.team = team;
+		Random rand = new Random();
+		first_name = assets.first_names.get(rand.nextInt(assets.first_names.size()));
+		surname = assets.surnames.get(rand.nextInt(assets.surnames.size()));
+		age = rand.nextInt(15)+18;
+		//Gdx.app.log("ftgen", getName()+" is a "+getPositionName(position)+" for "+team.name+" at "+team.stadium);
 	}
 	
 	public void setPostion(Position newPos){ position = newPos;}
@@ -21,10 +35,17 @@ public class Footballer {
 	
 	public Position getPosition(){ return position; }
 	
-	public String getFirst(){ return first; }
+	public String getPositionName(Position p) {
+		if(p==Position.GK) return "Goalkeeper";
+		if(p==Position.DF) return "Defender";
+		if(p==Position.MF) return "Midfielder";
+		return "Striker";
+	}
 	
-	public String getLast(){ return last; }
+	public String getFirstName(){ return first_name; }
 	
-	public String getFull() { return first+" "+last; }
+	public String getSurname(){ return surname; }
+	
+	public String getName() { return first_name+" "+surname; }
 
 }

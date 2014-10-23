@@ -1,13 +1,11 @@
 package uk.ac.lincoln.games.nlfs.logic;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Iterator;
-import java.util.Random;
+import com.badlogic.gdx.Gdx;
+
+import uk.ac.lincoln.games.nlfs.Assets;
 
 
 /**
@@ -17,95 +15,173 @@ import java.util.Random;
  * 
  * Based on the results of past fixtures, a league table can be built.
  * 
+ * Fundamentally, the League (or should it be called Non-League? ;) ) object stores the entire current game state.
+ * 
  * @author bkirman
  *
  */
 public class League {
 	public ArrayList<Match> fixtures;
 	public ArrayList<Team> teams;
+	public ArrayList<LeagueTableItem> table;
+	
 	public int CursorPos;
 	
-	public League(ArrayList<String> town_names, ArrayList<String> team_names, ArrayList<String> first_names, ArrayList<String> last_names, ArrayList<String> road_names, ArrayList<String> stadium_names, int league_size){//TODO probably pass the player team in here.
-		//build league from X number of teams. Build fixture list.
-					
+	/**
+	 * The constructor is used to randomly generate an entire league. This is fairly intense so might need a loading screen
+	 * TODO: perhaps take a callback function that is notified of progress.
+	 */
+	public League(Assets assets){
+		if(!assets.isGenLoaded()) assets.loadGenData();//load data files into memory
+				
 		teams = new ArrayList<Team>();
 		fixtures = new ArrayList<Match>();
-		String team_name, stadium_name;
 		
-		for(int i=0;i<league_size;i++) {//note the value here is the size of the league
-			team_name = town_names.get((new Random()).nextInt(town_names.size()));//random town name
-			if (Math.random()<0.3)
-				team_name = team_name +" "+ team_names.get((new Random()).nextInt(team_names.size()));
-			stadium_name = stadium_names.get(new Random().nextInt(stadium_names.size())) +" "+ road_names.get(new Random().nextInt(road_names.size()));
-			teams.add(new Team(team_name,stadium_name));
-		}
-		// Generate squads
-		for(int i=0;i<teams.size();i++){
-			teams.get(i).generateSquad(first_names,last_names);
+		//Generate teams
+		for(int i=0;i<GameState.LEAGUE_SIZE;i++) {
+			teams.add(new Team(assets,this));
 		}
 		
-		//build a list of fixtures
-		ArrayList<Match> fixtures_a = new ArrayList<Match>();
-		ArrayList<Match> fixtures_b = new ArrayList<Match>();
-		for(int i=0;i<teams.size();i++){
-			Team team_a = teams.get(i);
-			for(int j=0;j<teams.size();j++) {
-				Team team_b = teams.get(j);
-				if (team_a.equals(team_b)) break;
-				boolean was_found = false;
-				for (int k=0;k<fixtures_a.size();k++) {
-					//check fixture not already existing
-					if (fixtures_a.get(k).team_1.equals(team_a)&&fixtures_a.get(k).team_2.equals(team_b)){was_found = true; break;}
-					if (fixtures_a.get(k).team_1.equals(team_b)&&fixtures_a.get(k).team_2.equals(team_a)){was_found = true; break;}//bk - yeah, i know. it was midnight ok
-				}
-				if(!was_found) {//oh man this feels wrong
-					fixtures_a.add(new Match(team_a,team_b));//home at a
-					fixtures_b.add(new Match(team_b,team_a));//home at b
-				}
+		/*Gdx.app.log("", "League teams:");
+		for(Team t:teams)Gdx.app.log("", t.name);*/
+		
+		//Generate fixtures
+		fixtures = generateFixtures(teams);
+		updateLeagueTable();
+	}
+	
+	/**
+	 * This will generate a new league around the given team. It will take into account promotion and relegation appropriately.
+	 * relegation and promotion tell the algorithms how many teams to move from the league at both ends. OBVIOUSLY relegation + promotion must be < LEAGUE_SIZE
+	 * @param t
+	 */
+	public void newSeason(Team team_following,int relegation,int promotion) {
+		
+		//if the given team is in relegation/promotion zone, them and any other teams move to a new league.
+		//otherwise, the teams in the relegation/promotion zone are replaced by new teams
+		//then, regenerate fixtures etc.
+		
+		ArrayList<Team> promoted_teams = new ArrayList<Team>();
+		ArrayList<Team> relegated_teams = new ArrayList<Team>();
+		ArrayList<Team> league_teams = new ArrayList<Team>();
+		
+		for(int i=0;i<table.size();i++) {
+			if(i<promotion) {
+				promoted_teams.add(table.get(i).team);
+			} else if (i>=(table.size()-relegation)) {
+				relegated_teams.add(table.get(i).team);
+			}
+			else {
+				league_teams.add(table.get(i).team);
 			}
 		}
 		
-		//ok so now we have a list of all possible fixtures between these teams
-		//randomise these fixtures, add them twice in order.
-		Collections.shuffle(fixtures_a);
-		Collections.shuffle(fixtures_b);
-		fixtures.addAll(fixtures_a);
-		fixtures.addAll(fixtures_b);
+		teams.clear();
+		fixtures.clear();
+		
+		if(team_following.getLeaguePosition()<promotion) {//promotion
+			teams.addAll(promoted_teams);
+		} else if(team_following.getLeaguePosition()>=(table.size()-relegation)) {//relegation
+			teams.addAll(relegated_teams);
+		}
+		else {//not a new league
+			teams.addAll(league_teams);
+		}
+		if(!GameState.assets.isGenLoaded()) GameState.assets.loadGenData();//load data files into memory for team generation
+		//fill rest of league with teams
+		for(int i=(teams.size()-1);i<GameState.LEAGUE_SIZE;i++) {
+			teams.add(new Team(GameState.assets,this));//presuming the gamestate object is not currently being constructed (i.e. application starting up) (this would crash the game).
+		}
+		
+		//Generate fixtures
+		fixtures = generateFixtures(teams);
+		
+		updateLeagueTable();
+		/*Gdx.app.log("", "League teams:");
+		for(Team t:teams)Gdx.app.log("", t.name);*/
 	}
 	
-	public Match nextFixture(){
-		for(int i=0;i<fixtures.size();i++) {
-			if(!fixtures.get(i).has_run) return fixtures.get(i); //return first non-run match
+	/**
+	 * Generates and returns an ordered list of fixtures generated for the given teams using a double round robin algorithm.
+	 * NB: the number of teams MUST be even and > 2. It will crash otherwise.
+	 * @param tournament_teams
+	 * @return
+	 */
+	private ArrayList<Match> generateFixtures(ArrayList<Team> tournament_teams) {
+		//Each team plays each other team twice.
+		ArrayList<Match> autumn = new ArrayList<Match>();
+		ArrayList<Match> spring = new ArrayList<Match>();
+		
+		//round robin generation
+		Team pivot = tournament_teams.get(0);
+		Team temp;
+		boolean flip = true;
+		
+		ArrayList<Team> robin = new ArrayList<Team>();
+		for(int i=1;i<tournament_teams.size();i++) robin.add(tournament_teams.get(i));
+		
+		for(int i=0;i<(GameState.LEAGUE_SIZE-1);i++){//N-1 weeks
+			if(flip)
+				autumn.add(new Match(pivot,robin.get(robin.size()-1)));//pivot plays last team in cycle
+			else
+				autumn.add(new Match(robin.get(robin.size()-1),pivot));
+			for(int j=0;j<((int)GameState.LEAGUE_SIZE/2)-1;j++) {//for each match (N/2 matches per week), -1 we already did
+				if(flip)
+					autumn.add(new Match(robin.get(j),robin.get(robin.size()-2-j)));//pair match in cyclic fashion (dark maths here, careful)
+				else
+					autumn.add(new Match(robin.get(robin.size()-2-j),robin.get(j)));
+			}
+			//rotate cycle
+			temp = robin.remove(0);
+			robin.add(temp);
+			flip = !flip;//ensure some mix of home vs away
 		}
-		//there are no un-run matches in this league
+		
+		//now duplicate but flip home/away for spring season
+		for(Match m: autumn) {
+			spring.add(new Match(m.away,m.home));
+		}
+		autumn.addAll(spring);//collate fixtures
+		
+		return autumn;
+	}
+	
+	/**
+	 * return next unplayed fixture
+	 * @return
+	 */
+	public Match nextFixture(){
+		for (Match m: fixtures) 
+			if(!m.has_run)return m;
+		//there are no unplayed matches in this league
 		return null;
 	}
 	
 	/**
-	 * Get current league table (list of items)
+	 * Update current league table (list of items)
 	 * @return
 	 */
-	public ArrayList<LeagueTableItem> getLeagueTable() {
-		ArrayList<LeagueTableItem> table = new ArrayList<LeagueTableItem>();
+	public void updateLeagueTable() {
+		ArrayList<LeagueTableItem> new_table = new ArrayList<LeagueTableItem>();
 		
 		for(int i=0;i<teams.size();i++) {
-			table.add(new LeagueTableItem(teams.get(i)));
+			new_table.add(new LeagueTableItem(teams.get(i)));
 		}
 		for(int i=0;i<fixtures.size();i++) { 
 			if(!fixtures.get(i).has_run||fixtures.get(i).result==null)//only run matches go into the table
 				break;
 			MatchResult result = fixtures.get(i).result;
 			//Log.d("bk","Storing result of "+result.team_1.name+" vs "+result.team_2.name);
-			for(int j=0;j<table.size();j++) {
-				if(table.get(j).team.equals(result.team_1)||table.get(j).team.equals(result.team_2)){
+			for(int j=0;j<new_table.size();j++) {
+				if(new_table.get(j).team.equals(result.team_1)||new_table.get(j).team.equals(result.team_2)){
 					//Log.d("bk","Adding result to "+table.get(j).team.name);
-					table.get(j).calc(result); 
+					new_table.get(j).calc(result); 
 				}
 			}
 		}
 		//order table
-		Collections.sort(table);
-		return table;
+		Collections.sort(new_table);
+		this.table = new_table;
 	}
 	
 	/**
@@ -134,22 +210,11 @@ public class League {
 		return form;
 	}
 	
-
-	public int getPosition(Team t) {
-		ArrayList<LeagueTableItem> table = this.getLeagueTable();
-		for(int i=0;i<table.size();i++) {
-			if(table.get(i).team.equals(t)){
-				return i+1;
-			}
-		}
-		return table.size()+1;
-	}
-
 	public Match findTeamsNextFixture(Team currentTeam){
 		
 		for(int i=0;i<fixtures.size();i++){
 			if(fixtures.get(i).has_run == false){
-				if(fixtures.get(i).team_1 == currentTeam || fixtures.get(i).team_2 == currentTeam){
+				if(fixtures.get(i).isTeam(currentTeam)){
 					return fixtures.get(i);
 				}
 			}

@@ -12,17 +12,21 @@ import static java.util.Arrays.asList;
  */
 
 public class Match {
-	public Team team_1, team_2;
+	public Team home, away;
 	public boolean has_run;
 	public MatchResult result;
 	
-	public Match(Team team_1, Team team_2) {
-		this.team_1 = team_1;
-		this.team_2 = team_2;
+	public Match(Team home, Team away) {
+		this.home = home;
+		this.away = away;
 		has_run = false;
 	}
 	
-	public MatchResult run() {
+	public String getDescription() {
+		return home.name +" vs "+away.name+" at "+home.stadium;
+	}
+	/*
+	public MatchResult run() { Dont forget to update the league table
 		if(this.team_1.isPlayerControlled()||this.team_2.isPlayerControlled()) {
 			//load the live match engine.
 			//return that result
@@ -66,8 +70,8 @@ public class Match {
 		this.result = result;
 		this.has_run = true;
 		return result;
-	}
+	}*/
 	public boolean isTeam(Team t) {//is t in this match
-		return(t.equals(team_1)||t.equals(team_2));	
+		return(t.equals(home)||t.equals(away));	
 	}
 }

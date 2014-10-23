@@ -1,5 +1,7 @@
 package uk.ac.lincoln.games.nlfs;
 
+import uk.ac.lincoln.games.nlfs.logic.GameState;
+
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
@@ -24,11 +26,11 @@ import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 
 public class NonLeague extends ApplicationAdapter {
-	Assets assets;
 	SpriteBatch batch;
 	Texture img;
 	Skin skin;
 	Stage stage;
+	
 	
 	/**
 	 * Actor for background texture.
@@ -51,20 +53,17 @@ public class NonLeague extends ApplicationAdapter {
 	
 	@Override
 	public void create () {
-		assets = new Assets();//data files
 		batch = new SpriteBatch();
 		stage = new Stage(new FitViewport(360,640));
 		
 		Gdx.input.setInputProcessor(stage);
-		
+		GameState state = GameState.getGameState();
 		skin = new Skin();
 		// Generate a 1x1 white texture and store it in the skin named "white".
 		Pixmap pixmap = new Pixmap(1, 1, Format.RGBA8888);
 		pixmap.setColor(Color.WHITE);
 		pixmap.fill();
-		
-		
-		
+				
 		
 		skin.add("white", new Texture(pixmap));
 		// Store the default libgdx font under the name "default".
@@ -100,6 +99,7 @@ public class NonLeague extends ApplicationAdapter {
 			public void changed (ChangeEvent event, Actor actor) {
 			System.out.println("Clicked! Is checked: " + button.isChecked());
 			button.setText("Good job!"); 
+			GameState.league.newSeason(GameState.league.teams.get(GameState.LEAGUE_SIZE-4), 2, 2);
 		}
 		});
 		

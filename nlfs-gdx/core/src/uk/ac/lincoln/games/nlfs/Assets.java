@@ -9,13 +9,13 @@ import com.badlogic.gdx.Gdx;
 
 public class Assets {
 	
-	private ArrayList<String> team_names;
-	private ArrayList<String> town_names;
-	private ArrayList<String> first_names;
-	private ArrayList<String> surnames;
-	private ArrayList<String> stadium_names;
-	private ArrayList<String> road_names;
-	private HashMap<String,ArrayList> news_summaries;
+	public ArrayList<String> team_names;
+	public ArrayList<String> town_names;
+	public ArrayList<String> first_names;
+	public ArrayList<String> surnames;
+	public ArrayList<String> stadium_names;
+	public ArrayList<String> road_names;
+	public HashMap<String,ArrayList> news_summaries;
 	
 	private boolean gen_loaded;
 	
@@ -65,6 +65,7 @@ public class Assets {
 			}
 		}
 	}
+	
 	
 	/**
 	 * Load filename into array of strings
