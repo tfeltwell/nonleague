@@ -24,7 +24,7 @@ public class Assets {
 		loadRunData();
 	}
 	
-	public boolean isGenLoaded() { return gen_loaded; }
+	public boolean isGenLoaded() { return gen_loaded;}
 	
 	/**
 	 * Fill data for gen (new leagues, teams, players)
@@ -74,7 +74,7 @@ public class Assets {
 	 * @throws IOException
 	 */
 	private ArrayList<String> loadFile(String filename) throws IOException {
-		ArrayList<String> out = new ArrayList();
+		ArrayList<String> out = new ArrayList<String>();
 		BufferedReader buffreader = new BufferedReader(Gdx.files.internal(filename).reader());
 		String line = buffreader.readLine();
 		while(line!=null) {

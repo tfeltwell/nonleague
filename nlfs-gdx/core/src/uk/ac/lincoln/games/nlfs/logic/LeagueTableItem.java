@@ -18,10 +18,10 @@ public class LeagueTableItem implements Comparable<LeagueTableItem> {
 	}
 	
 	//add this result to the stats for this team. 
-	public void calc(MatchResult result) {
+	public void addResult(MatchResult result) {
 		gf+=result.goalsFor(team);
 		ga+=result.goalsAgainst(team);
-		if(result.result_1==result.result_2){//draw
+		if(result.getWinner()==null){//draw
 			draws++;
 			points+=1;
 			return;

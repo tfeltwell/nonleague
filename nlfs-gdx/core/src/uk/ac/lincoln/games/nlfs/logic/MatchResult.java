@@ -7,47 +7,36 @@ import uk.ac.lincoln.games.nlfs.logic.Footballer.Position;
 
 
 public class MatchResult {
-	public Team team_1, team_2;
-	public int result_1, result_2; // 1 - 0, score matching team_1 team_2 etc.
-	public ArrayList<Footballer> team_1_scorers, team_2_scorers;
+	public Team home, away;
+	public int home_goals, away_goals; // 1 - 0, score matching team_1 team_2 etc.
+	public ArrayList<Footballer> home_scorers, away_scorers;
 	
-	public MatchResult(Team team_1, Team team_2,int result_1,int result_2){
-		this.team_1 = team_1;
-		this.team_2 = team_2;
-		this.result_1 = result_1;
-		this.result_2 = result_2;
-		this.team_1_scorers = new ArrayList<Footballer>();
-		this.team_2_scorers = new ArrayList<Footballer>();
-		calculateScorers();
-				
-	}
-	
-	private void calculateScorers(){
-		if(result_1 > 0){
-			for(int i=0;i<result_1;i++){
-				team_1_scorers.add(pickScorer(team_1));
+	public MatchResult(Team home, Team away,int home_goals,int away_goals){
+		this.home_goals = home_goals;
+		this.away_goals = away_goals;
+		this.home = home;
+		this.away = away;
+		this.home_scorers = new ArrayList<Footballer>();
+		this.away_scorers = new ArrayList<Footballer>();
+		
+		//calculate scorers
+		if(home_goals > 0){
+			for(int i=0;i<home_goals;i++){
+				home_scorers.add(pickScorer(home));
 			}
 		}
-		if(result_2 > 0){
-			for(int i=0;i<result_2;i++){
-				team_2_scorers.add(pickScorer(team_2));
+		if(away_goals > 0){
+			for(int i=0;i<away_goals;i++){
+				away_scorers.add(pickScorer(away));
 			}
 		}
 	}
-	
+
 	public Team getWinner() {
-		if(this.result_1==this.result_2) return null;
-		if(this.result_1>this.result_2) return team_1; else return team_2;
+		if(this.home_goals==this.away_goals) return null;
+		if(this.home_goals>this.away_goals) return home; else return away;
 	}
 	
-	public int goalsFor(Team team) {
-		if(team==team_1) return result_1;
-		return result_2;
-	}
-	public int goalsAgainst(Team team) {
-		if(team==team_1) return result_2;
-		return result_1;
-	}
 	/**
 	 * Returns a random scoring player
 	 * @param selectedTeam
@@ -67,29 +56,29 @@ public class MatchResult {
 		return "XXX received a drumming by YYY";//TODO
 	}
 	
+	/**
+	 * Returns the letter result for this team in this match W/L/D
+	 * @param t
+	 * @return
+	 */
 	public String resultForTeam(Team t){
-		if(!(t.equals(team_1)||t.equals(team_2))) return null;//team not in this match
-		
-		if(result_1==result_2) return("D");
-		
-		if(result_1>result_2) {
-			if(t.equals(team_1))
-				return "W";
-			else
-				return "L";
-		}
-		else{
-			if(t.equals(team_1))
-				return "L";
-			else
-				return "W";
-		}
+		if(!(t.equals(home)||t.equals(away))) return null;//team not in this match
+		if(getWinner()==null) return("D");
+		if(getWinner()==t) return ("W");
+		return ("L");
 	}
 	
-	public Team findOpposition(Team t){
-		if(!(t.equals(team_1)||t.equals(team_2))) return null;//team not in this match
-		
-		if(t.equals(team_1)) return team_2;
-		return team_1;
+	/**
+	 * Used for simplifying GF/GA calculations
+	 * @param t
+	 * @return
+	 */
+	public int goalsFor(Team t) {
+		if(t==home) return home_goals;
+		return away_goals;
+	}
+	public int goalsAgainst(Team t) {
+		if(t==home) return away_goals;
+		return home_goals;
 	}
 }

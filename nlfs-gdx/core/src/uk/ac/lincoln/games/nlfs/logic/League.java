@@ -159,6 +159,7 @@ public class League {
 	
 	/**
 	 * Update current league table (list of items)
+	 *TODO actually this resets the entire table, a bit wasteful. Move to incremental changes
 	 * @return
 	 */
 	public void updateLeagueTable() {
@@ -171,11 +172,10 @@ public class League {
 			if(!fixtures.get(i).has_run||fixtures.get(i).result==null)//only run matches go into the table
 				break;
 			MatchResult result = fixtures.get(i).result;
-			//Log.d("bk","Storing result of "+result.team_1.name+" vs "+result.team_2.name);
 			for(int j=0;j<new_table.size();j++) {
-				if(new_table.get(j).team.equals(result.team_1)||new_table.get(j).team.equals(result.team_2)){
+				if(new_table.get(j).team.equals(result.home)||new_table.get(j).team.equals(result.away)){
 					//Log.d("bk","Adding result to "+table.get(j).team.name);
-					new_table.get(j).calc(result); 
+					new_table.get(j).addResult(result); 
 				}
 			}
 		}
@@ -184,6 +184,17 @@ public class League {
 		this.table = new_table;
 	}
 	
+	/**
+	 * Modify the league table according to this result
+	 * @param result
+	 */
+	public void addResult(MatchResult result) {
+		for(LeagueTableItem lti:table) {
+			if(lti.team==result.away ||lti.team==result.home) {//for both teams in the match
+				lti.addResult(result);
+			}
+		}
+	}
 	/**
 	 * Return 5 match form for this team (WWDDL)
 	 * @param t
