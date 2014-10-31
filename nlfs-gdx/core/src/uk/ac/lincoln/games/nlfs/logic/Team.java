@@ -20,9 +20,9 @@ public class Team {
 	public String name;
 	public String stadium;
 	public ArrayList<Footballer> footballers;
-	public League league;
+	public transient League league;
 	
-	public ArrayList<Footballer> defenders,midfielders,goalkeepers,strikers;
+	public transient ArrayList<Footballer> defenders,midfielders,goalkeepers,strikers;
 	
 	/**
 	 * Generate a new team from the supplied assets
@@ -35,14 +35,18 @@ public class Team {
 		win_bias = 0.5 - Math.random(); //gain a random bias between -0.5 and +0.5
 		
 		//generate name, stadium
-		name = assets.town_names.get((new Random()).nextInt(assets.town_names.size()));//random town name
+		do {
+		name = assets.town_names.get((new Random()).nextInt(assets.town_names.size()));//random town name 
 		if (Math.random()<0.3) //not all teams have suffices
 			name = name +" "+ assets.team_names.get((new Random()).nextInt(assets.team_names.size()));
+		}while(league.teamNameInUse(name));
+		
+		
 		stadium = assets.stadium_names.get(new Random().nextInt(assets.stadium_names.size())) +" "+ assets.road_names.get(new Random().nextInt(assets.road_names.size()));
 		
 		//generate players (4-4-2 is the only formation used in real non-league football. Hard coded for realism.)
 		footballers = new ArrayList<Footballer>();
-		
+		//TODO make sure footballer names are unique within their team
 		goalkeepers = new ArrayList<Footballer>();
 		Footballer player = new Footballer(assets,this,Position.GK); 
 		footballers.add(player);
@@ -68,6 +72,8 @@ public class Team {
 		}
 		
 	}
+	
+	public Team() {}
 	
 	
 	public boolean isPlayerControlled() {return this.player_control;}
@@ -96,5 +102,30 @@ public class Team {
 			}
 		}
 		return league.table.size()+1;
+	}
+	
+	public boolean footballerNameInUse(String full_name) {
+		for(Footballer f:footballers) {
+			if(f.getName().equals(full_name)) return true;
+		}
+		return false;
+	}
+	
+	/**
+	 * Reset transient pointers
+	 */
+	public void reinit(League league) {
+		this.league = league;
+		goalkeepers = new ArrayList<Footballer>();
+		defenders = new ArrayList<Footballer>();
+		midfielders = new ArrayList<Footballer>();
+		strikers = new ArrayList<Footballer>();
+		for (Footballer f: footballers){
+			f.team = this;
+			if(f.getPosition()==Position.GK) goalkeepers.add(f);
+			if(f.getPosition()==Position.DF) defenders.add(f);
+			if(f.getPosition()==Position.MF) midfielders.add(f);
+			if(f.getPosition()==Position.ST) strikers.add(f);
+		}
 	}
 }

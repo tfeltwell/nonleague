@@ -9,34 +9,42 @@ import uk.ac.lincoln.games.nlfs.logic.Footballer.Position;
 
 
 public class MatchResult {
-	public Team home, away;
+	public transient Match match;
 	public int home_goals, away_goals; // 1 - 0, score matching team_1 team_2 etc.
-	public ArrayList<Footballer> home_scorers, away_scorers;
+	public transient ArrayList<Footballer> home_scorers, away_scorers;
+	public ArrayList<String> home_scorers_id,away_scorers_id;//evil serialisation circular id workaround. see the match class
 	
-	public MatchResult(Team home, Team away,int home_goals,int away_goals){
+	public MatchResult(Match match,int home_goals,int away_goals){
+		this.match = match;
 		this.home_goals = home_goals;
 		this.away_goals = away_goals;
-		this.home = home;
-		this.away = away;
 		this.home_scorers = new ArrayList<Footballer>();
 		this.away_scorers = new ArrayList<Footballer>();
+		this.home_scorers_id = new ArrayList<String>();
+		this.away_scorers_id = new ArrayList<String>();
 		
+		Footballer scorer;
 		//calculate scorers
 		if(home_goals > 0){
 			for(int i=0;i<home_goals;i++){
-				home_scorers.add(pickScorer(home));
+				scorer = pickScorer(match.home);
+				home_scorers.add(scorer);
+				home_scorers_id.add(scorer.getName());
 			}
 		}
 		if(away_goals > 0){
 			for(int i=0;i<away_goals;i++){
-				away_scorers.add(pickScorer(away));
+				scorer = pickScorer(match.away);
+				away_scorers.add(scorer);
+				away_scorers_id.add(scorer.getName());
 			}
 		}
 	}
+	public MatchResult(){}
 
 	public Team getWinner() {
 		if(this.home_goals==this.away_goals) return null;
-		if(this.home_goals>this.away_goals) return home; else return away;
+		if(this.home_goals>this.away_goals) return match.home; else return match.away;
 	}
 	
 	/**
@@ -59,16 +67,16 @@ public class MatchResult {
 	 * @return
 	 */
 	public String getDescription(Team team) {
-		if(team!=home&&team!=away) return null;
+		if(team!=match.home&&team!=match.away) return null;
 		String scoreline;
 		Team opposition;
-		if(team==home) {
+		if(team==match.home) {
 			scoreline = String.valueOf(home_goals)+"-"+String.valueOf(away_goals);
-			opposition = away;
+			opposition = match.away;
 		}
 		else {
 			scoreline = String.valueOf(away_goals)+"-"+String.valueOf(home_goals);
-			opposition = home;
+			opposition = match.home;
 		}
 		
 		ArrayList<String> news_items = GameState.assets.news_summaries.get(scoreline);
@@ -80,7 +88,7 @@ public class MatchResult {
         news_item = news_item.replace("{defender}",team.getFootballerAtPosition(Position.DF).getName());
         news_item = news_item.replace("{attacker}",team.getFootballerAtPosition(Position.ST).getName());
         news_item = news_item.replace("{midfielder}",team.getFootballerAtPosition(Position.MF).getName());
-        news_item = news_item.replace("{stadium}",home.stadium);
+        news_item = news_item.replace("{stadium}",match.home.stadium);
         return news_item;
 	}
 	
@@ -90,7 +98,7 @@ public class MatchResult {
 	 * @return
 	 */
 	public String resultForTeam(Team t){
-		if(!(t.equals(home)||t.equals(away))) return null;//team not in this match
+		if(!(t.equals(match.home)||t.equals(match. away))) return null;//team not in this match
 		if(getWinner()==null) return("D");
 		if(getWinner()==t) return ("W");
 		return ("L");
@@ -102,11 +110,34 @@ public class MatchResult {
 	 * @return
 	 */
 	public int goalsFor(Team t) {
-		if(t==home) return home_goals;
+		if(t==match.home) return home_goals;
 		return away_goals;
 	}
 	public int goalsAgainst(Team t) {
-		if(t==home) return away_goals;
+		if(t==match.home) return away_goals;
 		return home_goals;
+	}
+	
+	//Reload circular pointers after deserialisation
+	public void reinit(Match m) {
+		match = m;
+		this.home_scorers = new ArrayList<Footballer>();
+		this.away_scorers = new ArrayList<Footballer>();
+		for(String s:home_scorers_id){
+			for(Footballer f:m.home.footballers) {
+				if (f.getName().equals(s)) {
+					home_scorers.add(f);
+					break;
+				}
+			}
+		}
+		for(String s:away_scorers_id){
+			for(Footballer f:m.away.footballers) {
+				if (f.getName().equals(s)) {
+					away_scorers.add(f);
+					break;
+				}
+			}
+		}
 	}
 }

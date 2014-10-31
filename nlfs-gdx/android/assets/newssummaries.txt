@@ -1,5 +1,5 @@
 0-0
-Goalkeeper {Goalkeeper} was in cracking form, as {yourteam} and {opposition} played out a tense draw at {stadium}.
+Goalkeeper {goalkeeper} was in cracking form, as {yourteam} and {opposition} played out a tense draw at {stadium}.
 Despite a number of unforced errors from goalkeeper {goalkeeper}, {yourteam} earned a point against {opposition} at {stadium}.
 Resolute defender {defender} was in fine form, as {yourteam} earned a valuable point against {opposition} at {stadium}.
 Stylish defender {defender} had the {opposition} players in his pocket all afternoon, as {yourteam} and {opposition} played out a tense draw at {stadium}.
@@ -8,7 +8,7 @@ Box-to-box midfielder {midfielder} covered every blade of grass, as {yourteam} e
 Gifted attacker {attacker} was unlucky this afternoon, as {yourteam} and {opposition} played out a tense draw at {stadium}.
 Fiery attacker {attacker} missed a hat-full of chances, as {yourteam} and {opposition} played out a bore draw at {stadium}.
 1-1
-Resolute goalkeeper {Goalkeeper} was called upon to make a string of fine saves, as {yourteam} and {opposition} played out a tense draw at {stadium}.
+Resolute goalkeeper {goalkeeper} was called upon to make a string of fine saves, as {yourteam} and {opposition} played out a tense draw at {stadium}.
 Despite a number of unforced errors from goalkeeper {goalkeeper}, {yourteam} earned a point against {opposition} at {stadium}.
 Strong defender {defender} was in fine form, as {yourteam} earned a valuable point against {opposition} at {stadium}.
 Stylish defender {defender} had eyes in the back of his head, as {yourteam} and {opposition} played out a tense draw at {stadium}.
@@ -31,7 +31,7 @@ Despite conceding a number of goals, goalkeeper {goalkeeper} earned man-of-the m
 No-nonsense defender {defender} was poor, as {yourteam} threw away two points against {opposition} at {stadium}.
 Stylish defender {defender} had an off day, as {yourteam} and {opposition} played out a tense draw at {stadium}.
 Attacking midfielder {midfielder} was caught out of position time and again, as {yourteam} earned an unlikely point at {stadium}.
-Hard working midfielder {midfielder} won’t believe his luck, as {yourteam} earned a point against {opposition} at {stadium}.
+Hard working midfielder {midfielder} won't believe his luck, as {yourteam} earned a point against {opposition} at {stadium}.
 Gifted striker {attacker} was at his clinical best, as {yourteam} were unable to get the better of {opposition} at {stadium}.
 Old-fashioned center-forward {attacker} missed a hat-full of chances, as {yourteam} and {opposition} played out an exciting draw at {stadium}.
 4-4
@@ -40,7 +40,7 @@ Hapless goalkeeper {golakeeper} will know he should have done better, as {yourte
 Experienced defender {defender} was poor, as {yourteam} threw away two points against {opposition} at {stadium}.
 Stylish defender {defender} had an off day, as {yourteam} and {opposition} cancelled each other out at {stadium}.
 Attacking midfielder {midfielder} was in mercurial form, as {yourteam} scored four to earn an unlikely point at {stadium}.
-Hard working midfielder {midfielder} won’t believe his luck, as {yourteam} earned a point against {opposition} at {stadium}.
+Hard working midfielder {midfielder} won't believe his luck, as {yourteam} earned a point against {opposition} at {stadium}.
 Despite the best efforts of lethal striker {attacker}, {yourteam} were unable to get the better of {opposition} at {stadium}.
 Old-fashioned center-forward {attacker} caused problems for {opposition} at {stadium} all afternoon, where {yourteam} will feel unlucky to not come away with a win. 
 0-1
@@ -91,14 +91,14 @@ Cavalier defender {defender} had a day to forget, as {yourteam} disappointed aga
 Calamity defender {defender} added to his catalogue of errors, as {yourteam} were well beaten at {stadium}.
 Midfield general {midfielder} carried his teammates for large periods of the game, as {yourteam} were overpowered by a muscular {opposition} side.
 Despite a number of moments of magic from mercurial midfielder {midfielder}, {yourteam} were unable to cause an upset at {stadium}.
-Gifted attacker {attacker} won’t believe his luck as he saw two goals disallowed at {stadium} this afternoon.
+Gifted attacker {attacker} won't believe his luck as he saw two goals disallowed at {stadium} this afternoon.
 0-4
 A dark day for fans of {yourteam}, as {opposition} gave them the runaround at {stadium} this afternoon.
 Goalkeeper {goalkeeper} was left red faced, as {yourteam} were soundly beaten by {opposition} at {stadium}.
 Goalkeeper {goalkeeper} had an evening to forget, as {yourteam} were hammered by {opposition} at {stadium}.
 Calamity defender {defender} added to his catalogue of errors, as {yourteam} were well beaten at {stadium}.
 Midfield general {midfielder} was ineffective, as {yourteam} were overpowered by a muscular {opposition} side.
-Fiery attacker {attacker} won’t believe his luck as he saw two goals disallowed at {stadium} this afternoon.
+Fiery attacker {attacker} won't believe his luck as he saw two goals disallowed at {stadium} this afternoon.
 1-4
 Fans of {yourteam} ripped up their season tickets, as {opposition} gave them the runaround at {stadium} this afternoon.
 Goalkeeper {goalkeeper} was left with egg on his face, as {yourteam} caused problems for themselves at {stadium}.
@@ -156,7 +156,7 @@ Boos rang out around {stadium} at the final whistle, as {yourteam} failed to com
 {yourteam} fans tore up their season tickets and sang derisive chants, as {opposition} didn't give them a look-in all day.
 Goalkeeper {goalkeeper} left the field to a hail of abuse, as his performance contributed to a humiliating defeat for {yourteam}.
 1-0
-Unflappable goalkeeper {Goalkeeper} had a busy afternoon, as {yourteam} earned three points against {opposition} at {stadium}.
+Unflappable goalkeeper {goalkeeper} had a busy afternoon, as {yourteam} earned three points against {opposition} at {stadium}.
 Despite a shaky start from goalkeeper {goalkeeper}, {yourteam} came out on top against {opposition} at {stadium}.
 Stylish defender {defender} was unplayable, as {yourteam} earned a valuable three points against {opposition} at {stadium}.
 No-nonsense defender {defender} was in fine form, as {yourteam} earned an efficient victory at {stadium}.

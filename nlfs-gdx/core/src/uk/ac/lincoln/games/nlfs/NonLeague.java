@@ -1,7 +1,10 @@
 package uk.ac.lincoln.games.nlfs;
 
+import java.util.ArrayList;
+
 import uk.ac.lincoln.games.nlfs.logic.GameState;
 import uk.ac.lincoln.games.nlfs.logic.League;
+import uk.ac.lincoln.games.nlfs.logic.LeagueTableItem;
 import uk.ac.lincoln.games.nlfs.logic.MatchResult;
 
 import com.badlogic.gdx.ApplicationAdapter;
@@ -25,6 +28,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton.TextButtonStyle;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
+import com.badlogic.gdx.utils.Json;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 
 public class NonLeague extends ApplicationAdapter {
@@ -91,8 +95,11 @@ public class NonLeague extends ApplicationAdapter {
 		stage.addActor(new Background());
 		stage.addActor(table);
 		// Create a button with the "default" TextButtonStyle. A 3rd parameter can be used to specify a name other than "default".
-		final TextButton button = new TextButton("Click me!!", skin);
+		final TextButton button = new TextButton("game", skin);
 		table.add(button).width(200).height(40);
+		table.row();
+		final TextButton button2 = new TextButton("save", skin);
+		table.add(button2).width(200).height(40);
 		// Add a listener to the bu tton. ChangeListener is fired when the button's checked state changes, eg when clicked,
 		// Button#setChecked() is called, via a key press, etc. If the event.cancel() is called, the checked state will be reverted.
 		// ClickListener could have been used, but would only fire when clicked. Also, canceling a ClickListener event won't
@@ -101,16 +108,18 @@ public class NonLeague extends ApplicationAdapter {
 		
 		button.addListener(new ChangeListener() {
 			public void changed (ChangeEvent event, Actor actor) {
-			System.out.println("Clicked! Is checked: " + button.isChecked());
-			button.setText("Good job!"); 
-			//run game
 			MatchResult result = GameState.league.nextFixture().run();
-			Gdx.app.log(String.valueOf(result.home_goals)+"-"+String.valueOf(result.away_goals), result.getDescription(result.home));
+			Gdx.app.log(String.valueOf(result.home_goals)+"-"+String.valueOf(result.away_goals), result.getDescription(result.match.home));
+		}
+		});
+		button2.addListener(new ChangeListener() {
+			public void changed (ChangeEvent event, Actor actor) {
+				GameState.getGameState().saveGame();
+				
 		}
 		});
 		
 		table.row();
-		table.add(new Label("Test2",skin));
 	}
 
 	@Override

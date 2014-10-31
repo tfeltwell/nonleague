@@ -2,6 +2,8 @@ package uk.ac.lincoln.games.nlfs.logic;
 
 import java.util.List;
 
+import com.badlogic.gdx.Gdx;
+
 import static java.util.Arrays.asList;
 /**
  * Match class deals with individual matchups between teams
@@ -14,17 +16,23 @@ import static java.util.Arrays.asList;
 
 public class Match {
 	public static float HOME_ADVANTAGE = 0.06f;//the slight benefit to playing at home
-	public Team home, away;
-	public League league;
+	public transient Team home, away;
+	public transient League league;
 	public boolean has_run;
 	public MatchResult result;
+	
+	public String home_name, away_name;//used as IDs for save/load to avoid circular serialisation (i.e. don't ask & don't fuck with it)
 	
 	public Match(League league, Team home, Team away) {
 		this.league = league;
 		this.home = home;
 		this.away = away;
-		has_run = false;
+		this.has_run = false;
+		this.home_name = home.name;
+		this.away_name = away.name;
 	}
+	
+	public Match() {}
 	
 	public String getDescription() {
 		return home.name +" vs "+away.name+" at "+home.stadium;
@@ -67,12 +75,30 @@ public class Match {
 			}
 		}
 		
-		result = new MatchResult(home,away,home_goals,away_goals); //fill result object, calculate scorers etc
+		result = new MatchResult(this,home_goals,away_goals); //fill result object, calculate scorers etc
 		this.has_run = true;
 		league.addResult(result);//update league table
 		return result;
 	}
 	public boolean isTeam(Team t) {//is t in this match
 		return(t.equals(home)||t.equals(away));	
+	}
+	
+	/**
+	 * Used to reinitialise upstream pointers
+	 * @param league
+	 */
+	public void reinit(League league) {
+		this.league = league;
+		//find team
+		for(Team t:league.teams) {
+			if(t.name.equals(home_name)) this.home = t;
+			if(t.name.equals(away_name)) this.away = t;
+			if(home!=null&&away!=null) break;//both found
+		}
+		if(has_run&&result!=null) {
+			result.reinit(this);
+		}
+		//Gdx.app.log("initing match ok", home.name+away.name);
 	}
 }

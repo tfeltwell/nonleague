@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Iterator;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.utils.Json;
 
 import uk.ac.lincoln.games.nlfs.Assets;
 
@@ -23,7 +24,7 @@ import uk.ac.lincoln.games.nlfs.Assets;
 public class League {
 	public ArrayList<Match> fixtures;
 	public ArrayList<Team> teams;
-	public ArrayList<LeagueTableItem> table;
+	public transient ArrayList<LeagueTableItem> table;
 	
 	public static int POINTS_WIN = 3;
 	public static int POINTS_DRAW = 1;
@@ -32,8 +33,6 @@ public class League {
 	public static int LEAGUE_SIZE = 8; //number of teams in the league. Even numbers only, dickhead.
 	public static int PROMOTION = 2; //number of teams promoted/relegated at the end of the season. (promotion + relegation) < league size, dickhead.
 	public static int RELEGATION = 2;
-	
-	public int CursorPos;
 	
 	/**
 	 * The constructor is used to randomly generate an entire league. This is fairly intense so might need a loading screen
@@ -57,7 +56,7 @@ public class League {
 		fixtures = generateFixtures(teams);
 		resetLeagueTable();
 	}
-	
+	public League(){}
 	/**
 	 * This will generate a new league around the given team. It will take into account promotion and relegation appropriately.
 	 * relegation and promotion tell the algorithms how many teams to move from the league at both ends. OBVIOUSLY relegation + promotion must be < LEAGUE_SIZE
@@ -188,7 +187,7 @@ public class League {
 	 */
 	public void addResult(MatchResult result) {
 		for(LeagueTableItem lti:table) {
-			if(lti.team==result.away ||lti.team==result.home) {//for both teams in the match
+			if(lti.team==result.match.away ||lti.team==result.match.home) {//for both teams in the match
 				lti.addResult(result);
 			}
 		}
@@ -233,4 +232,22 @@ public class League {
 		return null;
 
 	}
+	
+	public boolean teamNameInUse(String name) {
+		for(Team t:teams){
+			if(t.name.equals(name)) return true;
+		}
+		return false;
+	}
+	
+	/**
+	 * Reinitialise circular/upstream pointers after reserialisation
+	 */
+	public void reinit(){
+		for(Team t:teams) {t.reinit(this);}
+		for(Match m:fixtures) {m.reinit(this);}
+		//regenerate league table
+		resetLeagueTable();
+	}
+	
 }

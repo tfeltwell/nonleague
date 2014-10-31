@@ -1,9 +1,6 @@
 package uk.ac.lincoln.games.nlfs.logic;
 
 import java.util.Random;
-
-import com.badlogic.gdx.Gdx;
-
 import uk.ac.lincoln.games.nlfs.Assets;
 
 public class Footballer {
@@ -11,7 +8,7 @@ public class Footballer {
 	private int age;
 	
 	private Position position;
-	public Team team;
+	public transient Team team;
 	public static enum Position {GK,DF,MF,ST}
 	
 	/**
@@ -23,11 +20,16 @@ public class Footballer {
 		position = pos;
 		this.team = team;
 		Random rand = new Random();
+		do{
 		first_name = assets.first_names.get(rand.nextInt(assets.first_names.size()));
 		surname = assets.surnames.get(rand.nextInt(assets.surnames.size()));
+		}while(team.footballerNameInUse(getName()));
 		age = rand.nextInt(15)+18;
 		//Gdx.app.log("ftgen", getName()+" is a "+getPositionName(position)+" for "+team.name+" at "+team.stadium);
+		
 	}
+	
+	public Footballer(){}
 	
 	public void setPostion(Position newPos){ position = newPos;}
 	
