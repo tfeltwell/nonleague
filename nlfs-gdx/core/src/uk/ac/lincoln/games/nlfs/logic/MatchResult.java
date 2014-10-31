@@ -3,7 +3,9 @@ package uk.ac.lincoln.games.nlfs.logic;
 import java.util.ArrayList;
 import java.util.Random;
 
+
 import uk.ac.lincoln.games.nlfs.logic.Footballer.Position;
+
 
 
 public class MatchResult {
@@ -51,9 +53,35 @@ public class MatchResult {
 		else return team.getFootballerAtPosition(Position.GK);
 	}
 	
-	//TODO this is probably where the strings to deal with results belong. "Bumthorpe FC gave Ballchester United a 3-0 drumming" etc.
-	public String matchDescription() {
-		return "XXX received a drumming by YYY";//TODO
+	/**
+	 * Returns a nicely filled news story about this match, from the perspective of the supplied team
+	 * @param team
+	 * @return
+	 */
+	public String getDescription(Team team) {
+		if(team!=home&&team!=away) return null;
+		String scoreline;
+		Team opposition;
+		if(team==home) {
+			scoreline = String.valueOf(home_goals)+"-"+String.valueOf(away_goals);
+			opposition = away;
+		}
+		else {
+			scoreline = String.valueOf(away_goals)+"-"+String.valueOf(home_goals);
+			opposition = home;
+		}
+		
+		ArrayList<String> news_items = GameState.assets.news_summaries.get(scoreline);
+        String news_item = news_items.get(new Random().nextInt(news_items.size()));//random description
+        // Tokens: yourteam, opposition, goalkeeper, defender, midfielder, attacker, stadium
+        news_item = news_item.replace("{yourteam}",team.name);
+        news_item = news_item.replace("{opposition}",opposition.name);
+        news_item = news_item.replace("{goalkeeper}",team.getFootballerAtPosition(Position.GK).getName());
+        news_item = news_item.replace("{defender}",team.getFootballerAtPosition(Position.DF).getName());
+        news_item = news_item.replace("{attacker}",team.getFootballerAtPosition(Position.ST).getName());
+        news_item = news_item.replace("{midfielder}",team.getFootballerAtPosition(Position.MF).getName());
+        news_item = news_item.replace("{stadium}",home.stadium);
+        return news_item;
 	}
 	
 	/**

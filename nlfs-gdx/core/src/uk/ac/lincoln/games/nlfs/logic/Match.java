@@ -15,10 +15,12 @@ import static java.util.Arrays.asList;
 public class Match {
 	public static float HOME_ADVANTAGE = 0.06f;//the slight benefit to playing at home
 	public Team home, away;
+	public League league;
 	public boolean has_run;
 	public MatchResult result;
 	
-	public Match(Team home, Team away) {
+	public Match(League league, Team home, Team away) {
+		this.league = league;
 		this.home = home;
 		this.away = away;
 		has_run = false;
@@ -67,6 +69,7 @@ public class Match {
 		
 		result = new MatchResult(home,away,home_goals,away_goals); //fill result object, calculate scorers etc
 		this.has_run = true;
+		league.addResult(result);//update league table
 		return result;
 	}
 	public boolean isTeam(Team t) {//is t in this match

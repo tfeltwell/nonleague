@@ -23,15 +23,16 @@ public class LeagueTableItem implements Comparable<LeagueTableItem> {
 		ga+=result.goalsAgainst(team);
 		if(result.getWinner()==null){//draw
 			draws++;
-			points+=1;
+			points+=League.POINTS_DRAW;
 			return;
 		}
 		if(result.getWinner()==this.team){// 1 > 2
 			wins++;
-			points+=3;
+			points+=League.POINTS_WIN;
 		} 
 		else {
 			losses++;
+			points+=League.POINTS_LOSE;
 		}
 	}
 	//allows them to be sorted

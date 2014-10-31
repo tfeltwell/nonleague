@@ -1,6 +1,8 @@
 package uk.ac.lincoln.games.nlfs;
 
 import uk.ac.lincoln.games.nlfs.logic.GameState;
+import uk.ac.lincoln.games.nlfs.logic.League;
+import uk.ac.lincoln.games.nlfs.logic.MatchResult;
 
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
@@ -95,11 +97,15 @@ public class NonLeague extends ApplicationAdapter {
 		// Button#setChecked() is called, via a key press, etc. If the event.cancel() is called, the checked state will be reverted.
 		// ClickListener could have been used, but would only fire when clicked. Also, canceling a ClickListener event won't
 		// revert the checked state.
+		
+		
 		button.addListener(new ChangeListener() {
 			public void changed (ChangeEvent event, Actor actor) {
 			System.out.println("Clicked! Is checked: " + button.isChecked());
 			button.setText("Good job!"); 
-			GameState.league.newSeason(GameState.league.teams.get(GameState.LEAGUE_SIZE-4), 2, 2);
+			//run game
+			MatchResult result = GameState.league.nextFixture().run();
+			Gdx.app.log(String.valueOf(result.home_goals)+"-"+String.valueOf(result.away_goals), result.getDescription(result.home));
 		}
 		});
 		

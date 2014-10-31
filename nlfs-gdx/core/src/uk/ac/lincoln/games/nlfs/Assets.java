@@ -66,7 +66,6 @@ public class Assets {
 		}
 	}
 	
-	
 	/**
 	 * Load filename into array of strings
 	 * @param filename

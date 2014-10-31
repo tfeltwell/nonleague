@@ -25,6 +25,14 @@ public class League {
 	public ArrayList<Team> teams;
 	public ArrayList<LeagueTableItem> table;
 	
+	public static int POINTS_WIN = 3;
+	public static int POINTS_DRAW = 1;
+	public static int POINTS_LOSE = 0;
+	
+	public static int LEAGUE_SIZE = 8; //number of teams in the league. Even numbers only, dickhead.
+	public static int PROMOTION = 2; //number of teams promoted/relegated at the end of the season. (promotion + relegation) < league size, dickhead.
+	public static int RELEGATION = 2;
+	
 	public int CursorPos;
 	
 	/**
@@ -38,7 +46,7 @@ public class League {
 		fixtures = new ArrayList<Match>();
 		
 		//Generate teams
-		for(int i=0;i<GameState.LEAGUE_SIZE;i++) {
+		for(int i=0;i<LEAGUE_SIZE;i++) {
 			teams.add(new Team(assets,this));
 		}
 		
@@ -47,7 +55,7 @@ public class League {
 		
 		//Generate fixtures
 		fixtures = generateFixtures(teams);
-		updateLeagueTable();
+		resetLeagueTable();
 	}
 	
 	/**
@@ -89,14 +97,14 @@ public class League {
 		}
 		if(!GameState.assets.isGenLoaded()) GameState.assets.loadGenData();//load data files into memory for team generation
 		//fill rest of league with teams
-		for(int i=(teams.size()-1);i<GameState.LEAGUE_SIZE;i++) {
+		for(int i=(teams.size()-1);i<LEAGUE_SIZE;i++) {
 			teams.add(new Team(GameState.assets,this));//presuming the gamestate object is not currently being constructed (i.e. application starting up) (this would crash the game).
 		}
 		
 		//Generate fixtures
 		fixtures = generateFixtures(teams);
 		
-		updateLeagueTable();
+		resetLeagueTable();
 		/*Gdx.app.log("", "League teams:");
 		for(Team t:teams)Gdx.app.log("", t.name);*/
 	}
@@ -120,16 +128,16 @@ public class League {
 		ArrayList<Team> robin = new ArrayList<Team>();
 		for(int i=1;i<tournament_teams.size();i++) robin.add(tournament_teams.get(i));
 		
-		for(int i=0;i<(GameState.LEAGUE_SIZE-1);i++){//N-1 weeks
+		for(int i=0;i<(LEAGUE_SIZE-1);i++){//N-1 weeks
 			if(flip)
-				autumn.add(new Match(pivot,robin.get(robin.size()-1)));//pivot plays last team in cycle
+				autumn.add(new Match(this,pivot,robin.get(robin.size()-1)));//pivot plays last team in cycle
 			else
-				autumn.add(new Match(robin.get(robin.size()-1),pivot));
-			for(int j=0;j<((int)GameState.LEAGUE_SIZE/2)-1;j++) {//for each match (N/2 matches per week), -1 we already did
+				autumn.add(new Match(this,robin.get(robin.size()-1),pivot));
+			for(int j=0;j<((int)LEAGUE_SIZE/2)-1;j++) {//for each match (N/2 matches per week), -1 we already did
 				if(flip)
-					autumn.add(new Match(robin.get(j),robin.get(robin.size()-2-j)));//pair match in cyclic fashion (dark maths here, careful)
+					autumn.add(new Match(this,robin.get(j),robin.get(robin.size()-2-j)));//pair match in cyclic fashion (dark maths here, careful)
 				else
-					autumn.add(new Match(robin.get(robin.size()-2-j),robin.get(j)));
+					autumn.add(new Match(this,robin.get(robin.size()-2-j),robin.get(j)));
 			}
 			//rotate cycle
 			temp = robin.remove(0);
@@ -139,7 +147,7 @@ public class League {
 		
 		//now duplicate but flip home/away for spring season
 		for(Match m: autumn) {
-			spring.add(new Match(m.away,m.home));
+			spring.add(new Match(this,m.away,m.home));
 		}
 		autumn.addAll(spring);//collate fixtures
 		
@@ -158,30 +166,20 @@ public class League {
 	}
 	
 	/**
-	 * Update current league table (list of items)
-	 *TODO actually this resets the entire table, a bit wasteful. Move to incremental changes
+	 * Reset the complete league table from the existing results (list of items)
 	 * @return
 	 */
-	public void updateLeagueTable() {
-		ArrayList<LeagueTableItem> new_table = new ArrayList<LeagueTableItem>();
+	public void resetLeagueTable() {
+		table = new ArrayList<LeagueTableItem>();
 		
-		for(int i=0;i<teams.size();i++) {
-			new_table.add(new LeagueTableItem(teams.get(i)));
+		for(Team t: teams) {
+			table.add(new LeagueTableItem(t));
 		}
-		for(int i=0;i<fixtures.size();i++) { 
-			if(!fixtures.get(i).has_run||fixtures.get(i).result==null)//only run matches go into the table
-				break;
-			MatchResult result = fixtures.get(i).result;
-			for(int j=0;j<new_table.size();j++) {
-				if(new_table.get(j).team.equals(result.home)||new_table.get(j).team.equals(result.away)){
-					//Log.d("bk","Adding result to "+table.get(j).team.name);
-					new_table.get(j).addResult(result); 
-				}
-			}
+		for(Match m: fixtures) { 
+			if(!m.has_run||m.result==null)//only run matches go into the table
+				continue;//presumably all the others will be not run either (since they are in the future) however just in case.
+			addResult(m.result);
 		}
-		//order table
-		Collections.sort(new_table);
-		this.table = new_table;
 	}
 	
 	/**
@@ -194,6 +192,8 @@ public class League {
 				lti.addResult(result);
 			}
 		}
+		//order table
+		Collections.sort(table);
 	}
 	/**
 	 * Return 5 match form for this team (WWDDL)

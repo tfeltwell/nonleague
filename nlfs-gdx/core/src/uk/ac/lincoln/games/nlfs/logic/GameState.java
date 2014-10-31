@@ -9,10 +9,6 @@ import uk.ac.lincoln.games.nlfs.Assets;
  *
  */
 public class GameState {
-	public static int LEAGUE_SIZE = 8; //number of teams in the league. Even numbers only, dickhead.
-	public static int PROMOTION = 2; //number of teams promoted/relegated at the end of the season. (promotion + relegation) < league size, dickhead.
-	public static int RELEGATION = 2;
-	
 	public static GameState state;
 	public static Assets assets;
 	public static League league;
