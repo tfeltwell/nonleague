@@ -80,6 +80,7 @@ public class NonLeague extends Game {
 		skin.add("default", button_style);
 		skin.add("default", new LabelStyle(new BitmapFont(),Color.WHITE));
 		skin.add("stretch", new LabelStyle(new BitmapFont(),Color.RED));
+
 		
 		
 		this.setScreen(new PreMatch(this));

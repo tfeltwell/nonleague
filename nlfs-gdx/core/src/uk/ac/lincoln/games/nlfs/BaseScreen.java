@@ -26,7 +26,6 @@ public abstract class BaseScreen implements Screen {
 		table.setDebug(true);
 		table.setSkin(game.skin);
 		
-		
     }
 
     @Override

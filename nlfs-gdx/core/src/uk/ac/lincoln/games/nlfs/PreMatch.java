@@ -12,15 +12,19 @@ import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
  *
  */
 public class PreMatch extends BaseScreen{
+
 	public PreMatch (final NonLeague game) {
 		super(game);
 		
 		TextButton button = new TextButton("Go to Game", game.skin);	
+
 		table.add(button).width(200).height(40);
 		table.row();
 		button.addListener(new ChangeListener() {
 			public void changed(ChangeEvent event, Actor actor) {
+
 				game.setScreen(new MatchView(game,game.state.league.nextFixture()));
+
 		}
 		});
 	}
