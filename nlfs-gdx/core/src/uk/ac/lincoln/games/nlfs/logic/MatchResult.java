@@ -12,7 +12,7 @@ public class MatchResult {
 	public transient Match match;
 	public int home_goals, away_goals; // 1 - 0, score matching team_1 team_2 etc.
 	public transient ArrayList<Footballer> home_scorers, away_scorers;
-	public ArrayList<String> home_scorers_id,away_scorers_id;//evil serialisation circular id workaround. see the match class
+	private ArrayList<String> home_scorers_id,away_scorers_id;//evil serialisation circular id workaround. see the match class
 	
 	public MatchResult(Match match,int home_goals,int away_goals){
 		this.match = match;

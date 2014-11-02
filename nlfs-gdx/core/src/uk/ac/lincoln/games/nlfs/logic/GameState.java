@@ -3,6 +3,8 @@ package uk.ac.lincoln.games.nlfs.logic;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.utils.Json;
+import com.badlogic.gdx.utils.viewport.FitViewport;
+import com.badlogic.gdx.utils.viewport.Viewport;
 
 import uk.ac.lincoln.games.nlfs.Assets;
 
@@ -19,6 +21,7 @@ public class GameState {
 	
 	public static String SAVEFILE = "nlfs.dat";
 	
+	
 	public static GameState getGameState() {
 		if(state==null) {
 			state = new GameState();
@@ -28,7 +31,7 @@ public class GameState {
 	
 	public GameState() {
 		assets = new Assets();
-			
+		
 		//Try to load game from storage. If none exists create a new league
 		if(!this.loadGame()) {
 			Gdx.app.log("Start","no savefile found, creating new league");
@@ -46,6 +49,7 @@ public class GameState {
 		String o = json.toJson(league);
 		FileHandle file = Gdx.files.local(SAVEFILE);
 	    file.writeString(com.badlogic.gdx.utils.Base64Coder.encodeString(o), false);
+	    Gdx.app.log("SAVE","Game Saved to "+SAVEFILE);
 	}
 	public boolean loadGame() {
 		Json json = new Json();

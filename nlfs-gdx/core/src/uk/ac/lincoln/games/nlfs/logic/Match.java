@@ -21,7 +21,7 @@ public class Match {
 	public boolean has_run;
 	public MatchResult result;
 	
-	public String home_name, away_name;//used as IDs for save/load to avoid circular serialisation (i.e. don't ask & don't fuck with it)
+	private String home_name, away_name;//used as IDs for save/load to avoid circular serialisation (i.e. don't ask & don't fuck with it)
 	
 	public Match(League league, Team home, Team away) {
 		this.league = league;
