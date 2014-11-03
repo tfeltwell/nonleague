@@ -39,6 +39,17 @@ public class Match {
 	}
 	
 	/**
+	 * return the opponent for this team
+	 * @param t
+	 * @return
+	 */
+	public Team opponentFor(Team t) {
+		if(this.home == t) return this.away;
+		if(this.away == t) return this.home;
+		return null;
+	}
+	
+	/**
 	 * Calculates the results for this match.
 	 * Note, match engine should be run for player-controlled games
 	 * @return

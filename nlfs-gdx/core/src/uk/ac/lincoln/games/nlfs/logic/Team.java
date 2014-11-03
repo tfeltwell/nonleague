@@ -75,7 +75,6 @@ public class Team {
 	
 	public Team() {}
 	
-	
 	public boolean isPlayerControlled() {return this.player_control;}
 	
 	public void setPlayerControlled(boolean value){
@@ -102,6 +101,14 @@ public class Team {
 			}
 		}
 		return league.table.size()+1;
+	}
+	
+	public int countUnplayedMatches() {
+		int i = 0;
+		for(Match m:league.fixtures) {
+			if(!m.has_run&&m.isTeam(this)) i++;
+		}
+		return i;
 	}
 	
 	public boolean footballerNameInUse(String full_name) {

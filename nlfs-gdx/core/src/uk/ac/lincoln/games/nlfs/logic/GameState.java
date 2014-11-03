@@ -1,5 +1,7 @@
 package uk.ac.lincoln.games.nlfs.logic;
 
+import java.util.Random;
+
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.utils.Json;
@@ -18,6 +20,7 @@ public class GameState {
 	public static GameState state;
 	public static Assets assets;
 	public static League league;
+	public static Team player_team;//TODO
 	
 	public static String SAVEFILE = "nlfs.dat";
 	
@@ -36,9 +39,18 @@ public class GameState {
 		if(!this.loadGame()) {
 			Gdx.app.log("Start","no savefile found, creating new league");
 			league = new League(assets);
-		} else {Gdx.app.log("Start","Savefile found, loaded league");}
-		
-		//TODO: assign player a team, implement actual game, etc
+			player_team = league.teams.get(new Random().nextInt(league.teams.size()));//randomly select a player team
+			player_team.setPlayerControlled(true);
+		} else {
+			Gdx.app.log("Start","Savefile found, loaded league");
+			//find player team
+			for(Team t:league.teams) {
+				if(t.isPlayerControlled()) {
+					player_team = t;
+					break;
+				}
+			}
+		}
 	}
 	
 	/**

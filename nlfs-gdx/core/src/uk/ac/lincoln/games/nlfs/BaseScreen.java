@@ -17,7 +17,7 @@ public abstract class BaseScreen implements Screen {
     public BaseScreen(NonLeague game)
     {
         this.game = game;
-        this.stage = new Stage(game.viewport);
+        stage = new Stage(game.viewport);
         Gdx.input.setInputProcessor(stage);
 		table = new Table();
 		stage.addActor(game.new Background());
@@ -25,7 +25,7 @@ public abstract class BaseScreen implements Screen {
 		table.setFillParent(true);
 		table.setDebug(true);
 		table.setSkin(game.skin);
-		
+		Gdx.input.setInputProcessor(stage);
     }
 
     @Override

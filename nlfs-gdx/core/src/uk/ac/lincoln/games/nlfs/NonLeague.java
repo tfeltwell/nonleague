@@ -4,6 +4,7 @@ import uk.ac.lincoln.games.nlfs.logic.GameState;
 
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.Pixmap.Format;
@@ -11,25 +12,26 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.Texture.TextureWrap;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.Actor;
-import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Label.LabelStyle;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton.TextButtonStyle;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 
 public class NonLeague extends Game {
-	SpriteBatch batch;
 	Texture img;
-	Stage stage;
-	
-	public PreMatch prematch_screen;
-	
-	
+		
 	public Skin skin;
 	public FitViewport viewport;
 	public GameState state;
+	
+	
+	public TeamStatus teamstatus_screen;//messy architecture but saves on garbage collection
+	public PreMatch prematch_screen;
+	public MatchView matchview_screen;
+	public PostMatch postmatch_screen;
+	public LeagueTable leaguetable_screen;
+	public EndOfSeason endofseason_screen;
 	/**
 	 * Actor for background texture.
 	 * @author bkirman
@@ -48,17 +50,16 @@ public class NonLeague extends Game {
 		}
 	}
 	
+	public void changeScreen(BaseScreen s) {
+		this.setScreen(s);
+		Gdx.input.setInputProcessor(s.stage);
+	}
 	
 	public void create () {
-		batch = new SpriteBatch();
 		viewport = new FitViewport(360,640);
-		stage = new Stage(viewport);
-		
-		
-		
-		Gdx.input.setInputProcessor(stage);
 		state = GameState.getGameState();
 		skin = new Skin();
+		
 		// Generate a 1x1 white texture and store it in the skin named "white".
 		Pixmap pixmap = new Pixmap(1, 1, Format.RGBA8888);
 		pixmap.setColor(Color.WHITE);
@@ -75,20 +76,22 @@ public class NonLeague extends Game {
 		button_style.font = skin.getFont("default");
 		button_style.up = skin.newDrawable("button_up");
 		button_style.down = skin.newDrawable("button_down");
-		
 				
 		skin.add("default", button_style);
 		skin.add("default", new LabelStyle(new BitmapFont(),Color.WHITE));
 		skin.add("stretch", new LabelStyle(new BitmapFont(),Color.RED));
-
 		
-		
-		this.setScreen(new PreMatch(this));
+		teamstatus_screen = new TeamStatus(this);
+		prematch_screen = new PreMatch(this);
+		matchview_screen = new MatchView(this);
+		postmatch_screen = new PostMatch(this);
+		leaguetable_screen = new LeagueTable(this);
+		endofseason_screen = new EndOfSeason(this);
+		//start app flow
+		teamstatus_screen.update();
+		this.changeScreen(teamstatus_screen);
 	}
 
-	public void resize (int width, int height) {
-	stage.getViewport().update(width, height, true);
-	}
 	public void pause () {
 		GameState.getGameState().saveGame();
 	}
@@ -97,7 +100,6 @@ public class NonLeague extends Game {
 	}
 	
 	public void dispose () {
-		stage.dispose();
 		skin.dispose();
 	}
 }

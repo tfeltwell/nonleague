@@ -17,28 +17,44 @@ import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener.ChangeEvent;
 public class MatchView extends BaseScreen{
 	private Match match;
 	
-	public MatchView (final NonLeague game, Match match) {
+	private Label home_label,away_label,stadium_label;
+	
+	public MatchView (final NonLeague game) {
 		super(game);
-		this.match = match;
-		//match.run();
-		table.add("hello").expandX().height(100f);
+		home_label = new Label("[HOME TEAM]",game.skin);
+		away_label = new Label("[AWAY TEAM]",game.skin);
+		stadium_label = new Label("at [STADIUM]",game.skin);
+		
+		
+		table.add(home_label).expandX();
 		table.row();
-		table.add(new Label(match.home.name,game.skin,"stretch")).expandX().height(100.0f);//width(game.viewport.getScreenWidth());
+		table.add(away_label).expandX();
 		table.row();
-		table.add(new Label(match.away.name,game.skin));
+		table.add(stadium_label).expandX().right();
 		table.row();
 		
-		TextButton button = new TextButton("Go to Game", game.skin);	
+		//TODO generate the result
+		//TODO add timed reveal of scores etc
+		
+		TextButton button = new TextButton("Leave Match", game.skin);	
+
 		table.add(button).width(200).height(40);
 		table.row();
-		
-		//button.setText(match.result.getDescription(match.home));
-		
 		button.addListener(new ChangeListener() {
 			public void changed(ChangeEvent event, Actor actor) {
-				
+				game.postmatch_screen.setResult(match.result);
+				game.changeScreen(game.postmatch_screen);
 		}
 		});
+	}
+	
+	public void setMatch(Match m) {
+		match = m;
+		match.run();
+		//TODO fill screen content
+		home_label.setText(match.home.name);
+		away_label.setText(match.away.name);
+		stadium_label.setText("at "+match.home.stadium);
 	}
 	
 	@Override
