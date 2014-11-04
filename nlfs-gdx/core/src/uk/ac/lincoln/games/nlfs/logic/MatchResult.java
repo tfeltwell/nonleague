@@ -67,7 +67,7 @@ public class MatchResult {
 	 * @return
 	 */
 	public String getDescription(Team team) {
-		if(team!=match.home&&team!=match.away) return null;
+		if(team!=match.home&&team!=match.away) return getDescription(match.home);//fail silently and return the description for the home team
 		String scoreline;
 		Team opposition;
 		if(team==match.home) {

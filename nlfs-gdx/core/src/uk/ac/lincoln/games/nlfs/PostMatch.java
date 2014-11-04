@@ -1,5 +1,6 @@
 package uk.ac.lincoln.games.nlfs;
 
+import uk.ac.lincoln.games.nlfs.logic.GameState;
 import uk.ac.lincoln.games.nlfs.logic.MatchResult;
 
 import com.badlogic.gdx.Gdx;
@@ -33,7 +34,7 @@ public class PostMatch extends BaseScreen {
 		table.row();
 		table.add(stadium_label).expandX().right();
 		table.row();
-		table.add(description_label).expand().left().width(300);
+		table.add(description_label).expand().left().width(200);
 		table.row();
 		
 		//TODO generate the result
@@ -57,7 +58,7 @@ public class PostMatch extends BaseScreen {
 		home_label.setText(result.match.home.name + ": "+String.valueOf(result.home_goals));
 		away_label.setText(result.match.away.name + ": "+String.valueOf(result.away_goals));
 		stadium_label.setText("at "+result.match.home.stadium);
-		description_label.setText(result.getDescription(result.match.home));//TODO set to playerteam (NB it will crash at the moment if we show non-player matches)
+		description_label.setText(result.getDescription(GameState.player_team));
 	}
 	
 	@Override

@@ -21,8 +21,18 @@ public abstract class BaseScreen implements Screen {
         Gdx.input.setInputProcessor(stage);
 		table = new Table();
 		stage.addActor(game.new Background());
-		stage.addActor(table);
-		table.setFillParent(true);
+		
+		Table root_table = new Table();
+		stage.addActor(root_table);
+		root_table.setFillParent(true);
+		root_table.pad(20);
+		root_table.add(table);
+		
+		//stage.addActor(table);
+		table.pad(10);
+		table.setBackground(game.skin.getDrawable("transparent"));
+		//table.setSize(stage.getWidth()-50, stage.getHeight()-50);
+		//table.setPosition(25, 25);
 		table.setDebug(true);
 		table.setSkin(game.skin);
 		Gdx.input.setInputProcessor(stage);

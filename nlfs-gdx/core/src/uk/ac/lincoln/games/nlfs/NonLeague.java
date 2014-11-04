@@ -9,9 +9,11 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.Pixmap.Format;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.Texture.TextureFilter;
 import com.badlogic.gdx.graphics.Texture.TextureWrap;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.ui.Label.LabelStyle;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
@@ -64,7 +66,16 @@ public class NonLeague extends Game {
 		Pixmap pixmap = new Pixmap(1, 1, Format.RGBA8888);
 		pixmap.setColor(Color.WHITE);
 		pixmap.fill();
+		
+		Pixmap pm2 = new Pixmap(1,1,Format.RGBA8888);
+		pm2.setColor(1f, 1f, 1f, 0.3f);
+		pm2.fill();
+		skin.add("transparent",new Texture(pm2));
 				
+		Texture texture = new Texture(Gdx.files.internal("titlefont.png"));
+		texture.setFilter(TextureFilter.Linear, TextureFilter.Linear);
+		BitmapFont font = new BitmapFont(Gdx.files.internal("titlefont.fnt"), new TextureRegion(texture), false);
+		skin.add("titlefont", new LabelStyle(font,Color.WHITE));
 		
 		skin.add("white", new Texture(pixmap));
 		// Store the default libgdx font under the name "default".

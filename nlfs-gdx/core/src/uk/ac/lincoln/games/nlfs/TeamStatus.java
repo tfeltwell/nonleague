@@ -19,12 +19,13 @@ public class TeamStatus extends BaseScreen {
 	
 	public TeamStatus(final NonLeague game) {
 		super(game);
-		team_label = new Label(GameState.player_team.name,game.skin);
+		team_label = new Label(GameState.player_team.name.toUpperCase(),game.skin,"titlefont");
+		//team_label.setFontScale(0.5f);
 		next_opponent_label = new Label("[NEXT TEAM]",game.skin);
 		league_pos_label = new Label("X",game.skin);
 		unplayed_label = new Label("X",game.skin);
 		
-		table.add(team_label).expandX();
+		table.add(team_label).expandX().colspan(2);
 		table.row();
 		table.add("Next opponent: ");
 		table.add(next_opponent_label).expandX();
@@ -38,7 +39,7 @@ public class TeamStatus extends BaseScreen {
 		
 		TextButton button = new TextButton("Prepare for Match", game.skin);	
 
-		table.add(button).width(200).height(40);
+		table.add(button).width(200).height(40).colspan(2);
 		table.row();
 		
 		//TODO must run through non-player games
