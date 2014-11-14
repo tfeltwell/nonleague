@@ -19,7 +19,7 @@ public class TeamStatus extends BaseScreen {
 	
 	public TeamStatus(final NonLeague game) {
 		super(game);
-		team_label = new Label(GameState.player_team.name.toUpperCase(),game.skin,"titlefont");
+		team_label = new Label(GameState.player_team.name.toUpperCase(),game.skin,"title-text");
 		//team_label.setFontScale(0.5f);
 		next_opponent_label = new Label("[NEXT TEAM]",game.skin);
 		league_pos_label = new Label("X",game.skin);

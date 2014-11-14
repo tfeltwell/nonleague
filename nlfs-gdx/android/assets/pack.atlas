@@ -1,0 +1,22 @@
+
+pack.png
+size: 128,64
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+button_patch
+  rotate: false
+  xy: 2, 2
+  size: 50, 50
+  split: 7, 9, 8, 10
+  orig: 50, 50
+  offset: 0, 0
+  index: -1
+button_patch_down
+  rotate: false
+  xy: 54, 2
+  size: 50, 50
+  split: 7, 8, 8, 8
+  orig: 50, 50
+  offset: 0, 0
+  index: -1

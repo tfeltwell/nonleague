@@ -6,7 +6,9 @@ import uk.ac.lincoln.games.nlfs.logic.Match;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.badlogic.gdx.scenes.scene2d.ui.HorizontalGroup;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
+import com.badlogic.gdx.scenes.scene2d.ui.ScrollPane;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 
@@ -32,6 +34,19 @@ public class PreMatch extends BaseScreen{
 		table.add(away_label).expandX();
 		table.row();
 		table.add(stadium_label).expandX().right();
+		table.row();
+		
+		HorizontalGroup hg = new HorizontalGroup();
+		hg.addActor(new Label("TEST1",game.skin));
+		hg.addActor(new Label("TEST2",game.skin));
+		hg.addActor(new Label("TEST3",game.skin));
+		hg.addActor(new Label("TEST4",game.skin));
+		hg.addActor(new Label("TEST1",game.skin));
+		hg.addActor(new Label("TEST2",game.skin));
+		hg.addActor(new Label("TEST3",game.skin));
+		hg.addActor(new Label("TEST4",game.skin));
+		ScrollPane sp = new ScrollPane(hg);
+		table.add(sp);
 		table.row();
 		
 		//TODO rituals here

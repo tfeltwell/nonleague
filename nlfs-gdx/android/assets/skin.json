@@ -1,0 +1,21 @@
+{  
+     com.badlogic.gdx.graphics.g2d.BitmapFont: {  
+     	titlefont: { file: titlefont.fnt },
+     },  
+     com.badlogic.gdx.graphics.Color: {  
+	      red: { a: 1, b: 0, g: 0, r: 1 },  
+	      green: { a: 1, b: 0, g: 1, r: 0 },  
+	      blue: { a: 1, b: 1, g: 0, r: 0 },  
+	      white: { hex: "FFFFFF" },  
+	      black: { hex: "000000" }  
+     },  
+     com.badlogic.gdx.scenes.scene2d.ui.Label$LabelStyle: {  
+      	title-text: { font: titlefont, fontColor: white },  
+     },  
+     com.badlogic.gdx.scenes.scene2d.ui.Button$ButtonStyle: {  
+      default: { up: button_patch, down: button_patch_down, checked: button_patch_down, disabled: button_patch },
+     },  
+     com.badlogic.gdx.scenes.scene2d.ui.TextButton$TextButtonStyle: {  
+      default: { up: button_patch, down: button_patch_down, checked: button_patch_down, disabled: button_patch, font: titlefont, fontColor: white },  
+     },
+}  

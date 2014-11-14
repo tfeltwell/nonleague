@@ -5,6 +5,7 @@ import uk.ac.lincoln.games.nlfs.logic.GameState;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.Pixmap.Format;
@@ -13,6 +14,7 @@ import com.badlogic.gdx.graphics.Texture.TextureFilter;
 import com.badlogic.gdx.graphics.Texture.TextureWrap;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.ui.Label.LabelStyle;
@@ -60,7 +62,12 @@ public class NonLeague extends Game {
 	public void create () {
 		viewport = new FitViewport(360,640);
 		state = GameState.getGameState();
-		skin = new Skin();
+		
+		//AssetManager am = new AssetManager();
+		//am.load("pack.atlas",TextureAtlas.class);
+		TextureAtlas atlas = new TextureAtlas(Gdx.files.internal("pack.atlas"));
+		
+		skin = new Skin(Gdx.files.internal("skin.json"),atlas);
 		
 		// Generate a 1x1 white texture and store it in the skin named "white".
 		Pixmap pixmap = new Pixmap(1, 1, Format.RGBA8888);
@@ -74,21 +81,21 @@ public class NonLeague extends Game {
 				
 		Texture texture = new Texture(Gdx.files.internal("titlefont.png"));
 		texture.setFilter(TextureFilter.Linear, TextureFilter.Linear);
-		BitmapFont font = new BitmapFont(Gdx.files.internal("titlefont.fnt"), new TextureRegion(texture), false);
-		skin.add("titlefont", new LabelStyle(font,Color.WHITE));
+		//BitmapFont font = new BitmapFont(Gdx.files.internal("titlefont.fnt"), new TextureRegion(texture), false);
+		//skin.add("titlefont", new LabelStyle(font,Color.WHITE));
 		
-		skin.add("white", new Texture(pixmap));
+		//skin.add("white", new Texture(pixmap));
 		// Store the default libgdx font under the name "default".
 		skin.add("default", new BitmapFont());
-		skin.add("button_up",new Texture("button_up.png"));
-		skin.add("button_down",new Texture("button_down.png"));
+		//skin.add("button_up",new Texture("button_up.png"));
+		//skin.add("button_down",new Texture("button_down.png"));
 		// Configure a TextButtonStyle and name it "default". Skin resources are stored by type, so this doesn't overwrite the font.
-		TextButtonStyle button_style = new TextButtonStyle();
-		button_style.font = skin.getFont("default");
-		button_style.up = skin.newDrawable("button_up");
-		button_style.down = skin.newDrawable("button_down");
+		//TextButtonStyle button_style = new TextButtonStyle();
+		//button_style.font = skin.getFont("default");
+		//button_style.up = skin.newDrawable("button_up");
+		//button_style.down = skin.newDrawable("button_down");
 				
-		skin.add("default", button_style);
+		//skin.add("default", button_style);
 		skin.add("default", new LabelStyle(new BitmapFont(),Color.WHITE));
 		skin.add("stretch", new LabelStyle(new BitmapFont(),Color.RED));
 		
