@@ -1,6 +1,7 @@
 package uk.ac.lincoln.games.nlfs;
 
 import uk.ac.lincoln.games.nlfs.NonLeague.Background;
+import uk.ac.lincoln.games.nlfs.logic.GameState;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
@@ -30,11 +31,11 @@ public abstract class BaseScreen implements Screen {
 		
 		//stage.addActor(table);
 		table.pad(10);
-		table.setBackground(game.skin.getDrawable("transparent"));
+		table.setBackground(GameState.assets.skin.getDrawable("transparent"));
 		//table.setSize(stage.getWidth()-50, stage.getHeight()-50);
 		//table.setPosition(25, 25);
 		table.setDebug(true);
-		table.setSkin(game.skin);
+		table.setSkin(GameState.assets.skin);
 		Gdx.input.setInputProcessor(stage);
     }
 

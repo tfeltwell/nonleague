@@ -1,5 +1,6 @@
 package uk.ac.lincoln.games.nlfs;
 
+import uk.ac.lincoln.games.nlfs.logic.GameState;
 import uk.ac.lincoln.games.nlfs.logic.Match;
 
 import com.badlogic.gdx.Gdx;
@@ -21,9 +22,9 @@ public class MatchView extends BaseScreen{
 	
 	public MatchView (final NonLeague game) {
 		super(game);
-		home_label = new Label("[HOME TEAM]",game.skin);
-		away_label = new Label("[AWAY TEAM]",game.skin);
-		stadium_label = new Label("at [STADIUM]",game.skin);
+		home_label = new Label("[HOME TEAM]",GameState.assets.skin);
+		away_label = new Label("[AWAY TEAM]",GameState.assets.skin);
+		stadium_label = new Label("at [STADIUM]",GameState.assets.skin);
 		
 		
 		table.add(home_label).expandX();
@@ -36,7 +37,7 @@ public class MatchView extends BaseScreen{
 		//TODO generate the result
 		//TODO add timed reveal of scores etc
 		
-		TextButton button = new TextButton("Leave Match", game.skin);	
+		TextButton button = new TextButton("Leave Match", GameState.assets.skin);	
 
 		table.add(button).width(200).height(40);
 		table.row();

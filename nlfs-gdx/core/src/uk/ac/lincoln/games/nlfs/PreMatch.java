@@ -2,6 +2,7 @@ package uk.ac.lincoln.games.nlfs;
 
 import uk.ac.lincoln.games.nlfs.logic.GameState;
 import uk.ac.lincoln.games.nlfs.logic.Match;
+import uk.ac.lincoln.games.nlfs.ui.RitualSelector;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
@@ -24,9 +25,9 @@ public class PreMatch extends BaseScreen{
 	
 	public PreMatch (final NonLeague game) {
 		super(game);
-		home_label = new Label("[HOME TEAM]",game.skin);
-		away_label = new Label("[AWAY TEAM]",game.skin);
-		stadium_label = new Label("at [STADIUM]",game.skin);
+		home_label = new Label("[HOME TEAM]",GameState.assets.skin);
+		away_label = new Label("[AWAY TEAM]",GameState.assets.skin);
+		stadium_label = new Label("at [STADIUM]",GameState.assets.skin);
 		
 		
 		table.add(home_label).expandX();
@@ -34,23 +35,21 @@ public class PreMatch extends BaseScreen{
 		table.add(away_label).expandX();
 		table.row();
 		table.add(stadium_label).expandX().right();
-		table.row();
+		table.row().padBottom(5);
 		
-		HorizontalGroup hg = new HorizontalGroup();
-		hg.addActor(new Label("TEST1",game.skin));
-		hg.addActor(new Label("TEST2",game.skin));
-		hg.addActor(new Label("TEST3",game.skin));
-		hg.addActor(new Label("TEST4",game.skin));
-		hg.addActor(new Label("TEST1",game.skin));
-		hg.addActor(new Label("TEST2",game.skin));
-		hg.addActor(new Label("TEST3",game.skin));
-		hg.addActor(new Label("TEST4",game.skin));
-		ScrollPane sp = new ScrollPane(hg);
-		table.add(sp);
+		RitualSelector clothes_ritual = new RitualSelector("Wearing");
+		RitualSelector food_ritual = new RitualSelector("Eating");
+		RitualSelector drink_ritual = new RitualSelector("Drinking");
+		//clothes_ritual.validate();
+		table.add(clothes_ritual.getActor()).expandX().center();
+		table.row().padBottom(5);
+		table.add(food_ritual.getActor()).expandX().center();
+		table.row().padBottom(5);
+		table.add(drink_ritual.getActor()).expandX().center();
 		table.row();
 		
 		//TODO rituals here
-		TextButton button = new TextButton("Go to Match", game.skin);	
+		TextButton button = new TextButton("Go to Match", GameState.assets.skin);	
 
 		table.add(button).width(200).height(40);
 		table.row();

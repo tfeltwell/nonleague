@@ -21,10 +21,10 @@ public class PostMatch extends BaseScreen {
 	
 	public PostMatch (final NonLeague game) {
 		super(game);
-		home_label = new Label("[HOME TEAM]: 0",game.skin);
-		away_label = new Label("[AWAY TEAM]: 0",game.skin);
-		stadium_label = new Label("at [STADIUM]",game.skin);
-		description_label = new Label("[DESCRIPTION]",game.skin);
+		home_label = new Label("[HOME TEAM]: 0",GameState.assets.skin);
+		away_label = new Label("[AWAY TEAM]: 0",GameState.assets.skin);
+		stadium_label = new Label("at [STADIUM]",GameState.assets.skin);
+		description_label = new Label("[DESCRIPTION]",GameState.assets.skin);
 		description_label.setWrap(true);
 		//description_label.setWidth(200);
 		
@@ -40,7 +40,7 @@ public class PostMatch extends BaseScreen {
 		//TODO generate the result
 		//TODO add timed reveal of scores etc
 		
-		TextButton button = new TextButton("Leave Match", game.skin);	
+		TextButton button = new TextButton("Leave Match", GameState.assets.skin);	
 
 		table.add(button).width(200).height(40);
 		table.row();

@@ -25,7 +25,7 @@ import com.badlogic.gdx.utils.viewport.FitViewport;
 public class NonLeague extends Game {
 	Texture img;
 		
-	public Skin skin;
+	//public Skin skin;
 	public FitViewport viewport;
 	public GameState state;
 	
@@ -65,39 +65,7 @@ public class NonLeague extends Game {
 		
 		//AssetManager am = new AssetManager();
 		//am.load("pack.atlas",TextureAtlas.class);
-		TextureAtlas atlas = new TextureAtlas(Gdx.files.internal("pack.atlas"));
 		
-		skin = new Skin(Gdx.files.internal("skin.json"),atlas);
-		
-		// Generate a 1x1 white texture and store it in the skin named "white".
-		Pixmap pixmap = new Pixmap(1, 1, Format.RGBA8888);
-		pixmap.setColor(Color.WHITE);
-		pixmap.fill();
-		
-		Pixmap pm2 = new Pixmap(1,1,Format.RGBA8888);
-		pm2.setColor(1f, 1f, 1f, 0.3f);
-		pm2.fill();
-		skin.add("transparent",new Texture(pm2));
-				
-		Texture texture = new Texture(Gdx.files.internal("titlefont.png"));
-		texture.setFilter(TextureFilter.Linear, TextureFilter.Linear);
-		//BitmapFont font = new BitmapFont(Gdx.files.internal("titlefont.fnt"), new TextureRegion(texture), false);
-		//skin.add("titlefont", new LabelStyle(font,Color.WHITE));
-		
-		//skin.add("white", new Texture(pixmap));
-		// Store the default libgdx font under the name "default".
-		skin.add("default", new BitmapFont());
-		//skin.add("button_up",new Texture("button_up.png"));
-		//skin.add("button_down",new Texture("button_down.png"));
-		// Configure a TextButtonStyle and name it "default". Skin resources are stored by type, so this doesn't overwrite the font.
-		//TextButtonStyle button_style = new TextButtonStyle();
-		//button_style.font = skin.getFont("default");
-		//button_style.up = skin.newDrawable("button_up");
-		//button_style.down = skin.newDrawable("button_down");
-				
-		//skin.add("default", button_style);
-		skin.add("default", new LabelStyle(new BitmapFont(),Color.WHITE));
-		skin.add("stretch", new LabelStyle(new BitmapFont(),Color.RED));
 		
 		teamstatus_screen = new TeamStatus(this);
 		prematch_screen = new PreMatch(this);
@@ -118,6 +86,6 @@ public class NonLeague extends Game {
 	}
 	
 	public void dispose () {
-		skin.dispose();
+		GameState.assets.skin.dispose();
 	}
 }

@@ -6,9 +6,18 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.Pixmap;
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.Pixmap.Format;
+import com.badlogic.gdx.graphics.Texture.TextureFilter;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.badlogic.gdx.scenes.scene2d.ui.Skin;
+import com.badlogic.gdx.scenes.scene2d.ui.Label.LabelStyle;
 
 public class Assets {
-	
+	public static Skin skin;
 	public ArrayList<String> team_names;
 	public ArrayList<String> town_names;
 	public ArrayList<String> first_names;
@@ -21,6 +30,7 @@ public class Assets {
 	
 	public Assets() {
 		gen_loaded = false;
+		loadSkin();
 		loadRunData();
 	}
 	
@@ -64,6 +74,37 @@ public class Assets {
 				news_summaries.get(score).add(line);//add comment to that line
 			}
 		}
+	}
+	
+	/**
+	 * Load the skin data into memory (must be done before anything is displayed)
+	 */
+	private void loadSkin() {
+		TextureAtlas atlas = new TextureAtlas(Gdx.files.internal("pack.atlas"));
+		
+		skin = new Skin(Gdx.files.internal("skin.json"),atlas);
+		
+		// Generate a 1x1 white texture and store it in the skin named "white".
+		Pixmap pixmap = new Pixmap(1, 1, Format.RGBA8888);
+		pixmap.setColor(Color.WHITE);
+		pixmap.fill();
+		
+		Pixmap pm2 = new Pixmap(1,1,Format.RGBA8888);
+		pm2.setColor(1f, 1f, 1f, 0.3f);
+		pm2.fill();
+		skin.add("transparent",new Texture(pm2));
+		Pixmap pm3 = new Pixmap(1,1,Format.RGBA8888);
+		pm3.setColor(0f, 0f, 0f, 0.3f);
+		pm3.fill();
+		skin.add("darken",new Texture(pm3));
+				
+		Texture texture = new Texture(Gdx.files.internal("titlefont.png"));
+		texture.setFilter(TextureFilter.Linear, TextureFilter.Linear);
+		
+		skin.add("default", new BitmapFont());
+		
+		skin.add("default", new LabelStyle(new BitmapFont(),Color.WHITE));
+		skin.add("stretch", new LabelStyle(new BitmapFont(),Color.RED));
 	}
 	
 	/**

@@ -1,5 +1,7 @@
 package uk.ac.lincoln.games.nlfs;
 
+import uk.ac.lincoln.games.nlfs.logic.GameState;
+
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
@@ -17,7 +19,7 @@ public class LeagueTable extends BaseScreen {
 		table.row();
 		
 		
-		TextButton button = new TextButton("Go to Game", game.skin);	
+		TextButton button = new TextButton("Go to Game", GameState.assets.skin);	
 		table.add(button).width(200).height(40);
 		table.row();
 		
