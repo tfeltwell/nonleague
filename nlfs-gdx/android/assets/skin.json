@@ -16,7 +16,7 @@
 	      skyblue: {hex: "00AAFF"},
 	      maroon: {hex: "8C0000"},
 	      white: { hex: "FFFFFF" },  
-	      black: { hex: "000000" }  
+	      black: { hex: "010101" }  
      },  
      com.badlogic.gdx.scenes.scene2d.ui.Label$LabelStyle: {  
       	teamname: { font: teamname, fontColor: white },

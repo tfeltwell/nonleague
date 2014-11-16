@@ -25,7 +25,7 @@ public class Team {
 	public ArrayList<Footballer> footballers;
 	public transient League league;
 	
-	public Color colour_primary,colour_base;
+	public String colour_primary,colour_base;
 	
 	public transient ArrayList<Footballer> defenders,midfielders,goalkeepers,strikers;
 	
@@ -48,7 +48,7 @@ public class Team {
 		
 		
 		stadium = assets.stadium_names.get(new Random().nextInt(assets.stadium_names.size())) +" "+ assets.road_names.get(new Random().nextInt(assets.road_names.size()));
-		ArrayList<Color> colour = assets.team_colours.get(new Random().nextInt(assets.team_colours.size()));
+		ArrayList<String> colour = assets.team_colours.get(new Random().nextInt(assets.team_colours.size()));
 		
 		colour_base = colour.get(1);
 		colour_primary = colour.get(0);

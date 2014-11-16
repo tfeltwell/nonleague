@@ -26,7 +26,7 @@ public class Assets {
 	public ArrayList<String> surnames;
 	public ArrayList<String> stadium_names;
 	public ArrayList<String> road_names;
-	public ArrayList<ArrayList<Color>> team_colours;
+	public ArrayList<ArrayList<String>> team_colours;
 	public HashMap<String,ArrayList> news_summaries;
 	
 	private boolean gen_loaded;
@@ -55,14 +55,15 @@ public class Assets {
 			//Team colours
 			ArrayList<String> colour_data = loadFile("team_colours.txt");
 			
-			team_colours = new ArrayList<ArrayList<Color>>();
+			team_colours = new ArrayList<ArrayList<String>>();
 			for(String line: colour_data) {
-				ArrayList<Color> colour_line = new ArrayList<Color>();
+				ArrayList<String> colour_line = new ArrayList<String>();
 				
-				colour_line.add(GameState.assets.skin.getColor(line.split(" on ")[0]));
-				colour_line.add(GameState.assets.skin.getColor(line.split(" on ")[1]));
+				colour_line.add(line.split(" on ")[0]);
+				colour_line.add(line.split(" on ")[1]);
 				
 				team_colours.add(colour_line);
+				//Gdx.app.log("TEST", colour_line.toString());
 			}
 		} catch (IOException e) {
             //CRASH TODO: fail gracefully
@@ -110,6 +111,10 @@ public class Assets {
 		pm2.setColor(1f, 1f, 1f, 0.3f);
 		pm2.fill();
 		skin.add("transparent",new Texture(pm2));
+		pm2 = new Pixmap(1,1,Format.RGBA8888);
+		pm2.setColor(1f, 1f, 1f, 0.7f);
+		pm2.fill();
+		skin.add("base",new Texture(pm2));
 		Pixmap pm3 = new Pixmap(1,1,Format.RGBA8888);
 		pm3.setColor(0f, 0f, 0f, 0.3f);
 		pm3.fill();
