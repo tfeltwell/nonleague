@@ -25,12 +25,15 @@ public class PreMatch extends BaseScreen{
 	
 	public PreMatch (final NonLeague game) {
 		super(game);
-		home_label = new Label("[HOME TEAM]",GameState.assets.skin);
-		away_label = new Label("[AWAY TEAM]",GameState.assets.skin);
+		home_label = new Label("[HOME TEAM]",GameState.assets.skin,"teamname");
+		//home_label.setColor(1f,0f,0f,1f);
+		away_label = new Label("[AWAY TEAM]",GameState.assets.skin,"teamname");
 		stadium_label = new Label("at [STADIUM]",GameState.assets.skin);
 		
 		
 		table.add(home_label).expandX();
+		table.row();
+		table.add("vs.").center();
 		table.row();
 		table.add(away_label).expandX();
 		table.row();

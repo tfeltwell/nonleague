@@ -1,6 +1,11 @@
 {  
      com.badlogic.gdx.graphics.g2d.BitmapFont: {  
-     	titlefont: { file: titlefont.fnt },
+     	teamname: { file: teamname.fnt },
+     	normal_16: { file: normal_16.fnt },
+     	normal_20: { file: normal_20.fnt },
+     	normal_25: { file: normal_25.fnt },
+     	bold_25: { file: bold_25.fnt },
+     	bold_20: { file: bold_20.fnt },
      },  
      com.badlogic.gdx.graphics.Color: {  
 	      red: { a: 1, b: 0, g: 0, r: 1 },  
@@ -10,12 +15,13 @@
 	      black: { hex: "000000" }  
      },  
      com.badlogic.gdx.scenes.scene2d.ui.Label$LabelStyle: {  
-      	title-text: { font: titlefont, fontColor: white },  
+      	teamname: { font: teamname, fontColor: white },
+      	default: { font: normal_16, fontColor: white },
      },  
      com.badlogic.gdx.scenes.scene2d.ui.Button$ButtonStyle: {  
       default: { up: button_patch, down: button_patch_down, checked: button_patch_down, disabled: button_patch },
      },  
      com.badlogic.gdx.scenes.scene2d.ui.TextButton$TextButtonStyle: {  
-      default: { up: button_patch, down: button_patch_down, checked: button_patch_down, disabled: button_patch, font: titlefont, fontColor: white },  
+      default: { up: button_patch, down: button_patch_down, checked: button_patch_down, disabled: button_patch, font: bold_20, fontColor: white },  
      },
 }  

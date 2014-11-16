@@ -98,13 +98,13 @@ public class Assets {
 		pm3.fill();
 		skin.add("darken",new Texture(pm3));
 				
-		Texture texture = new Texture(Gdx.files.internal("titlefont.png"));
-		texture.setFilter(TextureFilter.Linear, TextureFilter.Linear);
+		//Texture texture = new Texture(Gdx.files.internal("titlefont.png"));
+		//texture.setFilter(TextureFilter.Linear, TextureFilter.Linear);
 		
-		skin.add("default", new BitmapFont());
+		//skin.add("default", new BitmapFont());
 		
-		skin.add("default", new LabelStyle(new BitmapFont(),Color.WHITE));
-		skin.add("stretch", new LabelStyle(new BitmapFont(),Color.RED));
+		//skin.add("default", new LabelStyle(new BitmapFont(),Color.WHITE));
+		//skin.add("stretch", new LabelStyle(new BitmapFont(),Color.RED));
 	}
 	
 	/**
