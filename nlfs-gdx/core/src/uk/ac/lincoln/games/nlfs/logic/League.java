@@ -49,8 +49,8 @@ public class League {
 			teams.add(new Team(assets,this));
 		}
 		
-		/*Gdx.app.log("", "League teams:");
-		for(Team t:teams)Gdx.app.log("", t.name);*/
+		//Gdx.app.log("", "League teams:");
+		//for(Team t:teams)Gdx.app.log("", t.name);
 		
 		//Generate fixtures
 		fixtures = generateFixtures(teams);

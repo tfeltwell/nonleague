@@ -11,6 +11,10 @@
 	      red: { a: 1, b: 0, g: 0, r: 1 },  
 	      green: { a: 1, b: 0, g: 1, r: 0 },  
 	      blue: { a: 1, b: 1, g: 0, r: 0 },  
+	      yellow: {hex: "FFFF00"},
+	      orange: {hex: "FF8800"},
+	      skyblue: {hex: "00AAFF"},
+	      maroon: {hex: "8C0000"},
 	      white: { hex: "FFFFFF" },  
 	      black: { hex: "000000" }  
      },  

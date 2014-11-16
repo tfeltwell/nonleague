@@ -5,6 +5,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import uk.ac.lincoln.games.nlfs.logic.GameState;
+
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Pixmap;
@@ -24,6 +26,7 @@ public class Assets {
 	public ArrayList<String> surnames;
 	public ArrayList<String> stadium_names;
 	public ArrayList<String> road_names;
+	public ArrayList<ArrayList<Color>> team_colours;
 	public HashMap<String,ArrayList> news_summaries;
 	
 	private boolean gen_loaded;
@@ -48,9 +51,23 @@ public class Assets {
 			surnames = loadFile("surnames.txt");
 			road_names = loadFile("roadnames.txt");
 			stadium_names = loadFile("stadiumnames.txt");
+			
+			//Team colours
+			ArrayList<String> colour_data = loadFile("team_colours.txt");
+			
+			team_colours = new ArrayList<ArrayList<Color>>();
+			for(String line: colour_data) {
+				ArrayList<Color> colour_line = new ArrayList<Color>();
+				
+				colour_line.add(GameState.assets.skin.getColor(line.split(" on ")[0]));
+				colour_line.add(GameState.assets.skin.getColor(line.split(" on ")[1]));
+				
+				team_colours.add(colour_line);
+			}
 		} catch (IOException e) {
             //CRASH TODO: fail gracefully
 		}
+		
 	}
 	/**
 	 * Fill data based on day-to-day activities

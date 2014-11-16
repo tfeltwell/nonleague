@@ -26,8 +26,11 @@ public class PreMatch extends BaseScreen{
 	public PreMatch (final NonLeague game) {
 		super(game);
 		home_label = new Label("[HOME TEAM]",GameState.assets.skin,"teamname");
-		//home_label.setColor(1f,0f,0f,1f);
+		
+		
 		away_label = new Label("[AWAY TEAM]",GameState.assets.skin,"teamname");
+		
+		
 		stadium_label = new Label("at [STADIUM]",GameState.assets.skin);
 		
 		
@@ -68,7 +71,9 @@ public class PreMatch extends BaseScreen{
 		this.match = match;
 		//TODO set screen content
 		home_label.setText(match.home.name);
+		home_label.setColor(match.home.colour_primary);
 		away_label.setText(match.away.name);
+		away_label.setColor(match.away.colour_primary);
 		stadium_label.setText("at "+match.home.stadium);
 	}
 	
