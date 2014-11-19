@@ -25,6 +25,7 @@ public class PreMatch extends BaseScreen{
 	private Match match;
 	
 	private Label home_label,away_label,stadium_label;
+	private TextButton button;
 	
 	public PreMatch (final NonLeague game) {
 		super(game);
@@ -55,7 +56,7 @@ public class PreMatch extends BaseScreen{
 		table.row();
 		
 		//TODO rituals here
-		TextButton button = new TextButton("Go to Match", GameState.assets.skin);	
+		button = new TextButton("Go to Match", GameState.assets.skin);	
 
 		table.add(button).width(200).height(40);
 		table.row();
@@ -69,17 +70,19 @@ public class PreMatch extends BaseScreen{
 	
 	public void setMatch(Match match) {
 		this.match = match;
+		button.setChecked(false);
 		//Set team names/colours
-		home_label.setColor(GameState.assets.skin.getColor(match.home.colour_primary));
-		away_label.setColor(GameState.assets.skin.getColor(match.away.colour_primary));
+		//home_label.setColor(GameState.assets.skin.getColor(match.home.colour_primary));
+		//away_label.setColor(GameState.assets.skin.getColor(match.away.colour_primary));
 		
 		home_label.setText(" "+match.home.name);
 		home_label.setStyle(new LabelStyle(GameState.assets.skin.get("teamname", LabelStyle.class)));
 		home_label.getStyle().background = GameState.assets.skin.newDrawable("base",GameState.assets.skin.getColor(match.home.colour_base));
+		home_label.getStyle().fontColor = GameState.assets.skin.getColor(match.home.colour_primary);
 		away_label.setText(" "+match.away.name);
 		away_label.setStyle(new LabelStyle(GameState.assets.skin.get("teamname", LabelStyle.class)));
 		away_label.getStyle().background = GameState.assets.skin.newDrawable("base",GameState.assets.skin.getColor(match.away.colour_base));
-		
+		away_label.getStyle().fontColor = GameState.assets.skin.getColor(match.away.colour_primary);
 
 		
 		

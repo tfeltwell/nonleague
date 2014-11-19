@@ -20,7 +20,7 @@ public class GameState {
 	public static GameState state;
 	public static Assets assets;
 	public static League league;
-	public static Team player_team;//TODO
+	public static Team player_team;
 	
 	public static String SAVEFILE = "nlfs.dat";
 	
@@ -60,19 +60,23 @@ public class GameState {
 		Json json = new Json();
 		String o = json.toJson(league);
 		FileHandle file = Gdx.files.local(SAVEFILE);
-	    file.writeString(com.badlogic.gdx.utils.Base64Coder.encodeString(o), false);
+	    //file.writeString(com.badlogic.gdx.utils.Base64Coder.encodeString(o), false);
+		file.writeString(o, false);//TODO Base64
 	    Gdx.app.log("SAVE","Game Saved to "+SAVEFILE);
 	}
 	public boolean loadGame() {
-		Json json = new Json();
+		return false;
+		//TODO temporary doing new game every time
+		/*Json json = new Json();
 		String s = "";
 		FileHandle file = Gdx.files.local(SAVEFILE);
 	    if (file != null && file.exists()) {
 	    	s = file.readString();
 	    }
 	    if(s.isEmpty()) return false;
-	    league = json.fromJson(League.class, com.badlogic.gdx.utils.Base64Coder.decodeString(s));
+	    //league = json.fromJson(League.class, com.badlogic.gdx.utils.Base64Coder.decodeString(s));
+	    league = json.fromJson(League.class, s);
 		league.reinit();
-		return true;
+		return true;*/
 	}
 }

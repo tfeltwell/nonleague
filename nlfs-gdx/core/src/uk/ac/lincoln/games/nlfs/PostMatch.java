@@ -55,8 +55,8 @@ public class PostMatch extends BaseScreen {
 	public void setResult(MatchResult mr) {
 		result = mr;
 		//TODO fill screen content
-		home_label.setText(result.match.home.name + ": "+String.valueOf(result.home_goals));
-		away_label.setText(result.match.away.name + ": "+String.valueOf(result.away_goals));
+		home_label.setText(result.match.home.name + ": "+String.valueOf(result.home_goals.size()));
+		away_label.setText(result.match.away.name + ": "+String.valueOf(result.away_goals.size()));
 		stadium_label.setText("at "+result.match.home.stadium);
 		description_label.setText(result.getDescription(GameState.player_team));
 	}

@@ -1,29 +1,29 @@
 Abingdon
-Adwick le Street
+Adwick
 Alfreton
 Alsager
 Alton
 Ambleside
 Appleby
-Ashby de la Zouch
+Ashby
 Ashington
 Atherton
-Attleborough
+Attleboro
 Axminster
 Aylesford
 Bacup
 Bamber
 Bridge
-Barnoldswick
+Barnswick
 Barrhead
-Beaconsfield
-Beaminster
+Beaconel
+Beminster
 Berwick
 Bicester
 Biddulph
 Bideford
 Billericay
-Bishopbriggs
+Bishoprigg
 Bodmin
 Bolsover
 Braintree
@@ -31,7 +31,7 @@ Brampton
 Brandon
 Brecon
 Brixham
-Broadstairs
+Broadstar
 Broxburn
 Buckley
 Burgess
@@ -44,15 +44,14 @@ Camelford
 Chalfont
 St Peter
 Chesham
-Cirencester
-Cleckheaton
+Cleckton
 Clevedon
-Cleveleys
+Cleveley
 Clitheroe
 Cobham
 Colne
 Congleton
-Conisbrough
+Conisboro
 Cowbridge
 Crook
 Dalton
@@ -63,7 +62,7 @@ Denton
 Devizes
 Didcot
 Dorchester
-Droitwich Spa
+Droitwich
 Dronfield
 Elland
 Ely
@@ -75,9 +74,9 @@ Ferryhill
 Freckleton
 Frome
 Fulford
-Gainsborough
+Gainsboro
 Godalming
-Godmanchester
+Godchester
 Gorebridge
 Gosforth
 Great
@@ -89,7 +88,7 @@ Hartshill
 Harwich
 Haslemere
 Haslingden
-Heckmondwike
+Heckonwike
 Helensburgh
 Helston
 Hemsworth
@@ -114,7 +113,7 @@ Keynsham
 Kidsgrove
 Kimberley
 Kirkburton
-Knaresborough
+Knaresboro
 Knottingley
 Knutsford
 Lampeter

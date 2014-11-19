@@ -10,41 +10,25 @@ import uk.ac.lincoln.games.nlfs.logic.Footballer.Position;
 
 public class MatchResult {
 	public transient Match match;
-	public int home_goals, away_goals; // 1 - 0, score matching team_1 team_2 etc.
-	public transient ArrayList<Footballer> home_scorers, away_scorers;
-	private ArrayList<String> home_scorers_id,away_scorers_id;//evil serialisation circular id workaround. see the match class
+	public ArrayList<Goal> home_goals, away_goals;
 	
-	public MatchResult(Match match,int home_goals,int away_goals){
+	public MatchResult(Match match,int h_goals,int a_goals){
 		this.match = match;
-		this.home_goals = home_goals;
-		this.away_goals = away_goals;
-		this.home_scorers = new ArrayList<Footballer>();
-		this.away_scorers = new ArrayList<Footballer>();
-		this.home_scorers_id = new ArrayList<String>();
-		this.away_scorers_id = new ArrayList<String>();
-		
-		Footballer scorer;
+		this.home_goals = new ArrayList<Goal>();
+		this.away_goals = new ArrayList<Goal>();
 		//calculate scorers
-		if(home_goals > 0){
-			for(int i=0;i<home_goals;i++){
-				scorer = pickScorer(match.home);
-				home_scorers.add(scorer);
-				home_scorers_id.add(scorer.getName());
-			}
+		for(int i=0;i<h_goals;i++){
+			this.home_goals.add(new Goal(pickScorer(match.home),(new Random().nextInt(94))));
 		}
-		if(away_goals > 0){
-			for(int i=0;i<away_goals;i++){
-				scorer = pickScorer(match.away);
-				away_scorers.add(scorer);
-				away_scorers_id.add(scorer.getName());
-			}
+		for(int i=0;i<a_goals;i++){
+			this.away_goals.add(new Goal(pickScorer(match.away),(new Random().nextInt(94))));
 		}
 	}
 	public MatchResult(){}
 
 	public Team getWinner() {
-		if(this.home_goals==this.away_goals) return null;
-		if(this.home_goals>this.away_goals) return match.home; else return match.away;
+		if(this.home_goals.size()==this.away_goals.size()) return null;
+		if(this.home_goals.size()>this.away_goals.size()) return match.home; else return match.away;
 	}
 	
 	/**
@@ -71,11 +55,11 @@ public class MatchResult {
 		String scoreline;
 		Team opposition;
 		if(team==match.home) {
-			scoreline = String.valueOf(home_goals)+"-"+String.valueOf(away_goals);
+			scoreline = String.valueOf(home_goals.size())+"-"+String.valueOf(away_goals.size());
 			opposition = match.away;
 		}
 		else {
-			scoreline = String.valueOf(away_goals)+"-"+String.valueOf(home_goals);
+			scoreline = String.valueOf(away_goals.size())+"-"+String.valueOf(home_goals.size());
 			opposition = match.home;
 		}
 		
@@ -110,34 +94,22 @@ public class MatchResult {
 	 * @return
 	 */
 	public int goalsFor(Team t) {
-		if(t==match.home) return home_goals;
-		return away_goals;
+		if(t==match.home) return home_goals.size();
+		return away_goals.size();
 	}
 	public int goalsAgainst(Team t) {
-		if(t==match.home) return away_goals;
-		return home_goals;
+		if(t==match.home) return away_goals.size();
+		return home_goals.size();
 	}
 	
 	//Reload circular pointers after deserialisation
 	public void reinit(Match m) {
 		match = m;
-		this.home_scorers = new ArrayList<Footballer>();
-		this.away_scorers = new ArrayList<Footballer>();
-		for(String s:home_scorers_id){
-			for(Footballer f:m.home.footballers) {
-				if (f.getName().equals(s)) {
-					home_scorers.add(f);
-					break;
-				}
-			}
+		for(Goal g: home_goals) {
+			g.reinit(match.home);
 		}
-		for(String s:away_scorers_id){
-			for(Footballer f:m.away.footballers) {
-				if (f.getName().equals(s)) {
-					away_scorers.add(f);
-					break;
-				}
-			}
+		for(Goal g: away_goals) {
+			g.reinit(match.away);
 		}
 	}
 }
