@@ -21,14 +21,15 @@
      com.badlogic.gdx.scenes.scene2d.ui.Label$LabelStyle: {  
       	teamname: { font: teamname, fontColor: white },
       	score: { font: teamname, fontColor: black },
+      	timer: { font: bold_20, fontColor: black },
       	score_report: {font: normal_20, fontColor:white},
       	scorer_report: {font: normal_16, fontColor:white},
       	default: { font: normal_16, fontColor: white },
      },  
      com.badlogic.gdx.scenes.scene2d.ui.Button$ButtonStyle: {  
-      default: { up: button_patch, down: button_patch_down, checked: button_patch_down, disabled: button_patch_down },
+      default: { up: button_patch, down: button_patch_down, checked: button_patch, disabled: button_patch_disabled },
      },  
      com.badlogic.gdx.scenes.scene2d.ui.TextButton$TextButtonStyle: {  
-      default: { up: button_patch, down: button_patch_down, checked: button_patch_down, disabled: button_patch_down, font: bold_20, fontColor: white },  
+      default: { up: button_patch, down: button_patch_down, checked: button_patch, disabled: button_patch_disabled, font: bold_20, fontColor: white },  
      },
 }  

@@ -1,5 +1,7 @@
 package uk.ac.lincoln.games.nlfs;
 
+import java.awt.Button;
+
 import uk.ac.lincoln.games.nlfs.NonLeague.Background;
 import uk.ac.lincoln.games.nlfs.logic.GameState;
 
@@ -38,6 +40,8 @@ public abstract class BaseScreen implements Screen {
 		table.setSkin(GameState.assets.skin);
 		Gdx.input.setInputProcessor(stage);
     }
+    
+    protected void reset(){}
 
     @Override
     public void render(float delta) {
