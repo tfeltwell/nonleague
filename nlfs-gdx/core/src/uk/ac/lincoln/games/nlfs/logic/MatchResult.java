@@ -1,28 +1,70 @@
 package uk.ac.lincoln.games.nlfs.logic;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Random;
 
+import com.badlogic.gdx.Gdx;
 
 import uk.ac.lincoln.games.nlfs.logic.Footballer.Position;
+import uk.ac.lincoln.games.nlfs.logic.MatchEvent.MatchEventType;
 
 
 
 public class MatchResult {
 	public transient Match match;
 	public ArrayList<Goal> home_goals, away_goals;
+	public ArrayList<MatchEvent> match_events;
+	public int match_length;
 	
 	public MatchResult(Match match,int h_goals,int a_goals){
 		this.match = match;
 		this.home_goals = new ArrayList<Goal>();
 		this.away_goals = new ArrayList<Goal>();
+		this.match_events = new ArrayList<MatchEvent>();
 		//calculate scorers
 		for(int i=0;i<h_goals;i++){
-			this.home_goals.add(new Goal(pickScorer(match.home),(new Random().nextInt(94))));
+			this.home_goals.add(new Goal(pickScorer(match.home),(new Random().nextInt(96))));
 		}
 		for(int i=0;i<a_goals;i++){
-			this.away_goals.add(new Goal(pickScorer(match.away),(new Random().nextInt(94))));
+			this.away_goals.add(new Goal(pickScorer(match.away),(new Random().nextInt(96))));
 		}
+		//calculate events
+		ArrayList<Footballer> players = new ArrayList<Footballer>();
+		players.addAll(match.home.footballers);
+		players.addAll(match.away.footballers);
+		for(int i=0;i<20;i++) { //TODO Fix odds
+			//TODO: players can be sent off//if(rand.nextInt(20)==1) match_events.add(new MatchEvent(players.get(rand.nextInt(players.size())),MatchEvent.MatchEventType.REDCARD,match,rand.nextInt(94)));
+			if(new Random().nextInt(30)==1) match_events.add(new MatchEvent(players.get(new Random().nextInt(players.size())),MatchEvent.MatchEventType.YELLOWCARD,match,new Random().nextInt(96)));
+			if(new Random().nextInt(15)==1) match_events.add(new MatchEvent(players.get(new Random().nextInt(players.size())),MatchEvent.MatchEventType.WARNING,match,new Random().nextInt(96)));
+			if(new Random().nextInt(20)==1) match_events.add(new MatchEvent(players.get(new Random().nextInt(players.size())),MatchEvent.MatchEventType.KNOCK,match,new Random().nextInt(96)));
+		}
+		Collections.sort(match_events);
+		
+		ArrayList<MatchEvent> to_delete = new ArrayList<MatchEvent>();
+		//check no double yellow cards (TODO: make this, and red cards, possible)
+		for(MatchEvent me : match_events) {
+			if(me.type==MatchEventType.YELLOWCARD) {
+				for(MatchEvent me2:match_events) {
+					if(me.player==me2.player &&me!=me2) {
+						if(!to_delete.contains(me2)) to_delete.add(me2);//just delete it
+					}
+				}
+			}
+		}
+		for (MatchEvent me : to_delete) {
+			match_events.remove(me);
+		}
+		
+		//calculate match length
+		match_length = 91+(new Random().nextInt(5));
+		//make sure length is right for goals and events
+		for(MatchEvent me: match_events)
+			if(me.minute>match_length) match_length=me.minute;
+		for(Goal g:home_goals)
+			if(g.time>match_length) match_length = g.time;
+		for(Goal g:away_goals)
+			if(g.time>match_length) match_length = g.time;
 	}
 	public MatchResult(){}
 
@@ -110,6 +152,9 @@ public class MatchResult {
 		}
 		for(Goal g: away_goals) {
 			g.reinit(match.away);
+		}
+		for(MatchEvent me:match_events) {
+			me.reinit(match);
 		}
 	}
 }

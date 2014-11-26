@@ -6,6 +6,7 @@ import java.util.Collections;
 import uk.ac.lincoln.games.nlfs.logic.GameState;
 import uk.ac.lincoln.games.nlfs.logic.Match;
 import uk.ac.lincoln.games.nlfs.logic.Goal;
+import uk.ac.lincoln.games.nlfs.logic.MatchEvent;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
@@ -50,7 +51,7 @@ public class MatchView extends BaseScreen{
 	private class RunMinute extends Task {
 		@Override
 		public void run() {
-			if(current_state==MatchState.H2&&current_minute>94) {
+			if(current_state==MatchState.H2&&current_minute>match.result.match_length) {
 				this.cancel();
 				current_state = MatchState.FT;
 				button.setText("Leave Match");
@@ -59,7 +60,7 @@ public class MatchView extends BaseScreen{
 				
 				return;
 			}
-			if(current_state==MatchState.H1&&current_minute>46) {
+			if(current_state==MatchState.H1&&current_minute>(match.result.match_length/2)) {
 				this.cancel();
 				current_state = MatchState.HT;
 				button.setText("Second Half");
@@ -72,6 +73,11 @@ public class MatchView extends BaseScreen{
 			
 			
 			clock_label.setText(" "+String.valueOf(current_minute)+" ");
+			for(MatchEvent me:match.result.match_events) {
+				if(current_minute==me.minute) {
+					action_group.addActor(new Label(String.valueOf(current_minute)+": "+me.getDescription() ,Assets.skin,"event_report"));
+				}
+			}
 			for(Goal g : goals) {
 				if(g.time==current_minute){
 					if(g.scorer.team==match.home) {
@@ -99,6 +105,7 @@ public class MatchView extends BaseScreen{
 					
 			}
 			current_minute++;
+			action_pane.fling(0f, 0f, 90f);
 		}
 	}
 	
@@ -137,6 +144,7 @@ public class MatchView extends BaseScreen{
 		action_group = new VerticalGroup();
 		action_pane = new ScrollPane(action_group);
 		action_pane.setScrollingDisabled(true, false);
+		
 		
 		action_pane.setSize(300, 500);
 		
@@ -195,8 +203,8 @@ public class MatchView extends BaseScreen{
 		away_score_label.setText(" "+String.valueOf(current_away)+" ");
 		home_score_label.setText(" "+String.valueOf(current_home)+" ");
 		action_group.clear();
-		//TODO set yellow & red cards?
 		current_state = MatchState.PRE;
+		
 	}
 	
 	

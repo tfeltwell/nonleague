@@ -26,7 +26,7 @@ Hard working midfielder {midfielder} earned man-of-the-match, as {yourteam} earn
 Cultured attacker {attacker} was at his best this afternoon, as {yourteam} were unable to get the better of {opposition} at {stadium}.
 Fiery attacker {attacker} missed a hat-full of chances, as {yourteam} and {opposition} played out an exciting draw at {stadium}.
 3-3
-Calamity goalkeeper {golakeeper} will know he should have done better, as {yourteam} failed to capitalize on a dominant performance at {stadium}.
+Calamity goalkeeper {goalkeeper} will know he should have done better, as {yourteam} failed to capitalize on a dominant performance at {stadium}.
 Despite conceding a number of goals, goalkeeper {goalkeeper} earned man-of-the match for his heroics against {opposition} at {stadium}.
 No-nonsense defender {defender} was poor, as {yourteam} threw away two points against {opposition} at {stadium}.
 Stylish defender {defender} had an off day, as {yourteam} and {opposition} played out a tense draw at {stadium}.

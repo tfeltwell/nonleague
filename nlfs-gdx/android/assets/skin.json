@@ -23,6 +23,7 @@
       	score: { font: teamname, fontColor: black },
       	timer: { font: bold_20, fontColor: black },
       	score_report: {font: normal_20, fontColor:white},
+      	event_report: {font: normal_16, fontColor:white},
       	scorer_report: {font: normal_16, fontColor:white},
       	default: { font: normal_16, fontColor: white },
      },  
