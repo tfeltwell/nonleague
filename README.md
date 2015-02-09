@@ -2,25 +2,27 @@ Non-League Football Supporter - GDX edition
 =========
 This branch contains a rewrite of Non-League Football Supporter to use the multi-platform LibGDX framework.
 
-The branch is currently **non-functional**. Please refer to the master branch of the project for a functional native Android implementation.
+The branch is currently **semi-functional**. Please refer to the master branch of the project for a functional native Android implementation.
 
-
-Non-League Football Supporter
+Non-League Football Supporter 
 -----------------------------
 The Game is functional to a 0.1 standard now, and fairly stable.
 
-You can choose rituals, run matches, see results.
+Outstanding Tasks
+------------------
+- All matches are shown in match view (for debug purposes)
+- Needs a league table view
+- Weather has not been (re) implemented yet
+- Seasons end, new leagues are all generated nicely, but it needs an interstitial screen to summarise team season results.
+- General beautification throughout
 
-A few bugs that would be good to fix:
+Bugs
+----
+- See Issues system on Github
 
-- If the season ends, the game crashes. We should figure out a way to have a game over screen (final placement etc, restart)
-
-
-and tasks in priority
-- Adding Conor's messages to the news item screen (PlayerMatchResult)
-- Graphics
-- An animation or pause before releasing score.
-- Save/load would be nice for the GameState class.
+Compiling
+---------
+NLFS-GDX uses Gradle. Make sure to set the path to the Android SDK in local.properties (sdk.dir=/home/blah) to compile the Android version (or disable it in the settings). We've been using Eclipse with ADT for Android, but your own gradle-supported IDE should work.
 
 -----------
 Licences:
