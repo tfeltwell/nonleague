@@ -1,6 +1,7 @@
 package uk.ac.lincoln.games.nlfs.logic;
 
 import java.util.List;
+import java.util.Random;
 
 import com.badlogic.gdx.Gdx;
 
@@ -47,6 +48,12 @@ public class Match {
 		if(this.home == t) return this.away;
 		if(this.away == t) return this.home;
 		return null;
+	}
+	
+	public String getWeather() {
+		//random weather
+		String[] possible_weather = {"Mild","Wet","Overcast","Sleet","Stormy","Snow","Drizzle","Showers","Pouring","Cats and Dogs","Misty"};
+	    return possible_weather[(new Random().nextInt(possible_weather.length))]; 
 	}
 	
 	/**

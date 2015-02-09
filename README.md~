@@ -12,7 +12,6 @@ Outstanding Tasks
 ------------------
 - All matches are shown in match view (for debug purposes)
 - Needs a league table view
-- Also nice to have a graph of progress
 - Weather has not been (re) implemented yet
 - Seasons end, new leagues are all generated nicely, but it needs an interstitial screen to summarise team season results.
 - General beautification throughout

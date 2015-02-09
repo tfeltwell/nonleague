@@ -209,7 +209,7 @@ Cavalier defender {defender} will feel lucky to leave {stadium} with all three p
 Ruthless defender {defender} showed stony resolve, as {yourteam} ran out winners in a close game at {stadum}.
 Midfield maestro {midfielder} blew hot and cold, as {opposition} were unlucky to leave {stadium} empty-handed.
 Box-to-box midfielder {midfielder} put in a commanding performance, as {yourteam} escaped the battle of {stadium} with a narrow victory.
-Old-fashioned centre-forward {attacker} displayed surprisingly good feet for a big man, as {yourteam} 
+Old-fashioned centre-forward {attacker} displayed surprisingly good feet for a big man, as {yourteam} edged a narrow victory at {stadium}.
 Clinical striker {attacker} was the difference, as {yourteam} earned a smash and grab victory at {stadium}.
 Fan-favourite {attacker} was the difference between the sides, as {yourteam} earned a valuable three points at {stadium}.
 4-0
