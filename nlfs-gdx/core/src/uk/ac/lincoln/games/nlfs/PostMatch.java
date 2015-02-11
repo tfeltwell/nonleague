@@ -37,17 +37,16 @@ public class PostMatch extends BaseScreen {
 		table.add(description_label).expand().left().width(200);
 		table.row();
 		
-		//TODO generate the result
-		//TODO add timed reveal of scores etc
-		
 		TextButton button = new TextButton("Leave Match", GameState.assets.skin);	
 
 		table.add(button).width(200).height(40);
 		table.row();
 		button.addListener(new ChangeListener() {
 			public void changed(ChangeEvent event, Actor actor) {
+				for(MatchResult x : GameState.league.weekly_results) System.out.println(x.toString());//TODO Debug
 				game.teamstatus_screen.update();
 				game.changeScreen(game.teamstatus_screen);
+				
 		}
 		});
 	}
@@ -59,6 +58,7 @@ public class PostMatch extends BaseScreen {
 		away_label.setText(result.match.away.name + ": "+String.valueOf(result.away_goals.size()));
 		stadium_label.setText("at "+result.match.home.stadium);
 		description_label.setText(result.getDescription(GameState.player_team));
+		
 	}
 	
 	@Override

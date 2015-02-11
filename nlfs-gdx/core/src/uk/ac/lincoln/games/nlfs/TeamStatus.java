@@ -1,6 +1,7 @@
 package uk.ac.lincoln.games.nlfs;
 
 import uk.ac.lincoln.games.nlfs.logic.GameState;
+import uk.ac.lincoln.games.nlfs.logic.Match;
 
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
@@ -42,11 +43,11 @@ public class TeamStatus extends BaseScreen {
 		table.add(button).width(200).height(40).colspan(2);
 		table.row();
 		
-		//TODO must run through non-player games
-		
 		button.addListener(new ChangeListener() {
 			public void changed(ChangeEvent event, Actor actor) {
-				game.prematch_screen.setMatch(GameState.league.nextFixture());
+				Match m = GameState.league.findTeamsNextFixture(GameState.player_team);
+				GameState.league.calculateResultsUntil(m);
+				game.prematch_screen.setMatch(m);
 				game.changeScreen(game.prematch_screen);
 		
 		}

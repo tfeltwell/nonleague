@@ -56,7 +56,7 @@ public class PreMatch extends BaseScreen{
 		table.add(drink_ritual.getActor()).expandX().center().colspan(2);
 		table.row();
 		
-		//TODO rituals here
+		
 		button = new TextButton("Go to Match", GameState.assets.skin);	
 
 		table.add(button).width(200).height(40);

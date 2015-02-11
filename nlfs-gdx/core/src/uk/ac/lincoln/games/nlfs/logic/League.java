@@ -24,6 +24,8 @@ import uk.ac.lincoln.games.nlfs.Assets;
 public class League {
 	public ArrayList<Match> fixtures;
 	public ArrayList<Team> teams;
+	
+	public ArrayList<MatchResult> weekly_results;
 	public transient ArrayList<LeagueTableItem> table;
 	
 	public static int POINTS_WIN = 3;
@@ -43,6 +45,7 @@ public class League {
 				
 		teams = new ArrayList<Team>();
 		fixtures = new ArrayList<Match>();
+		weekly_results = new ArrayList<MatchResult>();
 		
 		//Generate teams
 		for(int i=0;i<LEAGUE_SIZE;i++) {
@@ -238,6 +241,17 @@ public class League {
 			if(t.name.equals(name)) return true;
 		}
 		return false;
+	}
+	
+	/**
+	 * Automate matches in the fixtures list until the current match
+	 * @param m
+	 */
+	public void calculateResultsUntil(Match m) {
+		weekly_results.clear(); 
+		while(m!=nextFixture()) {
+			weekly_results.add(nextFixture().run());
+		}
 	}
 	
 	/**

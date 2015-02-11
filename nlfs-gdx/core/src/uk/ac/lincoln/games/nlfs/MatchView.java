@@ -37,7 +37,7 @@ public class MatchView extends BaseScreen{
 	private ScrollPane action_pane;
 	private VerticalGroup action_group;
 	private ArrayList<Goal> goals;
-	private int mins_in_match;
+	//private int mins_in_match;
 	private int current_minute, current_home, current_away;
 	public static float SIMULATION_S_PER_MIN = 0.4f;
 	private enum MatchState {PRE,H1,HT,H2,FT};
@@ -91,9 +91,8 @@ public class MatchView extends BaseScreen{
 					
 					//add text
 					HorizontalGroup hg = new HorizontalGroup();
-					//Image ball = new Image(GameState.assets.skin,"football");
-					//ball.setSize(20, 20);
-					//hg.addActor(ball);
+					Image ball = new Image(GameState.assets.skin,"football");
+					hg.addActor(ball);
 					hg.addActor(new Label(String.valueOf(g.time)+": Goal for "+g.scorer.team.name ,Assets.skin,"score_report"));
 					action_group.addActor(hg);
 					Label scorer = new Label(g.scorer.getName()+" ("+g.scorer.getPosition().toString()+")",Assets.skin,"scorer_report");
@@ -137,18 +136,21 @@ public class MatchView extends BaseScreen{
 		table.add(table2).colspan(2);
 		table.row().padTop(2);
 		
+		
 		Table action_table = new Table();
 		action_table.setSize(300, 500);
+		action_table.setDebug(true);
 		action_table.setBackground(GameState.assets.skin.getDrawable("darken"));
 		
 		action_group = new VerticalGroup();
+		action_group.align(Align.left);
 		action_pane = new ScrollPane(action_group);
 		action_pane.setScrollingDisabled(true, false);
 		
 		
 		action_pane.setSize(300, 500);
 		
-		action_table.add(action_pane);
+		action_table.add(action_pane).expand().align(Align.left);
 		table.add(action_table).colspan(2).prefSize(300, 500);
 		
 		table.row();
@@ -180,7 +182,7 @@ public class MatchView extends BaseScreen{
 		current_minute = 0;
 		current_home = 0;
 		current_away = 0;
-		mins_in_match = 94;
+		//mins_in_match = 94;
 		match = m;
 		match.run();
 		goals = new ArrayList<Goal>();

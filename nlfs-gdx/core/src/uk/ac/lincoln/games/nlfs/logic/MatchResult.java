@@ -118,6 +118,9 @@ public class MatchResult {
         return news_item;
 	}
 	
+	public String toString() {
+		return match.home.name +" "+String.valueOf(home_goals.size())+":"+String.valueOf(away_goals.size())+" "+match.away.name;
+	}
 	/**
 	 * Returns the letter result for this team in this match W/L/D
 	 * @param t

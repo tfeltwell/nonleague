@@ -61,7 +61,7 @@ public class NonLeague extends Game {
 	}
 	
 	public void create () {
-		viewport = new FitViewport(360,640);
+		viewport = new FitViewport(720,1280);
 		state = GameState.getGameState();
 		
 		//AssetManager am = new AssetManager();
