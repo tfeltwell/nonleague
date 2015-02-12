@@ -16,6 +16,7 @@ public abstract class BaseScreen implements Screen {
 	protected final NonLeague game;
     protected final Stage stage;
     protected final Table table;
+    protected final Table root_table;
 
     public BaseScreen(NonLeague game)
     {
@@ -25,7 +26,7 @@ public abstract class BaseScreen implements Screen {
 		table = new Table();
 		stage.addActor(game.new Background());
 		
-		Table root_table = new Table();
+		root_table = new Table();
 		stage.addActor(root_table);
 		root_table.setFillParent(true);
 		root_table.pad(20);

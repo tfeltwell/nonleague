@@ -6,7 +6,10 @@ import uk.ac.lincoln.games.nlfs.logic.MatchResult;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
+import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
+import com.badlogic.gdx.scenes.scene2d.ui.Label.LabelStyle;
+import com.badlogic.gdx.scenes.scene2d.utils.Align;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener.ChangeEvent;
 
@@ -18,6 +21,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener.ChangeEvent;
 public class PostMatch extends BaseScreen {
 	private MatchResult result;
 	private Label home_label,away_label,stadium_label,description_label;
+	private Table results_table;
 	
 	public PostMatch (final NonLeague game) {
 		super(game);
@@ -49,6 +53,14 @@ public class PostMatch extends BaseScreen {
 				
 		}
 		});
+		
+		results_table = new Table();
+		results_table.setSkin(GameState.assets.skin);
+		results_table.setBackground(GameState.assets.skin.getDrawable("darken"));
+		results_table.pad(10f);
+		root_table.row();
+		root_table.add(results_table);
+		
 	}
 	
 	public void setResult(MatchResult mr) {
@@ -58,6 +70,26 @@ public class PostMatch extends BaseScreen {
 		away_label.setText(result.match.away.name + ": "+String.valueOf(result.away_goals.size()));
 		stadium_label.setText("at "+result.match.home.stadium);
 		description_label.setText(result.getDescription(GameState.player_team));
+		results_table.clear();
+		if(GameState.league.weekly_results.size()==0) return;
+		results_table.add(new Label("Other Results:",GameState.assets.skin)).colspan(3);
+		Label h,a;
+		for(MatchResult mr2:GameState.league.weekly_results) {
+			results_table.row();
+			h = new Label(mr2.match.home.name,GameState.assets.skin,"teamname");
+			a = new Label(mr2.match.away.name,GameState.assets.skin,"teamname");
+			h.setStyle(new LabelStyle(GameState.assets.skin.get("teamname", LabelStyle.class)));
+			h.getStyle().background = GameState.assets.skin.newDrawable("base",GameState.assets.skin.getColor(mr2.match.home.colour_base));
+			h.getStyle().fontColor = GameState.assets.skin.getColor(mr2.match.home.colour_primary);
+			a.setStyle(new LabelStyle(GameState.assets.skin.get("teamname", LabelStyle.class)));
+			a.getStyle().background = GameState.assets.skin.newDrawable("base",GameState.assets.skin.getColor(mr2.match.away.colour_base));
+			a.getStyle().fontColor = GameState.assets.skin.getColor(mr2.match.away.colour_primary);
+			a.setAlignment(Align.right);
+			results_table.add(h).fillX().expandX().pad(5f);
+			results_table.add(new Label(" "+String.valueOf(mr2.home_goals.size())+" - "+String.valueOf(mr2.away_goals.size())+" ",GameState.assets.skin,"score")).pad(5f);
+			
+			results_table.add(a).fillX().expandX().pad(5f).align(Align.right).right();
+		}
 		
 	}
 	
