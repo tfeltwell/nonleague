@@ -196,8 +196,16 @@ public class MatchView extends BaseScreen{
 		home_label.getStyle().fontColor = GameState.assets.skin.getColor(match.home.colour_primary);
 		away_label.setText(" "+match.away.name+" ");
 		away_label.setStyle(new LabelStyle(GameState.assets.skin.get("teamname", LabelStyle.class)));
-		away_label.getStyle().background = GameState.assets.skin.newDrawable("base",GameState.assets.skin.getColor(match.away.colour_base));
-		away_label.getStyle().fontColor = GameState.assets.skin.getColor(match.away.colour_primary);
+		//if same kits, invert away
+		if(match.away.colour_base==match.home.colour_base&&match.away.colour_primary==match.home.colour_primary) {
+			away_label.getStyle().background = GameState.assets.skin.newDrawable("base",GameState.assets.skin.getColor(match.away.colour_primary));
+			away_label.getStyle().fontColor = GameState.assets.skin.getColor(match.away.colour_base);
+
+		} else {
+			away_label.getStyle().background = GameState.assets.skin.newDrawable("base",GameState.assets.skin.getColor(match.away.colour_base));
+			away_label.getStyle().fontColor = GameState.assets.skin.getColor(match.away.colour_primary);
+
+		}
 		
 		button.setDisabled(false);
 		button.setChecked(false);

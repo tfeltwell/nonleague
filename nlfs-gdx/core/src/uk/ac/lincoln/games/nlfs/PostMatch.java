@@ -47,7 +47,6 @@ public class PostMatch extends BaseScreen {
 		table.row();
 		button.addListener(new ChangeListener() {
 			public void changed(ChangeEvent event, Actor actor) {
-				for(MatchResult x : GameState.league.weekly_results) System.out.println(x.toString());//TODO Debug
 				game.teamstatus_screen.update();
 				game.changeScreen(game.teamstatus_screen);
 				
