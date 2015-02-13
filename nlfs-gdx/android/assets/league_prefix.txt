@@ -1,0 +1,13 @@
+Northern
+Southern
+Western
+Central
+Eastern
+National
+Regional
+District
+Senior
+Junior
+Masters
+Veteran
+Champions

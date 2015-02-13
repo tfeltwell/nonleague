@@ -26,6 +26,7 @@ public class Assets {
 	public ArrayList<String> surnames;
 	public ArrayList<String> stadium_names;
 	public ArrayList<String> road_names;
+	public ArrayList<String> league_prefices,league_suffices;
 	public ArrayList<ArrayList<String>> team_colours;
 	public HashMap<String,ArrayList> news_summaries;
 	
@@ -51,6 +52,8 @@ public class Assets {
 			surnames = loadFile("surnames.txt");
 			road_names = loadFile("roadnames.txt");
 			stadium_names = loadFile("stadiumnames.txt");
+			league_prefices = loadFile("league_prefix.txt");
+			league_suffices = loadFile("league_suffix.txt");
 			
 			//Team colours
 			ArrayList<String> colour_data = loadFile("team_colours.txt");

@@ -3,6 +3,8 @@ package uk.ac.lincoln.games.nlfs.logic;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Iterator;
+import java.util.Random;
+
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.utils.Json;
 
@@ -27,7 +29,7 @@ public class League {
 	
 	public ArrayList<MatchResult> weekly_results;
 	public transient ArrayList<LeagueTableItem> table;
-	
+	public String name;
 	public static int POINTS_WIN = 3;
 	public static int POINTS_DRAW = 1;
 	public static int POINTS_LOSE = 0;
@@ -46,11 +48,12 @@ public class League {
 		teams = new ArrayList<Team>();
 		fixtures = new ArrayList<Match>();
 		weekly_results = new ArrayList<MatchResult>();
-		
+		name=generateName();
 		//Generate teams
 		for(int i=0;i<LEAGUE_SIZE;i++) {
 			teams.add(new Team(assets,this));
 		}
+		
 		
 		//Gdx.app.log("", "League teams:");
 		//for(Team t:teams)Gdx.app.log("", t.name);
@@ -252,6 +255,30 @@ public class League {
 		while(m!=nextFixture()) {
 			weekly_results.add(nextFixture().run());
 		}
+	}
+	
+	public String generateName() {
+		String prefix = GameState.assets.league_prefices.get(GameState.rand.nextInt(GameState.assets.league_prefices.size()));
+		String n = "";
+		if(GameState.rand.nextFloat()<0.5) {
+			do {
+				n = GameState.assets.league_prefices.get(GameState.rand.nextInt(GameState.assets.league_prefices.size()));
+			} while(n==prefix);
+			prefix = prefix + " " + n;
+		}
+		String suffix = GameState.assets.league_suffices.get(GameState.rand.nextInt(GameState.assets.league_suffices.size()));
+		if(GameState.rand.nextFloat()<0.5) {
+			do {
+				n = GameState.assets.league_suffices.get(GameState.rand.nextInt(GameState.assets.league_suffices.size()));
+			} while(n==suffix);
+			suffix = suffix + " " + n;
+		}
+		return prefix + " " + suffix;
+		
+	}
+
+	public void setName(String new_name) {
+		this.name = new_name;
 	}
 	
 	/**

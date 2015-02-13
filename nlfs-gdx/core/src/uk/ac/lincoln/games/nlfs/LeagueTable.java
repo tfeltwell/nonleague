@@ -4,6 +4,7 @@ import uk.ac.lincoln.games.nlfs.logic.GameState;
 import uk.ac.lincoln.games.nlfs.logic.LeagueTableItem;
 import uk.ac.lincoln.games.nlfs.ui.TeamLabel;
 
+import com.badlogic.gdx.Game;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
@@ -19,9 +20,11 @@ import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener.ChangeEvent;
  */
 public class LeagueTable extends BaseScreen {
 	private Table league_table;
+	private Label title;
 	public LeagueTable(final NonLeague game) {
 		super(game);
-		table.add("hello").expandX().height(100f);
+		title = new Label(" ",Assets.skin,"pagetitle");
+		table.add(title).expandX().fillX();
 		table.row();
 		league_table = new Table(Assets.skin);
 		league_table.setBackground(Assets.skin.getDrawable("darken"));
@@ -45,6 +48,7 @@ public class LeagueTable extends BaseScreen {
 	 * Regenerate table
 	 */
 	public void update() {
+		title.setText(GameState.league.name);
 		league_table.clear();
 		for(LeagueTableItem lti:GameState.league.table) {
 			league_table.add(new TeamLabel(lti.team)).align(Align.left).fillX();

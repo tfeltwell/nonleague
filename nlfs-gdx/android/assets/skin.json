@@ -19,6 +19,7 @@
 	      black: { hex: "010101" }  
      },  
      com.badlogic.gdx.scenes.scene2d.ui.Label$LabelStyle: {  
+      	pagetitle: { font: teamname, fontColor: white },
       	teamname: { font: teamname, fontColor: white },
       	score: { font: teamname, fontColor: black },
       	timer: { font: bold_20, fontColor: black },

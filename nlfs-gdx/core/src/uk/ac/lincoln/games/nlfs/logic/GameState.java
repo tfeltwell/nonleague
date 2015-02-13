@@ -21,7 +21,7 @@ public class GameState {
 	public static Assets assets;
 	public static League league;
 	public static Team player_team;
-	
+	public static Random rand;
 	public static String SAVEFILE = "nlfs.dat";
 	
 	
@@ -34,7 +34,7 @@ public class GameState {
 	
 	public GameState() {
 		assets = new Assets();
-		
+		rand = new Random();
 		//Try to load game from storage. If none exists create a new league
 		if(!this.loadGame()) {
 			Gdx.app.log("Start","no savefile found, creating new league");

@@ -1,0 +1,7 @@
+Conference
+League
+Premier
+Division
+Group
+Championship
+Counties
