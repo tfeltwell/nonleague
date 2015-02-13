@@ -37,9 +37,12 @@ public class TeamStatus extends BaseScreen {
 		table.add("Matches left in Season: ");
 		table.add(unplayed_label);
 		table.row();
-		
-		TextButton button = new TextButton("Prepare for Match", GameState.assets.skin);	
 
+		TextButton lgbutton = new TextButton("League Table", Assets.skin);
+		TextButton button = new TextButton("Prepare for Match", GameState.assets.skin);
+		
+		table.add(lgbutton).width(200).height(40).colspan(2);
+		table.row();
 		table.add(button).width(200).height(40).colspan(2);
 		table.row();
 		
@@ -49,6 +52,13 @@ public class TeamStatus extends BaseScreen {
 				GameState.league.calculateResultsUntil(m);
 				game.prematch_screen.setMatch(m);
 				game.changeScreen(game.prematch_screen);
+		
+		}
+		});
+		lgbutton.addListener(new ChangeListener() {
+			public void changed(ChangeEvent event, Actor actor) {
+				game.leaguetable_screen.update();
+				game.changeScreen(game.leaguetable_screen);
 		
 		}
 		});

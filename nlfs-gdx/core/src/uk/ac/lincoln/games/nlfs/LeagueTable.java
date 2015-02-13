@@ -1,9 +1,14 @@
 package uk.ac.lincoln.games.nlfs;
 
 import uk.ac.lincoln.games.nlfs.logic.GameState;
+import uk.ac.lincoln.games.nlfs.logic.LeagueTableItem;
+import uk.ac.lincoln.games.nlfs.ui.TeamLabel;
 
 import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.badlogic.gdx.scenes.scene2d.ui.Label;
+import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
+import com.badlogic.gdx.scenes.scene2d.utils.Align;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener.ChangeEvent;
 
@@ -13,13 +18,17 @@ import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener.ChangeEvent;
  *
  */
 public class LeagueTable extends BaseScreen {
+	private Table league_table;
 	public LeagueTable(final NonLeague game) {
 		super(game);
 		table.add("hello").expandX().height(100f);
 		table.row();
+		league_table = new Table(Assets.skin);
+		league_table.setBackground(Assets.skin.getDrawable("darken"));
+		table.add(league_table).expand().fill();
+		table.row();
 		
-		
-		TextButton button = new TextButton("Go to Game", GameState.assets.skin);	
+		TextButton button = new TextButton("Back to Team", Assets.skin);	
 		table.add(button).width(200).height(40);
 		table.row();
 		
@@ -27,9 +36,25 @@ public class LeagueTable extends BaseScreen {
 		
 		button.addListener(new ChangeListener() {
 			public void changed(ChangeEvent event, Actor actor) {
-				
+				game.changeScreen(game.teamstatus_screen);
 		}
 		});
+	}
+	
+	/**
+	 * Regenerate table
+	 */
+	public void update() {
+		league_table.clear();
+		for(LeagueTableItem lti:GameState.league.table) {
+			league_table.add(new TeamLabel(lti.team)).align(Align.left).fillX();
+			league_table.add(new Label(String.valueOf(lti.getGamesPlayed()),Assets.skin));
+			league_table.add(new Label(String.valueOf(lti.wins),Assets.skin));
+			league_table.add(new Label(String.valueOf(lti.losses),Assets.skin));
+			league_table.add(new Label(String.valueOf(lti.draws),Assets.skin));
+			league_table.add(new Label(String.valueOf(lti.points),Assets.skin));
+			league_table.row();
+		}
 	}
 	
 	@Override
