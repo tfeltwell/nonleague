@@ -57,12 +57,13 @@ public class GameState {
 	 * Methods to load/save game from local storage
 	 */
 	public void saveGame() {
+		/* TODO temporary not saving to stop committing new save files all the time 
 		Json json = new Json();
 		String o = json.toJson(league);
 		FileHandle file = Gdx.files.local(SAVEFILE);
 	    //file.writeString(com.badlogic.gdx.utils.Base64Coder.encodeString(o), false);
 		file.writeString(o, false);//TODO Base64
-	    Gdx.app.log("SAVE","Game Saved to "+SAVEFILE);
+	    Gdx.app.log("SAVE","Game Saved to "+SAVEFILE);*/ 
 	}
 	public boolean loadGame() {
 		return false;
