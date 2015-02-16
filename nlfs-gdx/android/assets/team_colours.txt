@@ -3,6 +3,7 @@ white on black
 black on white
 white on blue
 black on red
+red on black
 yellow on blue
 yellow on green
 green on yellow
@@ -11,6 +12,7 @@ black on yellow
 yellow on black
 red on yellow
 black on orange
+white on orange
 orange on black
 orange on blue
 white on skyblue

@@ -34,7 +34,7 @@ public class League {
 	public static int POINTS_DRAW = 1;
 	public static int POINTS_LOSE = 0;
 	
-	public static int LEAGUE_SIZE = 8; //number of teams in the league. Even numbers only, dickhead.
+	public static int LEAGUE_SIZE = 12; //number of teams in the league. Even numbers only, dickhead.
 	public static int PROMOTION = 2; //number of teams promoted/relegated at the end of the season. (promotion + relegation) < league size, dickhead.
 	public static int RELEGATION = 2;
 	

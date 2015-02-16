@@ -33,5 +33,7 @@
      },  
      com.badlogic.gdx.scenes.scene2d.ui.TextButton$TextButtonStyle: {  
       default: { up: button_patch, down: button_patch_down, checked: button_patch, disabled: button_patch_disabled, font: bold_20, fontColor: white },  
+      ritual_button: { up: button_patch, down: button_patch_down, checked: button_patch_down, disabled: button_patch_disabled, font: bold_20, fontColor: white },  
+     
      },
 }  

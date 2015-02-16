@@ -2,6 +2,7 @@ package uk.ac.lincoln.games.nlfs.ui;
 
 import java.util.ArrayList;
 
+import uk.ac.lincoln.games.nlfs.Assets;
 import uk.ac.lincoln.games.nlfs.logic.GameState;
 
 import com.badlogic.gdx.Game;
@@ -28,15 +29,14 @@ public class RitualSelector {
 	private Label selected_label;
 	private Table table;
 	
-	private ButtonGroup button_group;
 	private ArrayList<TextButton> buttons;
 	private ScrollPane sp;
 	
 	public RitualSelector(String description) {
-		selected_label = new Label("Nothing Special",GameState.assets.skin);
+		selected_label = new Label("Nothing Special",Assets.skin);
 		buttons = new ArrayList<TextButton>();
 		for(int i=1;i<8;i++) {//TODO real ones
-			buttons.add(new TextButton("TEST"+String.valueOf(i),GameState.assets.skin));
+			buttons.add(new TextButton("TEST"+String.valueOf(i),Assets.skin,"ritual_button"));
 		}
 		ButtonGroup bg = new ButtonGroup();
 		HorizontalGroup hg = new HorizontalGroup();
@@ -56,11 +56,8 @@ public class RitualSelector {
 		table.setBackground(GameState.assets.skin.getDrawable("darken"));
 		table.add(sp).colspan(2);
 		table.row();
-		table.add(new Label(description+":",GameState.assets.skin)).left().padLeft(10);
+		table.add(new Label(description+":",Assets.skin)).left().padLeft(10);
 		table.add(selected_label).right().expandX().padRight(10);
-		//ScrollPane sp = new ScrollPane(hg);
-		//this.addActor(sp);
-		//this.addActor(selected_label);
 	}
 	
 	public Table getActor() {return table;}
