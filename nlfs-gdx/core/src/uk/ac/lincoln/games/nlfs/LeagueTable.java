@@ -33,7 +33,7 @@ public class LeagueTable extends BaseScreen {
 		
 		TextButton button = new TextButton("Back to Team", Assets.skin);	
 		table.add(button).width(200).height(40);
-		table.row();
+		table.row().pad(2);
 		
 		//button.setText(match.result.getDescription(match.home));
 		
@@ -52,12 +52,12 @@ public class LeagueTable extends BaseScreen {
 		league_table.clear();
 		for(LeagueTableItem lti:GameState.league.table) {
 			league_table.add(new TeamLabel(lti.team)).align(Align.left).fillX();
-			league_table.add(new Label(String.valueOf(lti.getGamesPlayed()),Assets.skin));
-			league_table.add(new Label(String.valueOf(lti.wins),Assets.skin));
-			league_table.add(new Label(String.valueOf(lti.losses),Assets.skin));
-			league_table.add(new Label(String.valueOf(lti.draws),Assets.skin));
-			league_table.add(new Label(String.valueOf(lti.points),Assets.skin));
-			league_table.row();
+			league_table.add(new Label(String.valueOf(lti.getGamesPlayed()),Assets.skin,"lt_points"));
+			league_table.add(new Label(String.valueOf(lti.wins),Assets.skin,"lt_points"));
+			league_table.add(new Label(String.valueOf(lti.losses),Assets.skin,"lt_points"));
+			league_table.add(new Label(String.valueOf(lti.draws),Assets.skin,"lt_points"));
+			league_table.add(new Label(String.valueOf(lti.points),Assets.skin,"lt_points"));
+			league_table.row().pad(2);
 		}
 	}
 	

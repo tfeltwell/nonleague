@@ -5,9 +5,11 @@ Central
 Eastern
 National
 Regional
+Legacy
 District
 Senior
-Junior
+Men's
 Masters
 Veteran
 Champions
+Counties

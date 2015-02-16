@@ -26,6 +26,7 @@
       	score_report: {font: normal_20, fontColor:white},
       	event_report: {font: normal_16, fontColor:white},
       	scorer_report: {font: normal_16, fontColor:white},
+      	lt_points: {font:teamname,fontColor:white},
       	default: { font: normal_16, fontColor: white },
      },  
      com.badlogic.gdx.scenes.scene2d.ui.Button$ButtonStyle: {  

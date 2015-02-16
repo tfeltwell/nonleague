@@ -34,7 +34,7 @@ public class League {
 	public static int POINTS_DRAW = 1;
 	public static int POINTS_LOSE = 0;
 	
-	public static int LEAGUE_SIZE = 12; //number of teams in the league. Even numbers only, dickhead.
+	public static int LEAGUE_SIZE = 14; //number of teams in the league. Even numbers only, dickhead.
 	public static int PROMOTION = 2; //number of teams promoted/relegated at the end of the season. (promotion + relegation) < league size, dickhead.
 	public static int RELEGATION = 2;
 	
@@ -260,14 +260,14 @@ public class League {
 	public String generateName() {
 		String prefix = GameState.assets.league_prefices.get(GameState.rand.nextInt(GameState.assets.league_prefices.size()));
 		String n = "";
-		if(GameState.rand.nextFloat()<0.5) {
+		if(GameState.rand.nextFloat()<0.8) {
 			do {
 				n = GameState.assets.league_prefices.get(GameState.rand.nextInt(GameState.assets.league_prefices.size()));
 			} while(n==prefix);
 			prefix = prefix + " " + n;
 		}
 		String suffix = GameState.assets.league_suffices.get(GameState.rand.nextInt(GameState.assets.league_suffices.size()));
-		if(GameState.rand.nextFloat()<0.5) {
+		if(GameState.rand.nextFloat()<0.2) {
 			do {
 				n = GameState.assets.league_suffices.get(GameState.rand.nextInt(GameState.assets.league_suffices.size()));
 			} while(n==suffix);
