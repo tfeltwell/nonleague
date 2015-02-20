@@ -55,6 +55,7 @@ public class NonLeague extends Game {
 	}
 	
 	public void changeScreen(BaseScreen s) {
+		s.update();//refresh data on screen
 		this.setScreen(s);
 		s.reset();
 		Gdx.input.setInputProcessor(s.stage);

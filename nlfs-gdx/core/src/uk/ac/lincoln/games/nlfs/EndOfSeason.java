@@ -31,6 +31,7 @@ public class EndOfSeason extends BaseScreen {
 		}
 		});
 	}
+	public void update(){}
 	
 	@Override
 	public void render(float delta){

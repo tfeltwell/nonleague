@@ -48,15 +48,12 @@ public class TeamStatus extends BaseScreen {
 		
 		button.addListener(new ChangeListener() {
 			public void changed(ChangeEvent event, Actor actor) {
-				Match m = GameState.league.findTeamsNextFixture(GameState.player_team);
-				game.prematch_screen.setMatch(m);
 				game.changeScreen(game.prematch_screen);
 		
 		}
 		});
 		lgbutton.addListener(new ChangeListener() {
 			public void changed(ChangeEvent event, Actor actor) {
-				game.leaguetable_screen.update();
 				game.changeScreen(game.leaguetable_screen);
 		
 		}

@@ -66,19 +66,16 @@ public class PreMatch extends BaseScreen{
 		table.row();
 		button.addListener(new InputListener() {
             public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
-            	
-				
-				return true;
+            	return true;
             }
             public void touchUp (InputEvent event, float x, float y, int pointer, int button) {
-            	game.matchview_screen.setMatch();
-				game.changeScreen(game.matchview_screen);
+            	game.changeScreen(game.matchview_screen);
 			}});
 		
 	}
 	
-	public void setMatch(Match match) {
-		this.match = match;
+	public void update() {
+		this.match = GameState.league.findTeamsNextFixture(GameState.player_team);
 		button.setChecked(false);
 		//Set team names/colours
 		home_label.setText(" "+match.home.name);

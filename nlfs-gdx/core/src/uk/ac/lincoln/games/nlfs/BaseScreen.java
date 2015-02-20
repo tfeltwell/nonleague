@@ -42,6 +42,8 @@ public abstract class BaseScreen implements Screen {
 		Gdx.input.setInputProcessor(stage);
     }
     
+    public abstract void update();//This function called when screen is about to be shown
+    
     protected void reset(){}
 
     @Override

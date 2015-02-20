@@ -179,7 +179,7 @@ public class MatchView extends BaseScreen{
 		});
 	}
 	
-	public void setMatch() {
+	public void update() {
 		current_minute = 0;
 		current_home = 0;
 		current_away = 0;

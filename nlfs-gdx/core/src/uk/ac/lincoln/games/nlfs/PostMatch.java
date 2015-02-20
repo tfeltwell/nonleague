@@ -48,7 +48,6 @@ public class PostMatch extends BaseScreen {
 		table.row();
 		button.addListener(new ChangeListener() {
 			public void changed(ChangeEvent event, Actor actor) {
-				game.teamstatus_screen.update();
 				game.changeScreen(game.teamstatus_screen);
 				
 		}
@@ -65,7 +64,10 @@ public class PostMatch extends BaseScreen {
 	
 	public void setResult(MatchResult mr) {
 		result = mr;
-		//TODO fill screen content
+	}
+	
+	public void update() {
+		//update screen since at this point we should have a result
 		home_label.setText(result.match.home.name + ": "+String.valueOf(result.home_goals.size()));
 		away_label.setText(result.match.away.name + ": "+String.valueOf(result.away_goals.size()));
 		stadium_label.setText("at "+result.match.home.stadium);
@@ -84,7 +86,6 @@ public class PostMatch extends BaseScreen {
 			
 			results_table.add(a).fillX().expandX().pad(5f).align(Align.right).right();
 		}
-		
 	}
 	
 	@Override
