@@ -26,7 +26,8 @@ public class Team {
 	public transient League league;
 	
 	public String colour_primary,colour_base;
-	
+	public ArrayList<Integer> league_positions;
+			
 	public transient ArrayList<Footballer> defenders,midfielders,goalkeepers,strikers;
 	
 	/**
@@ -36,7 +37,7 @@ public class Team {
 		this.player_control = false;
 		this.league = league;
 		
-		
+		league_positions = new ArrayList<Integer>();
 		win_bias = 0.5 - Math.random(); //gain a random bias between -0.5 and +0.5
 		
 		//generate name, stadium
@@ -111,6 +112,13 @@ public class Team {
 			}
 		}
 		return league.table.size()+1;
+	}
+	
+	public void updateLeaguePositionHistory() {
+		league_positions.add(Integer.valueOf(this.getLeaguePosition()));
+	}
+	public void resetLeaguePositionHistory() {
+		league_positions.clear();
 	}
 	
 	public int countUnplayedMatches() {

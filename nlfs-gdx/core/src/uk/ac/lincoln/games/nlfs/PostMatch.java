@@ -71,6 +71,7 @@ public class PostMatch extends BaseScreen {
 		stadium_label.setText("at "+result.match.home.stadium);
 		description_label.setText(result.getDescription(GameState.player_team));
 		results_table.clear();
+		
 		if(GameState.league.weekly_results.size()==0) return;
 		results_table.add(new Label("Other Results:",GameState.assets.skin)).colspan(3);
 		TeamLabel h,a;
@@ -78,17 +79,6 @@ public class PostMatch extends BaseScreen {
 			results_table.row();
 			h = new TeamLabel(mr2.match.home);
 			a = new TeamLabel(mr2.match.away);
-			/*
-			h = new Label(mr2.match.home.name,GameState.assets.skin,"teamname");
-			a = new Label(mr2.match.away.name,GameState.assets.skin,"teamname");
-			h.setStyle(new LabelStyle(GameState.assets.skin.get("teamname", LabelStyle.class)));
-			h.getStyle().background = GameState.assets.skin.newDrawable("base",GameState.assets.skin.getColor(mr2.match.home.colour_base));
-			h.getStyle().fontColor = GameState.assets.skin.getColor(mr2.match.home.colour_primary);
-			a.setStyle(new LabelStyle(GameState.assets.skin.get("teamname", LabelStyle.class)));
-			a.getStyle().background = GameState.assets.skin.newDrawable("base",GameState.assets.skin.getColor(mr2.match.away.colour_base));
-			a.getStyle().fontColor = GameState.assets.skin.getColor(mr2.match.away.colour_primary);
-			a.setAlignment(Align.right);
-			*/
 			results_table.add(h).fillX().expandX().pad(5f);
 			results_table.add(new Label(" "+String.valueOf(mr2.home_goals.size())+" - "+String.valueOf(mr2.away_goals.size())+" ",GameState.assets.skin,"score")).pad(5f);
 			

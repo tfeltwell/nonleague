@@ -8,6 +8,8 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.badlogic.gdx.scenes.scene2d.InputEvent;
+import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.ui.Cell;
 import com.badlogic.gdx.scenes.scene2d.ui.HorizontalGroup;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
@@ -15,6 +17,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Label.LabelStyle;
 import com.badlogic.gdx.scenes.scene2d.ui.ScrollPane;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
+import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener.ChangeEvent;
 
 /**
  * Screen before match where players select the rituals they will use
@@ -61,12 +64,17 @@ public class PreMatch extends BaseScreen{
 
 		table.add(button).width(200).height(40);
 		table.row();
-		button.addListener(new ChangeListener() {
-			public void changed(ChangeEvent event, Actor actor) {
-				game.matchview_screen.setMatch(match);
+		button.addListener(new InputListener() {
+            public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
+            	
+				
+				return true;
+            }
+            public void touchUp (InputEvent event, float x, float y, int pointer, int button) {
+            	game.matchview_screen.setMatch();
 				game.changeScreen(game.matchview_screen);
-		}
-		});
+			}});
+		
 	}
 	
 	public void setMatch(Match match) {

@@ -8,6 +8,7 @@ import uk.ac.lincoln.games.nlfs.logic.Match;
 import uk.ac.lincoln.games.nlfs.logic.Goal;
 import uk.ac.lincoln.games.nlfs.logic.MatchEvent;
 
+import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.scenes.scene2d.Actor;
@@ -178,16 +179,18 @@ public class MatchView extends BaseScreen{
 		});
 	}
 	
-	public void setMatch(Match m) {
+	public void setMatch() {
 		current_minute = 0;
 		current_home = 0;
 		current_away = 0;
 		//mins_in_match = 94;
-		match = m;
-		match.run();
+		match = GameState.league.findTeamsNextFixture(GameState.player_team);
+		GameState.league.playWeek();
+		
+		
 		goals = new ArrayList<Goal>();
-		goals.addAll(m.result.home_goals);
-		goals.addAll(m.result.away_goals);
+		goals.addAll(match.result.home_goals);
+		goals.addAll(match.result.away_goals);
 		Collections.sort(goals);
 		clock_label.setText(" 0 ");
 		home_label.setText(" "+match.home.name+" ");

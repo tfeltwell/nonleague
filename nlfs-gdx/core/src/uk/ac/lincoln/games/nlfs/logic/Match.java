@@ -21,16 +21,18 @@ public class Match {
 	public transient League league;
 	public boolean has_run;
 	public MatchResult result;
+	public int week;
 	
 	private String home_name, away_name;//used as IDs for save/load to avoid circular serialisation (i.e. don't ask & don't fuck with it)
 	
-	public Match(League league, Team home, Team away) {
+	public Match(League league, Team home, Team away, int week) {
 		this.league = league;
 		this.home = home;
 		this.away = away;
 		this.has_run = false;
 		this.home_name = home.name;
 		this.away_name = away.name;
+		this.week = week;
 	}
 	
 	public Match() {}
@@ -62,7 +64,7 @@ public class Match {
 	 * @return
 	 */
 	public MatchResult run() { 
-		
+		System.out.println(this.getDescription());
 		//do match calculations here. This is the cumulative distribution function of scorelines in premiership matches 2012 by Conor
 		List<Double> results = asList(14.0,29.5,42.8,55.0,64.6,72.0,76.4,83.8,88.2,90.0,91.1,91.8,92.5,93.6,94.3,94.7,95.8,96.5,97.6,98.0,99.4,100.0);
 		List<String> scores = asList("0-0","1-0","1-1","2-0","2-1","2-2","3-0","3-1","3-2","4-0","4-1","4-2","4-3","5-0","5-1","5-2","5-3","5-4","6-0","7-0","3-3","4-4");

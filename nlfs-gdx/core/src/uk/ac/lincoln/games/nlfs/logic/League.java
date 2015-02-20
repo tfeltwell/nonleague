@@ -25,8 +25,10 @@ import uk.ac.lincoln.games.nlfs.Assets;
  */
 public class League {
 	public ArrayList<Match> fixtures;
-	public ArrayList<Team> teams;
 	
+	public ArrayList<Team> teams;
+	private int current_week;
+	private int final_week;
 	public ArrayList<MatchResult> weekly_results;
 	public transient ArrayList<LeagueTableItem> table;
 	public String name;
@@ -44,7 +46,7 @@ public class League {
 	 */
 	public League(Assets assets){
 		if(!assets.isGenLoaded()) assets.loadGenData();//load data files into memory
-				
+		current_week = 1;
 		teams = new ArrayList<Team>();
 		fixtures = new ArrayList<Match>();
 		weekly_results = new ArrayList<MatchResult>();
@@ -60,6 +62,8 @@ public class League {
 		
 		//Generate fixtures
 		fixtures = generateFixtures(teams);
+		current_week = 1;
+		final_week = 2*(LEAGUE_SIZE-1);
 		resetLeagueTable();
 	}
 	public League(){}
@@ -108,7 +112,10 @@ public class League {
 		
 		//Generate fixtures
 		fixtures = generateFixtures(teams);
-		
+		//reset league positions
+		for(Team t:teams) t.resetLeaguePositionHistory();
+		current_week = 1;
+		final_week = 2*(LEAGUE_SIZE-1);
 		resetLeagueTable();
 		/*Gdx.app.log("", "League teams:");
 		for(Team t:teams)Gdx.app.log("", t.name);*/
@@ -135,14 +142,14 @@ public class League {
 		
 		for(int i=0;i<(LEAGUE_SIZE-1);i++){//N-1 weeks
 			if(flip)
-				autumn.add(new Match(this,pivot,robin.get(robin.size()-1)));//pivot plays last team in cycle
+				autumn.add(new Match(this,pivot,robin.get(robin.size()-1),i+1));//pivot plays last team in cycle
 			else
-				autumn.add(new Match(this,robin.get(robin.size()-1),pivot));
+				autumn.add(new Match(this,robin.get(robin.size()-1),pivot,i+1));
 			for(int j=0;j<((int)LEAGUE_SIZE/2)-1;j++) {//for each match (N/2 matches per week), -1 we already did
 				if(flip)
-					autumn.add(new Match(this,robin.get(j),robin.get(robin.size()-2-j)));//pair match in cyclic fashion (dark maths here, careful)
+					autumn.add(new Match(this,robin.get(j),robin.get(robin.size()-2-j),i+1));//pair match in cyclic fashion (dark maths here, careful)
 				else
-					autumn.add(new Match(this,robin.get(robin.size()-2-j),robin.get(j)));
+					autumn.add(new Match(this,robin.get(robin.size()-2-j),robin.get(j),i+1));
 			}
 			//rotate cycle
 			temp = robin.remove(0);
@@ -152,18 +159,39 @@ public class League {
 		
 		//now duplicate but flip home/away for spring season
 		for(Match m: autumn) {
-			spring.add(new Match(this,m.away,m.home));
+			spring.add(new Match(this,m.away,m.home,m.week+(LEAGUE_SIZE-1)));
 		}
 		autumn.addAll(spring);//collate fixtures
-		
+		//for(Match m: autumn) System.out.println(m.week);
 		return autumn;
+	}
+	
+	/**
+	 * Simulate the entire week's fixtures.
+	 * Also fills public arraylist of weekly results
+	 */
+	public void playWeek() {
+		System.out.println(current_week);
+		
+		weekly_results.clear(); 
+		while(nextFixture().week==current_week) {
+			weekly_results.add(nextFixture().run());
+		}
+		
+		current_week++;
+	}
+	
+	public boolean isSeasonFinished() {
+		for (Match m: fixtures) 
+			if(!m.has_run)return false;
+		return true;
 	}
 	
 	/**
 	 * return next unplayed fixture
 	 * @return
 	 */
-	public Match nextFixture(){
+	private Match nextFixture(){
 		for (Match m: fixtures) 
 			if(!m.has_run)return m;
 		//there are no unplayed matches in this league
@@ -188,7 +216,7 @@ public class League {
 	}
 	
 	/**
-	 * Modify the league table according to this result
+	 * Modify the league table according to this result. Usually called by the match object when it resolves
 	 * @param result
 	 */
 	public void addResult(MatchResult result) {
@@ -246,18 +274,12 @@ public class League {
 		return false;
 	}
 	
-	/**
-	 * Automate matches in the fixtures list until the current match
-	 * @param m
-	 */
-	public void calculateResultsUntil(Match m) {
-		weekly_results.clear(); 
-		while(m!=nextFixture()) {
-			weekly_results.add(nextFixture().run());
-		}
-	}
 	
-	public String generateName() {
+	/**
+	 * Generate a random name for this league ("Northern Champions Conference")
+	 * @return
+	 */
+	private String generateName() {
 		String prefix = GameState.assets.league_prefices.get(GameState.rand.nextInt(GameState.assets.league_prefices.size()));
 		String n = "";
 		if(GameState.rand.nextFloat()<0.8) {
@@ -275,10 +297,6 @@ public class League {
 		}
 		return prefix + " " + suffix;
 		
-	}
-
-	public void setName(String new_name) {
-		this.name = new_name;
 	}
 	
 	/**

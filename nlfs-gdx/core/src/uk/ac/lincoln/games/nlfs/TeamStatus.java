@@ -49,7 +49,6 @@ public class TeamStatus extends BaseScreen {
 		button.addListener(new ChangeListener() {
 			public void changed(ChangeEvent event, Actor actor) {
 				Match m = GameState.league.findTeamsNextFixture(GameState.player_team);
-				GameState.league.calculateResultsUntil(m);
 				game.prematch_screen.setMatch(m);
 				game.changeScreen(game.prematch_screen);
 		
