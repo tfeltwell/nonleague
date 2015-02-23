@@ -3,6 +3,9 @@ package uk.ac.lincoln.games.nlfs.logic;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Iterator;
+
+import com.badlogic.gdx.Gdx;
+
 import uk.ac.lincoln.games.nlfs.Assets;
 
 
@@ -23,7 +26,7 @@ public class League {
 	public ArrayList<Team> teams;
 	private int current_week;
 	public ArrayList<MatchResult> weekly_results;
-	public transient ArrayList<LeagueTableItem> table;
+	private transient ArrayList<LeagueTableItem> table;
 	public String name;
 	public static int POINTS_WIN = 3;
 	public static int POINTS_DRAW = 1;
@@ -204,6 +207,18 @@ public class League {
 				continue;//presumably all the others will be not run either (since they are in the future) however just in case.
 			addResult(m.result);
 		}
+	}
+	
+	/**
+	 * Return the array of past league positions (1 per week)
+	 * @param t
+	 * @return
+	 */
+	public ArrayList<Integer> getTeamPositionHistory(Team t) {
+		for(LeagueTableItem lti:table)
+			if(lti.team==t) return lti.position_history;
+		Gdx.app.error("League.getTeamPositionHistory", "Can't find team in table");
+		return new ArrayList<Integer>();//empty if can't find team
 	}
 	
 	/**
