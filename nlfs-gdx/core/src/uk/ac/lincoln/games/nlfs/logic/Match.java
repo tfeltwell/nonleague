@@ -97,7 +97,6 @@ public class Match {
 		
 		result = new MatchResult(this,home_goals,away_goals); //fill result object, calculate scorers etc
 		this.has_run = true;
-		league.addResult(result);//update league table
 		return result;
 	}
 	public boolean isTeam(Team t) {//is t in this match

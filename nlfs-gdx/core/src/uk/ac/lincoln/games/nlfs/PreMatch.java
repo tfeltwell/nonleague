@@ -4,20 +4,11 @@ import uk.ac.lincoln.games.nlfs.logic.GameState;
 import uk.ac.lincoln.games.nlfs.logic.Match;
 import uk.ac.lincoln.games.nlfs.ui.RitualSelector;
 
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.Color;
-import com.badlogic.gdx.graphics.GL20;
-import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
-import com.badlogic.gdx.scenes.scene2d.ui.Cell;
-import com.badlogic.gdx.scenes.scene2d.ui.HorizontalGroup;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Label.LabelStyle;
-import com.badlogic.gdx.scenes.scene2d.ui.ScrollPane;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
-import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
-import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener.ChangeEvent;
 
 /**
  * Screen before match where players select the rituals they will use
@@ -33,10 +24,10 @@ public class PreMatch extends BaseScreen{
 	public PreMatch (final NonLeague game) {
 		super(game);
 		//NB remember none of this stuff is in memory yet
-		home_label = new Label("[HOME TEAM]",GameState.assets.skin,"teamname");
-		away_label = new Label("[AWAY TEAM]",GameState.assets.skin,"teamname");
-		stadium_label = new Label("at [STADIUM]",GameState.assets.skin);
-		weather_label = new Label("weather",GameState.assets.skin);
+		home_label = new Label("[HOME TEAM]",Assets.skin,"teamname");
+		away_label = new Label("[AWAY TEAM]",Assets.skin,"teamname");
+		stadium_label = new Label("at [STADIUM]",Assets.skin);
+		weather_label = new Label("weather",Assets.skin);
 		
 		table.add(home_label).expandX().fillX().left().colspan(2);
 		table.row();
@@ -60,7 +51,7 @@ public class PreMatch extends BaseScreen{
 		table.row();
 		
 		
-		button = new TextButton("Go to Match", GameState.assets.skin);	
+		button = new TextButton("Go to Match", Assets.skin);	
 
 		table.add(button).width(200).height(40);
 		table.row();
@@ -79,20 +70,20 @@ public class PreMatch extends BaseScreen{
 		button.setChecked(false);
 		//Set team names/colours
 		home_label.setText(" "+match.home.name);
-		home_label.setStyle(new LabelStyle(GameState.assets.skin.get("teamname", LabelStyle.class)));
-		home_label.getStyle().background = GameState.assets.skin.newDrawable("base",GameState.assets.skin.getColor(match.home.colour_base));
-		home_label.getStyle().fontColor = GameState.assets.skin.getColor(match.home.colour_primary);
+		home_label.setStyle(new LabelStyle(Assets.skin.get("teamname", LabelStyle.class)));
+		home_label.getStyle().background = Assets.skin.newDrawable("base",Assets.skin.getColor(match.home.colour_base));
+		home_label.getStyle().fontColor = Assets.skin.getColor(match.home.colour_primary);
 		away_label.setText(" "+match.away.name);
-		away_label.setStyle(new LabelStyle(GameState.assets.skin.get("teamname", LabelStyle.class)));
+		away_label.setStyle(new LabelStyle(Assets.skin.get("teamname", LabelStyle.class)));
 		
 		//if same kits, invert away
 		if(match.away.colour_base==match.home.colour_base&&match.away.colour_primary==match.home.colour_primary) {
-			away_label.getStyle().background = GameState.assets.skin.newDrawable("base",GameState.assets.skin.getColor(match.away.colour_primary));
-			away_label.getStyle().fontColor = GameState.assets.skin.getColor(match.away.colour_base);
+			away_label.getStyle().background = Assets.skin.newDrawable("base",Assets.skin.getColor(match.away.colour_primary));
+			away_label.getStyle().fontColor = Assets.skin.getColor(match.away.colour_base);
 
 		} else {
-			away_label.getStyle().background = GameState.assets.skin.newDrawable("base",GameState.assets.skin.getColor(match.away.colour_base));
-			away_label.getStyle().fontColor = GameState.assets.skin.getColor(match.away.colour_primary);
+			away_label.getStyle().background = Assets.skin.newDrawable("base",Assets.skin.getColor(match.away.colour_base));
+			away_label.getStyle().fontColor = Assets.skin.getColor(match.away.colour_primary);
 
 		}
 		

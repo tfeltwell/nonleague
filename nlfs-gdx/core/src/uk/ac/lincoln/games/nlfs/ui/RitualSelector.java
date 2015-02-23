@@ -53,7 +53,7 @@ public class RitualSelector {
 		bg.setUncheckLast(true);
 		sp = new ScrollPane(hg);
 		table = new Table();
-		table.setBackground(GameState.assets.skin.getDrawable("darken"));
+		table.setBackground(Assets.skin.getDrawable("darken"));
 		table.add(sp).colspan(2);
 		table.row();
 		table.add(new Label(description+":",Assets.skin)).left().padLeft(10);

@@ -1,8 +1,11 @@
 package uk.ac.lincoln.games.nlfs.logic;
 
+import java.util.ArrayList;
+
 public class LeagueTableItem implements Comparable<LeagueTableItem> {
 	public Team team;
 	public int wins,losses,draws,points,gf,ga;
+	public ArrayList<Integer> position_history;
 	
 	public LeagueTableItem(Team team) {
 		this.team = team;
@@ -12,10 +15,13 @@ public class LeagueTableItem implements Comparable<LeagueTableItem> {
 		points = 0;
 		gf = 0;
 		ga = 0;
+		position_history = new ArrayList<Integer>();
 		}
 	public int getGamesPlayed() {
 		return wins+losses+draws;
 	}
+	
+	public void addWeeklyPosition(Integer new_position) { position_history.add(new_position); }
 	
 	//add this result to the stats for this team. 
 	public void addResult(MatchResult result) {

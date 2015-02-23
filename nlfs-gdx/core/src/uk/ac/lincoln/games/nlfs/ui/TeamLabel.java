@@ -1,10 +1,9 @@
 package uk.ac.lincoln.games.nlfs.ui;
 
-import com.badlogic.gdx.scenes.scene2d.ui.Label;
-import com.badlogic.gdx.scenes.scene2d.ui.Label.LabelStyle;
-
 import uk.ac.lincoln.games.nlfs.Assets;
 import uk.ac.lincoln.games.nlfs.logic.Team;
+
+import com.badlogic.gdx.scenes.scene2d.ui.Label;
 
 public class TeamLabel extends Label{
 	

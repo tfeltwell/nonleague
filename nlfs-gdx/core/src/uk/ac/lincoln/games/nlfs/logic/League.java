@@ -3,11 +3,6 @@ package uk.ac.lincoln.games.nlfs.logic;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Iterator;
-import java.util.Random;
-
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.utils.Json;
-
 import uk.ac.lincoln.games.nlfs.Assets;
 
 
@@ -25,10 +20,8 @@ import uk.ac.lincoln.games.nlfs.Assets;
  */
 public class League {
 	public ArrayList<Match> fixtures;
-	
 	public ArrayList<Team> teams;
 	private int current_week;
-	private int final_week;
 	public ArrayList<MatchResult> weekly_results;
 	public transient ArrayList<LeagueTableItem> table;
 	public String name;
@@ -55,15 +48,10 @@ public class League {
 		for(int i=0;i<LEAGUE_SIZE;i++) {
 			teams.add(new Team(assets,this));
 		}
-		
-		
-		//Gdx.app.log("", "League teams:");
-		//for(Team t:teams)Gdx.app.log("", t.name);
-		
 		//Generate fixtures
 		fixtures = generateFixtures(teams);
 		current_week = 1;
-		final_week = 2*(LEAGUE_SIZE-1);
+		//final_week = 2*(LEAGUE_SIZE-1);
 		resetLeagueTable();
 	}
 	public League(){}
@@ -96,9 +84,9 @@ public class League {
 		teams.clear();
 		fixtures.clear();
 		
-		if(team_following.getLeaguePosition()<promotion) {//promotion
+		if(getTeamPosition(team_following)<promotion) {//promotion
 			teams.addAll(promoted_teams);
-		} else if(team_following.getLeaguePosition()>=(table.size()-relegation)) {//relegation
+		} else if(getTeamPosition(team_following)>=(table.size()-relegation)) {//relegation
 			teams.addAll(relegated_teams);
 		}
 		else {//not a new league
@@ -112,13 +100,9 @@ public class League {
 		
 		//Generate fixtures
 		fixtures = generateFixtures(teams);
-		//reset league positions
-		for(Team t:teams) t.resetLeaguePositionHistory();
 		current_week = 1;
-		final_week = 2*(LEAGUE_SIZE-1);
+		//final_week = 2*(LEAGUE_SIZE-1);
 		resetLeagueTable();
-		/*Gdx.app.log("", "League teams:");
-		for(Team t:teams)Gdx.app.log("", t.name);*/
 	}
 	
 	/**
@@ -164,21 +148,27 @@ public class League {
 		autumn.addAll(spring);//collate fixtures
 		//for(Match m: autumn) System.out.println(m.week);
 		return autumn;
-	}
+	}	
 	
 	/**
 	 * Simulate the entire week's fixtures.
 	 * Also fills public arraylist of weekly results
 	 */
 	public void playWeek() {
-		System.out.println(current_week);
-		
+		MatchResult mr;
 		weekly_results.clear(); 
 		while(nextFixture().week==current_week) {
-			weekly_results.add(nextFixture().run());
+			mr = nextFixture().run();
+			weekly_results.add(mr);
+			addResult(mr);//add to league calcs
 		}
-		
 		current_week++;
+		//update weekly positions
+		int i=1;
+		for(LeagueTableItem lti:table) { //could call getTeamPosition here but this is more efficient
+			lti.addWeeklyPosition(i);
+			i++;
+		}
 	}
 	
 	public boolean isSeasonFinished() {
@@ -200,9 +190,10 @@ public class League {
 	
 	/**
 	 * Reset the complete league table from the existing results (list of items)
+	 * Importantly this must be run to reset weekly position tracking too
 	 * @return
 	 */
-	public void resetLeagueTable() {
+	private void resetLeagueTable() {
 		table = new ArrayList<LeagueTableItem>();
 		
 		for(Team t: teams) {
@@ -216,10 +207,10 @@ public class League {
 	}
 	
 	/**
-	 * Modify the league table according to this result. Usually called by the match object when it resolves
+	 * Modify the league table according to this result.
 	 * @param result
 	 */
-	public void addResult(MatchResult result) {
+	private void addResult(MatchResult result) {
 		for(LeagueTableItem lti:table) {
 			if(lti.team==result.match.away ||lti.team==result.match.home) {//for both teams in the match
 				lti.addResult(result);
@@ -264,7 +255,6 @@ public class League {
 			}
 		}
 		return null;
-
 	}
 	
 	public boolean teamNameInUse(String name) {
@@ -274,6 +264,19 @@ public class League {
 		return false;
 	}
 	
+	/**
+	 * return current league position for team
+	 * @param t
+	 * @return
+	 */
+	public int getTeamPosition(Team t) {
+		int i = 1;
+		for(LeagueTableItem lti:table) {
+			if(lti.team==t) return i;
+			i++;
+		}
+		return i+1;
+	}
 	
 	/**
 	 * Generate a random name for this league ("Northern Champions Conference")

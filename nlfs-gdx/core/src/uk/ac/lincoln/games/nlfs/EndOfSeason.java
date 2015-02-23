@@ -1,11 +1,8 @@
 package uk.ac.lincoln.games.nlfs;
 
-import uk.ac.lincoln.games.nlfs.logic.GameState;
-
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
-import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener.ChangeEvent;
 
 /**
  * show season results. Calculate new league in case of promotion/relegation
@@ -19,7 +16,7 @@ public class EndOfSeason extends BaseScreen {
 		table.row();
 		
 		
-		TextButton button = new TextButton("Go to Game", GameState.assets.skin);	
+		TextButton button = new TextButton("Go to Game", Assets.skin);	
 		table.add(button).width(200).height(40);
 		table.row();
 		

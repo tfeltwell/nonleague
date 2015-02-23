@@ -6,6 +6,7 @@ import java.util.Random;
 
 import com.badlogic.gdx.Gdx;
 
+import uk.ac.lincoln.games.nlfs.Assets;
 import uk.ac.lincoln.games.nlfs.logic.Footballer.Position;
 import uk.ac.lincoln.games.nlfs.logic.MatchEvent.MatchEventType;
 
@@ -105,7 +106,7 @@ public class MatchResult {
 			opposition = match.home;
 		}
 		
-		ArrayList<String> news_items = GameState.assets.news_summaries.get(scoreline);
+		ArrayList<String> news_items = Assets.news_summaries.get(scoreline);
         String news_item = news_items.get(new Random().nextInt(news_items.size()));//random description
         // Tokens: yourteam, opposition, goalkeeper, defender, midfielder, attacker, stadium
         news_item = news_item.replace("{yourteam}",team.name);

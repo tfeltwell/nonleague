@@ -28,7 +28,7 @@ public class Assets {
 	public ArrayList<String> road_names;
 	public ArrayList<String> league_prefices,league_suffices;
 	public ArrayList<ArrayList<String>> team_colours;
-	public HashMap<String,ArrayList> news_summaries;
+	public static HashMap<String,ArrayList> news_summaries;
 	
 	private boolean gen_loaded;
 	

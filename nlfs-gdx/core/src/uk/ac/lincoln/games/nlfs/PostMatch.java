@@ -4,15 +4,12 @@ import uk.ac.lincoln.games.nlfs.logic.GameState;
 import uk.ac.lincoln.games.nlfs.logic.MatchResult;
 import uk.ac.lincoln.games.nlfs.ui.TeamLabel;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
-import com.badlogic.gdx.scenes.scene2d.ui.Label.LabelStyle;
 import com.badlogic.gdx.scenes.scene2d.utils.Align;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
-import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener.ChangeEvent;
 
 /**
  * Show summary of match results. Score, newspaper article, etc.
@@ -26,10 +23,10 @@ public class PostMatch extends BaseScreen {
 	
 	public PostMatch (final NonLeague game) {
 		super(game);
-		home_label = new Label("[HOME TEAM]: 0",GameState.assets.skin);
-		away_label = new Label("[AWAY TEAM]: 0",GameState.assets.skin);
-		stadium_label = new Label("at [STADIUM]",GameState.assets.skin);
-		description_label = new Label("[DESCRIPTION]",GameState.assets.skin);
+		home_label = new Label("[HOME TEAM]: 0",Assets.skin);
+		away_label = new Label("[AWAY TEAM]: 0",Assets.skin);
+		stadium_label = new Label("at [STADIUM]",Assets.skin);
+		description_label = new Label("[DESCRIPTION]",Assets.skin);
 		description_label.setWrap(true);
 		//description_label.setWidth(200);
 		
@@ -42,7 +39,7 @@ public class PostMatch extends BaseScreen {
 		table.add(description_label).expand().left().width(200);
 		table.row();
 		
-		TextButton button = new TextButton("Leave Match", GameState.assets.skin);	
+		TextButton button = new TextButton("Leave Match", Assets.skin);	
 
 		table.add(button).width(200).height(40);
 		table.row();
@@ -54,8 +51,8 @@ public class PostMatch extends BaseScreen {
 		});
 		
 		results_table = new Table();
-		results_table.setSkin(GameState.assets.skin);
-		results_table.setBackground(GameState.assets.skin.getDrawable("darken"));
+		results_table.setSkin(Assets.skin);
+		results_table.setBackground(Assets.skin.getDrawable("darken"));
 		results_table.pad(10f);
 		root_table.row();
 		root_table.add(results_table);
@@ -75,15 +72,14 @@ public class PostMatch extends BaseScreen {
 		results_table.clear();
 		
 		if(GameState.league.weekly_results.size()==0) return;
-		results_table.add(new Label("Other Results:",GameState.assets.skin)).colspan(3);
+		results_table.add(new Label("Other Results:",Assets.skin)).colspan(3);
 		TeamLabel h,a;
 		for(MatchResult mr2:GameState.league.weekly_results) {
 			results_table.row();
 			h = new TeamLabel(mr2.match.home);
 			a = new TeamLabel(mr2.match.away);
 			results_table.add(h).fillX().expandX().pad(5f);
-			results_table.add(new Label(" "+String.valueOf(mr2.home_goals.size())+" - "+String.valueOf(mr2.away_goals.size())+" ",GameState.assets.skin,"score")).pad(5f);
-			
+			results_table.add(new Label(" "+String.valueOf(mr2.home_goals.size())+" - "+String.valueOf(mr2.away_goals.size())+" ",Assets.skin,"score")).pad(5f);
 			results_table.add(a).fillX().expandX().pad(5f).align(Align.right).right();
 		}
 	}
