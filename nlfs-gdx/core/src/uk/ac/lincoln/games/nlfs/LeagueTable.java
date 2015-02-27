@@ -5,6 +5,7 @@ import uk.ac.lincoln.games.nlfs.logic.LeagueTableItem;
 import uk.ac.lincoln.games.nlfs.ui.TeamLabel;
 
 import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
@@ -19,6 +20,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 public class LeagueTable extends BaseScreen {
 	private Table league_table;
 	private Label title;
+	
 	public LeagueTable(final NonLeague game) {
 		super(game);
 		title = new Label(" ",Assets.skin,"pagetitle");
@@ -32,6 +34,7 @@ public class LeagueTable extends BaseScreen {
 		TextButton button = new TextButton("Back to Team", Assets.skin);	
 		table.add(button).width(200).height(40);
 		table.row().pad(2);
+		
 		
 		//button.setText(match.result.getDescription(match.home));
 		

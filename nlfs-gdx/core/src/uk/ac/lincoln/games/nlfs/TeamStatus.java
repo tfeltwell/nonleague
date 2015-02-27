@@ -1,11 +1,18 @@
 package uk.ac.lincoln.games.nlfs;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+
 import uk.ac.lincoln.games.nlfs.logic.GameState;
+import uk.ac.lincoln.games.nlfs.ui.LeaguePositionGraph;
 
 import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
+import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
+import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
 
 /**
  * general view showing league position, next match details, etc.
@@ -13,7 +20,8 @@ import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
  *
  */
 public class TeamStatus extends BaseScreen {
-	
+	//private Image position_graph;
+	private Table position_table;
 	private Label team_label,next_opponent_label,league_pos_label,unplayed_label;
 	
 	public TeamStatus(final NonLeague game) {
@@ -23,6 +31,7 @@ public class TeamStatus extends BaseScreen {
 		next_opponent_label = new Label("[NEXT TEAM]",Assets.skin);
 		league_pos_label = new Label("X",Assets.skin);
 		unplayed_label = new Label("X",Assets.skin);
+		position_table = new Table();
 		
 		table.add(team_label).expandX().colspan(2);
 		table.row();
@@ -34,6 +43,11 @@ public class TeamStatus extends BaseScreen {
 		table.row();
 		table.add("Matches left in Season: ");
 		table.add(unplayed_label);
+		table.row();
+		
+		//position_graph = new Image(LeaguePositionGraph.generateLeaguePositionGraph(new ArrayList<Integer>(Arrays.asList(0))));
+		//table.add(position_graph).expandX().colspan(2);
+		table.add(position_table).colspan(2).expand();
 		table.row();
 
 		TextButton lgbutton = new TextButton("League Table", Assets.skin);
@@ -65,6 +79,9 @@ public class TeamStatus extends BaseScreen {
 		next_opponent_label.setText(GameState.league.findTeamsNextFixture(GameState.player_team).opponentFor(GameState.player_team).name);
 		league_pos_label.setText(String.valueOf(GameState.league.getTeamPosition(GameState.player_team)));
 		unplayed_label.setText(String.valueOf(GameState.player_team.countUnplayedMatches()));
+		position_table.clear();
+		position_table.add(new Image(LeaguePositionGraph.generateLeaguePositionGraph(GameState.league.getTeamPositionHistory(GameState.player_team))));
+		
 	}
 	
 	@Override

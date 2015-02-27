@@ -26,7 +26,7 @@ public class League {
 	public ArrayList<Team> teams;
 	private int current_week;
 	public ArrayList<MatchResult> weekly_results;
-	private transient ArrayList<LeagueTableItem> table;
+	public transient ArrayList<LeagueTableItem> table;
 	public String name;
 	public static int POINTS_WIN = 3;
 	public static int POINTS_DRAW = 1;

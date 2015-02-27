@@ -28,7 +28,7 @@ public class Assets {
 	public ArrayList<String> road_names;
 	public ArrayList<String> league_prefices,league_suffices;
 	public ArrayList<ArrayList<String>> team_colours;
-	public static HashMap<String,ArrayList> news_summaries;
+	public static HashMap<String,ArrayList<String>> news_summaries;
 	
 	private boolean gen_loaded;
 	
@@ -78,7 +78,7 @@ public class Assets {
 	 */
 	public void loadRunData() {
 		ArrayList<String> news_data;
-		news_summaries = new HashMap<String, ArrayList>();
+		news_summaries = new HashMap<String, ArrayList<String>>();
 		try{
 			news_data = loadFile("newssummaries.txt");
 		} catch (IOException e) {
