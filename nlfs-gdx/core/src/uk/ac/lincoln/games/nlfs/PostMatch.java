@@ -5,6 +5,8 @@ import uk.ac.lincoln.games.nlfs.logic.MatchResult;
 import uk.ac.lincoln.games.nlfs.ui.TeamLabel;
 
 import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.badlogic.gdx.scenes.scene2d.InputEvent;
+import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
@@ -43,12 +45,13 @@ public class PostMatch extends BaseScreen {
 
 		table.add(button).width(200).height(40);
 		table.row();
-		button.addListener(new ChangeListener() {
-			public void changed(ChangeEvent event, Actor actor) {
-				game.changeScreen(game.teamstatus_screen);
-				
-		}
-		});
+		button.addListener(new InputListener() {
+            public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
+            	return true;
+            }
+            public void touchUp (InputEvent event, float x, float y, int pointer, int button) {
+            	game.changeScreen(game.teamstatus_screen);
+			}});
 		
 		results_table = new Table();
 		results_table.setSkin(Assets.skin);

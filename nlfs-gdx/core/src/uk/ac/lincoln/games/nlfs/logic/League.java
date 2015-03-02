@@ -149,7 +149,6 @@ public class League {
 			spring.add(new Match(this,m.away,m.home,m.week+(LEAGUE_SIZE-1)));
 		}
 		autumn.addAll(spring);//collate fixtures
-		//for(Match m: autumn) System.out.println(m.week);
 		return autumn;
 	}	
 	

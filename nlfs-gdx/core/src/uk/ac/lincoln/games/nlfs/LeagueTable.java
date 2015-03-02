@@ -5,6 +5,8 @@ import uk.ac.lincoln.games.nlfs.logic.LeagueTableItem;
 import uk.ac.lincoln.games.nlfs.ui.TeamLabel;
 
 import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.badlogic.gdx.scenes.scene2d.InputEvent;
+import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
@@ -34,15 +36,13 @@ public class LeagueTable extends BaseScreen {
 		TextButton button = new TextButton("Back to Team", Assets.skin);	
 		table.add(button).width(200).height(40);
 		table.row().pad(2);
-		
-		
-		//button.setText(match.result.getDescription(match.home));
-		
-		button.addListener(new ChangeListener() {
-			public void changed(ChangeEvent event, Actor actor) {
-				game.changeScreen(game.teamstatus_screen);
-		}
-		});
+		button.addListener(new InputListener() {
+            public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
+            	return true;
+            }
+            public void touchUp (InputEvent event, float x, float y, int pointer, int button) {
+            	game.changeScreen(game.teamstatus_screen);
+			}});
 	}
 	
 	/**

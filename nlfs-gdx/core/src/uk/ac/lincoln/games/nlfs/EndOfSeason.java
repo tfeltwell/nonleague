@@ -5,7 +5,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 
 /**
- * show season results. Calculate new league in case of promotion/relegation
+ * show season results. final league positions. Calculate new league in case of promotion/relegation
  * @author bkirman
  *
  */

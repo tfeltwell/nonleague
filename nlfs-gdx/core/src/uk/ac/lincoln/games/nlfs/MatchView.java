@@ -10,6 +10,8 @@ import uk.ac.lincoln.games.nlfs.logic.MatchEvent;
 
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.badlogic.gdx.scenes.scene2d.InputEvent;
+import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.ui.HorizontalGroup;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
@@ -157,9 +159,12 @@ public class MatchView extends BaseScreen{
 
 		table.add(button).width(200).height(40).colspan(2);
 		table.row();
-		button.addListener(new ChangeListener() {
-			public void changed(ChangeEvent event, Actor actor) {
-				if(current_state == MatchState.PRE || current_state == MatchState.HT) {
+		button.addListener(new InputListener() {
+            public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
+            	return true;
+            }
+            public void touchUp (InputEvent event, float x, float y, int pointer, int b2) {
+            	if(current_state == MatchState.PRE || current_state == MatchState.HT) {
 					button.setDisabled(true);
 					button.setText("Please Wait");
 					Timer.schedule(new RunMinute(), SIMULATION_S_PER_MIN, SIMULATION_S_PER_MIN);
@@ -173,8 +178,7 @@ public class MatchView extends BaseScreen{
 					game.postmatch_screen.setResult(match.result);
 					game.changeScreen(game.postmatch_screen);
 				}
-		}
-		});
+			}});
 	}
 	
 	public void update() {
