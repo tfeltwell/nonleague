@@ -146,6 +146,8 @@ Calamity goalkeeper {goalkeeper} has to shoulder the blame, as {yourteam} snatch
 Cavalier defender {defender} neglected his defensive responsibilities, as {yourteam} conspired against themselves in this close game at {stadium}.
 Midfield general {midfielder} was furious with his teammates, as {yourteam} threw away three points at {stadium}.
 Lethal striker {attacker} will not believe he came out on the losing side of this tie, as {yourteam} scored three but failed to win. 
+4-5
+Unlucky {yourteam} miss out on the three points after a pinball match at {stadium}
 0-6
 A dark day for fans of {yourteam}, as {opposition} gave them the runaround at {stadium} this afternoon.
 Boos rang out around {stadium} at the final whistle, as {yourteam} failed to compete in any area of the pitch.
@@ -284,6 +286,8 @@ Midfield maestro {midfielder} blew hot and cold, as {opposition} were unlucky to
 Midfield general {midfielder} put in a commanding performance, as {yourteam} escaped the battle of {stadium} with a narrow victory.
 Clinical striker {attacker} was the difference, as {yourteam} earned a smash and grab victory at {stadium}.
 Fan-favourite {attacker} was the difference between the sides, as {yourteam} earned a valuable three points at {stadium}.
+5-4
+There was something in the air at {stadium}, in an epic nine goal thriller. {yourteam} edged out {opposition} to take the three points.
 6-0
 {yourteam} earned a standing ovation from both sets of fans, as they produced a performance that will live long in the memories at {stadium}.
 {yourteam} re-wrote the record books, as they ran out emphatic winners at {stadium}.
