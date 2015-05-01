@@ -40,7 +40,7 @@ public class MatchView extends BaseScreen{
 	//private int mins_in_match;
 	private int current_minute, current_home, current_away;
 	public static float SIMULATION_S_PER_MIN = 0.4f;
-	private static boolean SKIP_MATCH = true;//debug setting skips slow match report
+	private static boolean SKIP_MATCH = false;//debug setting skips slow match report
 	private enum MatchState {PRE,H1,HT,H2,FT};
 	private MatchState current_state;
 	
