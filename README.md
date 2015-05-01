@@ -16,10 +16,13 @@ Bugs
 
 Compiling
 ---------
-NLFS-GDX uses Gradle. Make sure to set the path to the Android SDK in local.properties (sdk.dir=/home/blah) to compile the Android version (or disable it in the settings). We've been using Eclipse with ADT for Android, but your own gradle-supported IDE should work.
+Set up your environment according to the LibGDX setup: https://github.com/libgdx/libgdx/wiki/Setting-up-your-Development-Environment-%28Eclipse%2C-Intellij-IDEA%2C-NetBeans%29
+
+Check out NLFS-GDX and import as Gradle project (there is one project per platform, at least do -desktop and -core (core is where the source lives)). Gradle *should* download all the appropriate dependencies. You should then be able to right click on the project "-desktop" and "Run As" Java Application. It will then ask which class to start with, select DesktopLauncher.
+
+Android is a little more complex. You need to have the dependencies (e.g. Android SDK) set up according to the LibGDX guide. Then, make sure to set the path to the Android SDK in local.properties (sdk.dir=/home/blah) to compile the Android version (or disable it in the settings). We've been using Eclipse with ADT for Android, but your own gradle-supported IDE should work.
 
 -----------
 Licences:
 
-Pie photo CC by-nc-aa, jasmine, http://www.flickr.com/photos/jasmine/16346093/
-Grey texture nc-by http://www.lovetextures.com/faqs/
+TBC

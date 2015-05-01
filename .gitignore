@@ -5,6 +5,10 @@
 *.ear
 hs_err_pid*
 
+#BK - private
+*.keystore
+android_compile
+
 ## GWT
 war/
 html/war/gwt_bree/
