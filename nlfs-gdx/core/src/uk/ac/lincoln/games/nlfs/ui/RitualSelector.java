@@ -3,21 +3,16 @@ package uk.ac.lincoln.games.nlfs.ui;
 import java.util.ArrayList;
 
 import uk.ac.lincoln.games.nlfs.Assets;
-import uk.ac.lincoln.games.nlfs.logic.GameState;
 
-import com.badlogic.gdx.Game;
 import com.badlogic.gdx.scenes.scene2d.Actor;
-import com.badlogic.gdx.scenes.scene2d.EventListener;
-import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.badlogic.gdx.scenes.scene2d.ui.ButtonGroup;
 import com.badlogic.gdx.scenes.scene2d.ui.HorizontalGroup;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.ScrollPane;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
-import com.badlogic.gdx.scenes.scene2d.ui.WidgetGroup;
+//import com.badlogic.gdx.scenes.scene2d.ui.WidgetGroup;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
-import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener.ChangeEvent;
 
 /**
  * UI Widget that allows user to select a ritual from a given set
@@ -25,7 +20,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener.ChangeEvent;
  *
  */
 public class RitualSelector {
-	private WidgetGroup wg;
+	//private WidgetGroup wg;
 	private Label selected_label;
 	private Table table;
 	

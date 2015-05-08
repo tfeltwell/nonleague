@@ -1,11 +1,9 @@
 package uk.ac.lincoln.games.nlfs.logic;
 
+import static java.util.Arrays.asList;
+
 import java.util.List;
 import java.util.Random;
-
-import com.badlogic.gdx.Gdx;
-
-import static java.util.Arrays.asList;
 /**
  * Match class deals with individual matchups between teams
  * 

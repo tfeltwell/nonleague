@@ -76,6 +76,6 @@ public class NonLeague extends Game {
 	}
 	
 	public void dispose () {
-		GameState.assets.skin.dispose();
+		Assets.skin.dispose();
 	}
 }

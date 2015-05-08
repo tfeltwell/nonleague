@@ -3,9 +3,6 @@ package uk.ac.lincoln.games.nlfs.logic;
 import java.util.ArrayList;
 import java.util.Random;
 
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.Color;
-
 import uk.ac.lincoln.games.nlfs.Assets;
 import uk.ac.lincoln.games.nlfs.logic.Footballer.Position;
 

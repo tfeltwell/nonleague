@@ -2,9 +2,8 @@ package uk.ac.lincoln.games.nlfs.ui;
 
 import java.util.ArrayList;
 
-import uk.ac.lincoln.games.nlfs.logic.GameState;
 import uk.ac.lincoln.games.nlfs.logic.League;
-import uk.ac.lincoln.games.nlfs.logic.Team;
+
 
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Pixmap;

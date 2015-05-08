@@ -4,8 +4,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Random;
 
-import com.badlogic.gdx.Gdx;
-
 import uk.ac.lincoln.games.nlfs.Assets;
 import uk.ac.lincoln.games.nlfs.logic.Footballer.Position;
 import uk.ac.lincoln.games.nlfs.logic.MatchEvent.MatchEventType;
