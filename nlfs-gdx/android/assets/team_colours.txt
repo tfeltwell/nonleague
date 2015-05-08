@@ -1,4 +1,5 @@
 white on red
+red on white
 white on black
 black on white
 white on blue

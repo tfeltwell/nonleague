@@ -25,7 +25,7 @@ public class NonLeague extends Game {
 	public LeagueTable leaguetable_screen;
 	public EndOfSeason endofseason_screen;
 	/**
-	 * Actor for background texture.
+	 * Actor for background texture. Needs to be here so abstract basescreen can find it (I know)
 	 * @author bkirman
 	 *
 	 */
@@ -38,7 +38,7 @@ public class NonLeague extends Game {
 		}
 		@Override
 		public void draw(Batch batch, float alpha) {
-			batch.draw(bg, 0, 0,0,0,Gdx.graphics.getWidth(),Gdx.graphics.getHeight());//fill
+			batch.draw(bg, 0, 0,0,0,720,1280);//fill
 		}
 	}
 	
@@ -52,10 +52,6 @@ public class NonLeague extends Game {
 	public void create () {
 		viewport = new FitViewport(720,1280);
 		state = GameState.getGameState();
-		
-		//AssetManager am = new AssetManager();
-		//am.load("pack.atlas",TextureAtlas.class);
-		
 		
 		teamstatus_screen = new TeamStatus(this);
 		prematch_screen = new PreMatch(this);

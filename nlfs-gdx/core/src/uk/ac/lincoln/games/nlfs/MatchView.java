@@ -7,6 +7,7 @@ import uk.ac.lincoln.games.nlfs.logic.GameState;
 import uk.ac.lincoln.games.nlfs.logic.Goal;
 import uk.ac.lincoln.games.nlfs.logic.Match;
 import uk.ac.lincoln.games.nlfs.logic.MatchEvent;
+import uk.ac.lincoln.games.nlfs.ui.TeamLabel;
 
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
@@ -14,7 +15,6 @@ import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.ui.HorizontalGroup;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
-import com.badlogic.gdx.scenes.scene2d.ui.Label.LabelStyle;
 import com.badlogic.gdx.scenes.scene2d.ui.ScrollPane;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
@@ -31,13 +31,14 @@ import com.badlogic.gdx.utils.Timer.Task;
 public class MatchView extends BaseScreen{
 	private Match match;
 	private TextButton button;
-	private Label home_label,away_label,home_score_label,away_score_label,clock_label;
+	private TeamLabel home_label,away_label;
+	private Label home_score_label,away_score_label,clock_label;
 	private ScrollPane action_pane;
 	private VerticalGroup action_group;
 	private ArrayList<Goal> goals;
 	//private int mins_in_match;
 	private int current_minute, current_home, current_away;
-	public static float SIMULATION_S_PER_MIN = 0.4f;
+	public static float SIMULATION_S_PER_MIN = 0.4f;//lower this is, faster the simulation gets
 	private static boolean SKIP_MATCH = false;//debug setting skips slow match report
 	private enum MatchState {PRE,H1,HT,H2,FT};
 	private MatchState current_state;
@@ -112,8 +113,8 @@ public class MatchView extends BaseScreen{
 	public MatchView (final NonLeague game) {
 		super(game);
 		//NB remember none of this stuff is in memory yet
-		home_label = new Label("[HOME TEAM]",Assets.skin,"teamname");
-		away_label = new Label("[AWAY TEAM]",Assets.skin,"teamname");
+		home_label = new TeamLabel(null,"teamname_bigger");
+		away_label = new TeamLabel(null,"teamname_bigger");
 		home_score_label = new Label(" 0 ",Assets.skin,"score");
 		away_score_label = new Label(" 0 ",Assets.skin,"score");
 		
@@ -193,12 +194,9 @@ public class MatchView extends BaseScreen{
 		goals.addAll(match.result.away_goals);
 		Collections.sort(goals);
 		clock_label.setText(" 0 ");
-		home_label.setText(" "+match.home.name+" ");
-		home_label.setStyle(new LabelStyle(Assets.skin.get("teamname", LabelStyle.class)));
-		home_label.getStyle().background = Assets.skin.newDrawable("base",Assets.skin.getColor(match.home.colour_base));
-		home_label.getStyle().fontColor = Assets.skin.getColor(match.home.colour_primary);
-		away_label.setText(" "+match.away.name+" ");
-		away_label.setStyle(new LabelStyle(Assets.skin.get("teamname", LabelStyle.class)));
+		home_label.update(match.home);
+		away_label.update(match.away);
+		
 		//if same kits, invert away
 		if(match.away.colour_base==match.home.colour_base&&match.away.colour_primary==match.home.colour_primary) {
 			away_label.getStyle().background = Assets.skin.newDrawable("base",Assets.skin.getColor(match.away.colour_primary));

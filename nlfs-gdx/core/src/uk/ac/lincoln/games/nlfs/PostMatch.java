@@ -77,8 +77,8 @@ public class PostMatch extends BaseScreen {
 		TeamLabel h,a;
 		for(MatchResult mr2:GameState.league.weekly_results) {
 			results_table.row();
-			h = new TeamLabel(mr2.match.home);
-			a = new TeamLabel(mr2.match.away);
+			h = new TeamLabel(mr2.match.home,"teamname_bigger");
+			a = new TeamLabel(mr2.match.away,"teamname_bigger");
 			results_table.add(h).fillX().expandX().pad(5f);
 			results_table.add(new Label(" "+String.valueOf(mr2.home_goals.size())+" - "+String.valueOf(mr2.away_goals.size())+" ",Assets.skin,"score")).pad(5f);
 			results_table.add(a).fillX().expandX().pad(5f).align(Align.right).right();

@@ -1,8 +1,6 @@
 Non-League Football Supporter - GDX edition
 =========
-This branch contains a rewrite of Non-League Football Supporter to use the multi-platform LibGDX framework.
-
-The branch is currently **semi-functional**. Please refer to the master branch of the project for a functional native Android implementation.
+The game is currently **semi-functional**.
 
 Outstanding Tasks
 ------------------
@@ -22,7 +20,10 @@ Check out NLFS-GDX and import as Gradle project (there is one project per platfo
 
 Android is a little more complex. You need to have the dependencies (e.g. Android SDK) set up according to the LibGDX guide. Then, make sure to set the path to the Android SDK in local.properties (sdk.dir=/home/blah) to compile the Android version (or disable it in the settings). We've been using Eclipse with ADT for Android, but your own gradle-supported IDE should work.
 
------------
-Licences:
 
-TBC
+Licences:
+==========
+
+Typefaces:
+----------
+Babas Neue; http://dharmatype.com/ ; SIL Open Font License: http://scripts.sil.org/cms/scripts/page.php?site_id=nrsi&id=OFL_web

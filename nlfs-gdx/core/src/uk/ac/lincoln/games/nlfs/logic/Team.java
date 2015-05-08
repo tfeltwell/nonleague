@@ -38,7 +38,7 @@ public class Team {
 		//generate name, stadium
 		do {
 		name = assets.town_names.get((new Random()).nextInt(assets.town_names.size()));//random town name 
-		if (Math.random()<0.3&&name.length()<9) //not all teams have suffices
+		if (Math.random()<0.45&&name.length()<9) //not all teams have suffices
 			name = name +" "+ assets.team_names.get((new Random()).nextInt(assets.team_names.size()));
 		}while(league.teamNameInUse(name));
 		

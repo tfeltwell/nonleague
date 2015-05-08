@@ -8,6 +8,7 @@ hs_err_pid*
 #BK - private
 *.keystore
 android_compile
+tools/
 
 ## GWT
 war/

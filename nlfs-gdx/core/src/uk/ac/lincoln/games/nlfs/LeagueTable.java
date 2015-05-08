@@ -46,10 +46,10 @@ public class LeagueTable extends BaseScreen {
 	 * Regenerate table
 	 */
 	public void update() {
-		title.setText(GameState.league.name);
+		title.setText(GameState.league.name.toUpperCase());
 		league_table.clear();
 		for(LeagueTableItem lti:GameState.league.table) {
-			league_table.add(new TeamLabel(lti.team)).align(Align.left).fillX();
+			league_table.add(new TeamLabel(lti.team,"teamname")).align(Align.left).fillX();
 			league_table.add(new Label(String.valueOf(lti.getGamesPlayed()),Assets.skin,"lt_points"));
 			league_table.add(new Label(String.valueOf(lti.wins),Assets.skin,"lt_points"));
 			league_table.add(new Label(String.valueOf(lti.losses),Assets.skin,"lt_points"));

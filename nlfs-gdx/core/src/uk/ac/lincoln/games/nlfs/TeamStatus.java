@@ -2,6 +2,7 @@ package uk.ac.lincoln.games.nlfs;
 
 import uk.ac.lincoln.games.nlfs.logic.GameState;
 import uk.ac.lincoln.games.nlfs.ui.LeaguePositionGraph;
+import uk.ac.lincoln.games.nlfs.ui.TeamLabel;
 
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
@@ -18,13 +19,15 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 public class TeamStatus extends BaseScreen {
 	//private Image position_graph;
 	private Table position_table;
-	private Label team_label,next_opponent_label,league_pos_label,unplayed_label;
+	private TeamLabel team_label,next_opponent_label;
+	private Label league_pos_label,unplayed_label;
 	
 	public TeamStatus(final NonLeague game) {
 		super(game);
-		team_label = new Label(GameState.player_team.name.toUpperCase(),Assets.skin,"teamname");
+		
+		team_label = new TeamLabel(GameState.player_team,"teamname_bigger");
 		//team_label.setFontScale(0.5f);
-		next_opponent_label = new Label("[NEXT TEAM]",Assets.skin);
+		next_opponent_label = new TeamLabel(null,"teamname_smaller");
 		league_pos_label = new Label("X",Assets.skin);
 		unplayed_label = new Label("X",Assets.skin);
 		position_table = new Table();
@@ -73,7 +76,7 @@ public class TeamStatus extends BaseScreen {
 	 * Reset visual elements based on current team status
 	 */
 	public void update() {
-		next_opponent_label.setText(GameState.league.findTeamsNextFixture(GameState.player_team).opponentFor(GameState.player_team).name);
+		next_opponent_label.update(GameState.league.findTeamsNextFixture(GameState.player_team).opponentFor(GameState.player_team));
 		league_pos_label.setText(String.valueOf(GameState.league.getTeamPosition(GameState.player_team)));
 		unplayed_label.setText(String.valueOf(GameState.player_team.countUnplayedMatches()));
 		position_table.clear();

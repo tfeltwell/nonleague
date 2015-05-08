@@ -3,6 +3,7 @@ package uk.ac.lincoln.games.nlfs;
 import uk.ac.lincoln.games.nlfs.logic.GameState;
 import uk.ac.lincoln.games.nlfs.logic.Match;
 import uk.ac.lincoln.games.nlfs.ui.RitualSelector;
+import uk.ac.lincoln.games.nlfs.ui.TeamLabel;
 
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
@@ -18,14 +19,16 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 public class PreMatch extends BaseScreen{
 	private Match match;
 	
-	private Label home_label,away_label,stadium_label,weather_label;
+	private TeamLabel home_label,away_label;
+	private Label stadium_label,weather_label;
+	
 	private TextButton button;
 	
 	public PreMatch (final NonLeague game) {
 		super(game);
 		//NB remember none of this stuff is in memory yet
-		home_label = new Label("[HOME TEAM]",Assets.skin,"teamname");
-		away_label = new Label("[AWAY TEAM]",Assets.skin,"teamname");
+		home_label = new TeamLabel(null,"teamname_bigger");
+		away_label = new TeamLabel(null,"teamname_bigger");
 		stadium_label = new Label("at [STADIUM]",Assets.skin);
 		weather_label = new Label("weather",Assets.skin);
 		
@@ -69,12 +72,8 @@ public class PreMatch extends BaseScreen{
 		this.match = GameState.league.findTeamsNextFixture(GameState.player_team);
 		button.setChecked(false);
 		//Set team names/colours
-		home_label.setText(" "+match.home.name);
-		home_label.setStyle(new LabelStyle(Assets.skin.get("teamname", LabelStyle.class)));
-		home_label.getStyle().background = Assets.skin.newDrawable("base",Assets.skin.getColor(match.home.colour_base));
-		home_label.getStyle().fontColor = Assets.skin.getColor(match.home.colour_primary);
-		away_label.setText(" "+match.away.name);
-		away_label.setStyle(new LabelStyle(Assets.skin.get("teamname", LabelStyle.class)));
+		home_label.update(match.home);
+		away_label.update(match.away);
 		
 		//if same kits, invert away
 		if(match.away.colour_base==match.home.colour_base&&match.away.colour_primary==match.home.colour_primary) {

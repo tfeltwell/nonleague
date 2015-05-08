@@ -1,6 +1,8 @@
 {  
      com.badlogic.gdx.graphics.g2d.BitmapFont: {  
-     	teamname: { file: teamname.fnt },
+     	bebas_80: { file: bebas_80.fnt },
+     	bebas_60: { file: bebas_60.fnt },
+     	bebas_40: { file: bebas_40.fnt },
      	normal_16: { file: normal_16.fnt },
      	normal_20: { file: normal_20.fnt },
      	normal_25: { file: normal_25.fnt },
@@ -19,14 +21,17 @@
 	      black: { hex: "010101" }  
      },  
      com.badlogic.gdx.scenes.scene2d.ui.Label$LabelStyle: {  
-      	pagetitle: { font: teamname, fontColor: white },
-      	teamname: { font: teamname, fontColor: white },
-      	score: { font: teamname, fontColor: black },
+      	pagetitle: { font: bebas_60, fontColor: white },
+      	teamname_bigger: { font: bebas_80, fontColor: white }, 
+      	teamname: { font: bebas_60, fontColor: white },
+      	teamname_smaller: { font: bebas_40, fontColor: white }, 
+      	
+      	score: { font: bebas_80, fontColor: black },
       	timer: { font: bold_20, fontColor: black },
       	score_report: {font: normal_20, fontColor:white},
       	event_report: {font: normal_16, fontColor:white},
-      	scorer_report: {font: normal_16, fontColor:white},
-      	lt_points: {font:teamname,fontColor:white},
+      	scorer_report: {font: normal_16, fontColor:white}, 
+      	lt_points: {font:bebas_60,fontColor:white},
       	default: { font: normal_16, fontColor: white },
      },  
      com.badlogic.gdx.scenes.scene2d.ui.Button$ButtonStyle: {  
