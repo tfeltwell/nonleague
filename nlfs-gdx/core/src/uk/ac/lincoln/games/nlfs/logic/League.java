@@ -293,6 +293,30 @@ public class League {
 	}
 	
 	/**
+	 * Return current position as ordinal string ("1st", "2nd")
+	 * @param t
+	 * @return
+	 */
+	public String getTeamPositionOrdinal(Team t) {
+		int value = getTeamPosition(t);
+		int hunRem = value % 100;
+		int tenRem = value % 10;
+		if (hunRem - tenRem == 10) {
+			return String.valueOf(value)+"th";
+		}
+		switch (tenRem) {
+		case 1:
+			return String.valueOf(value)+"st";
+		case 2:
+			return String.valueOf(value)+"nd";
+		case 3:
+			return String.valueOf(value)+"rd";
+		default:
+			return String.valueOf(value)+"th";
+		}
+	}
+	
+	/**
 	 * Generate a random name for this league ("Northern Champions Conference")
 	 * @return
 	 */

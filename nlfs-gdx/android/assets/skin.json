@@ -1,10 +1,12 @@
 {  
      com.badlogic.gdx.graphics.g2d.BitmapFont: {  
-     	bebas_80: { file: bebas_80.fnt },
-     	bebas_60: { file: bebas_60.fnt },
-     	bebas_40: { file: bebas_40.fnt },
-     	tgl_40:	{ file: tgl_40.fnt },
-     	tgl_60:	{ file: tgl_60.fnt },
+     	bebas_80: { file: fonts/bebas_80.fnt },
+     	bebas_60: { file: fonts/bebas_60.fnt },
+     	bebas_40: { file: fonts/bebas_40.fnt },
+     	tgl_32:	{ file: fonts/tgl_32.fnt },
+     	tgl_40:	{ file: fonts/tgl_40.fnt },
+     	tgl_60:	{ file: fonts/tgl_60.fnt },
+     	mph_38:	{ file: fonts/mph_38.fnt },
      	
      },  
      com.badlogic.gdx.graphics.Color: {  
@@ -16,7 +18,8 @@
 	      skyblue: {hex: "00AAFF"},
 	      maroon: {hex: "8C0000"},
 	      white: { hex: "FFFFFF" },  
-	      black: { hex: "010101" }  
+	      black: { hex: "010101" }  ,
+	      silver: { hex: "c0c0c0" }
      },  
      com.badlogic.gdx.scenes.scene2d.ui.Label$LabelStyle: {  
       	pagetitle: { font: bebas_60, fontColor: white },
@@ -25,12 +28,18 @@
       	teamname_smaller: { font: bebas_40, fontColor: white }, 
       	
       	score: { font: bebas_80, fontColor: black },
+      	score_smaller: { font: bebas_40, fontColor: white },
       	timer: { font: tgl_40, fontColor: black },
       	score_report: {font: tgl_60, fontColor:white},
       	event_report: {font: tgl_40, fontColor:white},
       	scorer_report: {font: tgl_40, fontColor:white}, 
-      	lt_points: {font:bebas_60,fontColor:white},
+      	lt_points: {font:bebas_60,fontColor:silver},
+      	lt_points_w: {font:bebas_60,fontColor:white},
+      	lt_points_p: {font:bebas_60,fontColor:green},
+      	lt_points_r: {font:bebas_60,fontColor:red},
       	default: { font: tgl_40, fontColor: white },
+      	default_small: { font: tgl_32, fontColor: silver },
+      	newspaper: { font: mph_38, fontColor: black },
      },  
      com.badlogic.gdx.scenes.scene2d.ui.Button$ButtonStyle: {  
       default: { up: button_patch, down: button_patch_down, checked: button_patch, disabled: button_patch_disabled },

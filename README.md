@@ -26,5 +26,6 @@ Licences:
 
 Typefaces:
 ----------
-Babas Neue; http://dharmatype.com/ ; SIL Open Font License: http://scripts.sil.org/cms/scripts/page.php?site_id=nrsi&id=OFL_web
-TGL 0-1451 Engschrift; Peter Wiegel; CC-BY; http://www.peter-wiegel.de/TGL_0-1451.html
+- Babas Neue; http://dharmatype.com/ ; SIL Open Font License: http://scripts.sil.org/cms/scripts/page.php?site_id=nrsi&id=OFL_web
+- TGL 0-1451 Engschrift; Peter Wiegel; CC-BY; http://www.peter-wiegel.de/TGL_0-1451.html- 
+- MPH 2B Damase; Mark Williamson; OFL
