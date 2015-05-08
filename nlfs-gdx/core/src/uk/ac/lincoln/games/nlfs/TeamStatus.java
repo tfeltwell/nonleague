@@ -52,9 +52,9 @@ public class TeamStatus extends BaseScreen {
 		TextButton lgbutton = new TextButton("League Table", Assets.skin);
 		TextButton button = new TextButton("Prepare for Match", Assets.skin);
 		
-		table.add(lgbutton).width(200).height(40).colspan(2);
+		table.add(lgbutton).width(480).height(85).colspan(2);
 		table.row();
-		table.add(button).width(200).height(40).colspan(2);
+		table.add(button).width(480).height(85).colspan(2);
 		table.row();
 		button.addListener(new InputListener() {
             public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {

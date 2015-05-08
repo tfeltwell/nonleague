@@ -56,7 +56,7 @@ public class PreMatch extends BaseScreen{
 		
 		button = new TextButton("Go to Match", Assets.skin);	
 
-		table.add(button).width(200).height(40);
+		table.add(button).width(480).height(85).colspan(2);
 		table.row();
 		button.addListener(new InputListener() {
             public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {

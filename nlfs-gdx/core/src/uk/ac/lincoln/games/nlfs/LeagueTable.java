@@ -31,7 +31,7 @@ public class LeagueTable extends BaseScreen {
 		table.row();
 		
 		TextButton button = new TextButton("Back to Team", Assets.skin);	
-		table.add(button).width(200).height(40);
+		table.add(button).width(480).height(85);
 		table.row().pad(2);
 		button.addListener(new InputListener() {
             public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
@@ -48,9 +48,16 @@ public class LeagueTable extends BaseScreen {
 	public void update() {
 		title.setText(GameState.league.name.toUpperCase());
 		league_table.clear();
+		league_table.add().align(Align.left).fillX();
+		league_table.add(new Label("W",Assets.skin,"default"));
+		league_table.add(new Label("L",Assets.skin,"default"));
+		league_table.add(new Label("D",Assets.skin,"default"));
+		league_table.add(new Label("PTS",Assets.skin,"default"));
+		league_table.row().pad(2);
+		
 		for(LeagueTableItem lti:GameState.league.table) {
 			league_table.add(new TeamLabel(lti.team,"teamname")).align(Align.left).fillX();
-			league_table.add(new Label(String.valueOf(lti.getGamesPlayed()),Assets.skin,"lt_points"));
+			//league_table.add(new Label(String.valueOf(lti.getGamesPlayed()),Assets.skin,"lt_points"));
 			league_table.add(new Label(String.valueOf(lti.wins),Assets.skin,"lt_points"));
 			league_table.add(new Label(String.valueOf(lti.losses),Assets.skin,"lt_points"));
 			league_table.add(new Label(String.valueOf(lti.draws),Assets.skin,"lt_points"));
