@@ -16,6 +16,8 @@ import uk.ac.lincoln.games.nlfs.logic.Footballer.Position;
 public class Team {
 	private boolean player_control;
 	
+	public static double PLAYER_BIAS = 0.08; // Slightly higher than average bias to win. Happy to tweak this
+	
 	public double win_bias;
 	public String name;
 	public String stadium;
@@ -84,7 +86,7 @@ public class Team {
 	
 	public void setPlayerControlled(boolean value){
 		this.player_control = value;
-		this.win_bias = 0.15; // Slightly higher than average bias. Happy to tweak this
+		this.win_bias = PLAYER_BIAS;
 		}
 
 	/**

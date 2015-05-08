@@ -63,7 +63,7 @@ public class League {
 	 * relegation and promotion tell the algorithms how many teams to move from the league at both ends. OBVIOUSLY relegation + promotion must be < LEAGUE_SIZE
 	 * @param t
 	 */
-	public void newSeason(Team team_following,int relegation,int promotion) {
+	public void newSeason(Team team_following) {
 		
 		//if the given team is in relegation/promotion zone, them and any other teams move to a new league.
 		//otherwise, the teams in the relegation/promotion zone are replaced by new teams
@@ -73,10 +73,13 @@ public class League {
 		ArrayList<Team> relegated_teams = new ArrayList<Team>();
 		ArrayList<Team> league_teams = new ArrayList<Team>();
 		
+		boolean is_promoted = isPromoted(team_following);
+		boolean is_relegated = isRelegated(team_following);
+		
 		for(int i=0;i<table.size();i++) {
-			if(i<promotion) {
+			if(i<PROMOTION) {
 				promoted_teams.add(table.get(i).team);
-			} else if (i>=(table.size()-relegation)) {
+			} else if (i>=(table.size()-RELEGATION)) {
 				relegated_teams.add(table.get(i).team);
 			}
 			else {
@@ -85,19 +88,23 @@ public class League {
 		}
 		
 		teams.clear();
-		fixtures.clear();
+		fixtures.clear(); 
 		
-		if(getTeamPosition(team_following)<promotion) {//promotion
+		if (is_promoted) {
 			teams.addAll(promoted_teams);
-		} else if(getTeamPosition(team_following)>=(table.size()-relegation)) {//relegation
+			this.name = generateName();
+		}
+		else if (is_relegated) {
 			teams.addAll(relegated_teams);
+			this.name = generateName();
 		}
 		else {//not a new league
 			teams.addAll(league_teams);
 		}
+		 
 		if(!GameState.assets.isGenLoaded()) GameState.assets.loadGenData();//load data files into memory for team generation
 		//fill rest of league with teams
-		for(int i=(teams.size()-1);i<LEAGUE_SIZE;i++) {
+		for(int i=teams.size();i<LEAGUE_SIZE;i++) {
 			teams.add(new Team(GameState.assets,this));//presuming the gamestate object is not currently being constructed (i.e. application starting up) (this would crash the game).
 		}
 		
@@ -105,7 +112,9 @@ public class League {
 		fixtures = generateFixtures(teams);
 		current_week = 1;
 		//final_week = 2*(LEAGUE_SIZE-1);
-		resetLeagueTable();
+		resetLeagueTable(); 
+		for (Team t:teams) System.out.println(t.name);
+		for (Match m:fixtures) System.out.println(m.getDescription());
 	}
 	
 	/**
@@ -158,11 +167,17 @@ public class League {
 	 */
 	public void playWeek() {
 		MatchResult mr;
-		weekly_results.clear(); 
-		while(nextFixture().week==current_week) {
-			mr = nextFixture().run();
-			weekly_results.add(mr);
-			addResult(mr);//add to league calcs
+		weekly_results.clear();
+		try {
+			while(nextFixture().week==current_week) {
+				mr = nextFixture().run();
+				weekly_results.add(mr);
+				addResult(mr);//add to league calcs
+			}
+		}
+		catch(NullPointerException e) {
+			//end of season, no more results to add. 
+			System.out.println("End of Season");
 		}
 		current_week++;
 		//update weekly positions
@@ -177,6 +192,13 @@ public class League {
 		for (Match m: fixtures) 
 			if(!m.has_run)return false;
 		return true;
+	}
+	
+	public boolean isPromoted(Team t) {
+		return (this.getTeamPosition(t)<=League.PROMOTION);
+	}
+	public boolean isRelegated(Team t) {
+		return (this.getTeamPosition(t)>(League.LEAGUE_SIZE - League.RELEGATION));
 	}
 	
 	/**
@@ -322,7 +344,7 @@ public class League {
 	 */
 	private String generateName() {
 		String prefix = GameState.assets.league_prefices.get(GameState.rand.nextInt(GameState.assets.league_prefices.size()));
-		String n = "";
+		String n = ""; 
 		if(GameState.rand.nextFloat()<0.8) {
 			do {
 				n = GameState.assets.league_prefices.get(GameState.rand.nextInt(GameState.assets.league_prefices.size()));
@@ -330,7 +352,7 @@ public class League {
 			prefix = prefix + " " + n;
 		}
 		String suffix = GameState.assets.league_suffices.get(GameState.rand.nextInt(GameState.assets.league_suffices.size()));
-		if(GameState.rand.nextFloat()<0.2) {
+		if(GameState.rand.nextFloat()<0.2&&n.length()<20) {
 			do {
 				n = GameState.assets.league_suffices.get(GameState.rand.nextInt(GameState.assets.league_suffices.size()));
 			} while(n==suffix);

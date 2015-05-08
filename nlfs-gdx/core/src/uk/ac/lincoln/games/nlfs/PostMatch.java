@@ -67,7 +67,10 @@ public class PostMatch extends BaseScreen {
             	return true;
             }
             public void touchUp (InputEvent event, float x, float y, int pointer, int button) {
-            	game.changeScreen(game.teamstatus_screen);
+            	if(GameState.league.isSeasonFinished())
+            		game.changeScreen(game.endofseason_screen);
+            	else
+            		game.changeScreen(game.teamstatus_screen);
 			}});
 		
 		results_table = new Table();

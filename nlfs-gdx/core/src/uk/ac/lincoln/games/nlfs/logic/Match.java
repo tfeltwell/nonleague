@@ -18,7 +18,7 @@ public class Match {
 	public transient Team home, away;
 	public transient League league;
 	public boolean has_run;
-	public MatchResult result;
+	public MatchResult result; 
 	public int week;
 	
 	private String home_name, away_name;//used as IDs for save/load to avoid circular serialisation (i.e. don't ask & don't fuck with it)

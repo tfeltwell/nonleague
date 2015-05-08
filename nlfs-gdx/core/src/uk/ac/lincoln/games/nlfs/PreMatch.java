@@ -80,11 +80,7 @@ public class PreMatch extends BaseScreen{
 			away_label.getStyle().background = Assets.skin.newDrawable("base",Assets.skin.getColor(match.away.colour_primary));
 			away_label.getStyle().fontColor = Assets.skin.getColor(match.away.colour_base);
 
-		} else {
-			away_label.getStyle().background = Assets.skin.newDrawable("base",Assets.skin.getColor(match.away.colour_base));
-			away_label.getStyle().fontColor = Assets.skin.getColor(match.away.colour_primary);
-
-		}
+		} 
 		
 		
 		weather_label.setText(match.getWeather());
