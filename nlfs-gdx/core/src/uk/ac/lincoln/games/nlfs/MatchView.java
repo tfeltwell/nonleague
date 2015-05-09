@@ -34,11 +34,12 @@ public class MatchView extends BaseScreen{
 	private TeamLabel home_label,away_label;
 	private Label home_score_label,away_score_label,clock_label;
 	private ScrollPane action_pane;
-	private VerticalGroup action_group;
+	//private VerticalGroup action_group;
+	private Table event_table;
 	private ArrayList<Goal> goals;
 	//private int mins_in_match;
 	private int current_minute, current_home, current_away;
-	public static float SIMULATION_S_PER_MIN = 0.2f;//lower this is, faster the simulation gets (0.4f is about right)
+	public static float SIMULATION_S_PER_MIN = 0.1f;//lower this is, faster the simulation gets (0.3f is about right)
 	private static boolean SKIP_MATCH = false;//debug setting skips slow match report
 	private enum MatchState {PRE,H1,HT,H2,FT};
 	private MatchState current_state;
@@ -56,7 +57,10 @@ public class MatchView extends BaseScreen{
 				current_state = MatchState.FT;
 				button.setText("Leave Match");
 				button.setDisabled(false);
-				action_group.addActor(new Label("Full Time at "+match.home.stadium ,Assets.skin,"score_report"));
+				
+				event_table.add("Full Time","score_report").colspan(2).center();
+				event_table.row();
+
 				action_pane.fling(1f, 0f, -500f);
 				return;
 			}
@@ -65,7 +69,8 @@ public class MatchView extends BaseScreen{
 				current_state = MatchState.HT;
 				button.setText("Second Half");
 				button.setDisabled(false);
-				action_group.addActor(new Label("Half Time at "+match.home.stadium ,Assets.skin,"score_report"));
+				event_table.add("Half Time","score_report").colspan(2).center();
+				event_table.row();
 				action_pane.fling(1f, 0f, -500f);
 				return;
 			}
@@ -75,7 +80,9 @@ public class MatchView extends BaseScreen{
 			clock_label.setText(" "+String.valueOf(current_minute)+" ");
 			for(MatchEvent me:match.result.match_events) {
 				if(current_minute==me.minute) {
-					action_group.addActor(new Label(String.valueOf(current_minute)+": "+me.getDescription() ,Assets.skin,"event_report"));
+					event_table.add(String.valueOf(current_minute)+": ","event_report").right().maxWidth(40);
+					event_table.add(me.getDescription() ,"event_report").left().expandX();
+					event_table.row();
 					action_pane.fling(1f, 0f, -500f);
 				}
 			}
@@ -92,15 +99,11 @@ public class MatchView extends BaseScreen{
 					}
 					
 					//add text
-					HorizontalGroup hg = new HorizontalGroup();
-					Image ball = new Image(Assets.skin,"football");
-					hg.addActor(ball);
-					hg.addActor(new Label(String.valueOf(g.time)+": Goal for "+g.scorer.team.name ,Assets.skin,"score_report"));
-					action_group.addActor(hg);
-					Label scorer = new Label(g.scorer.getName()+" ("+g.scorer.getPosition().toString()+")",Assets.skin,"scorer_report");
-					scorer.setWidth(300);
-					scorer.setAlignment(Align.right);
-					action_group.addActor(scorer);
+					event_table.add("GOAL for "+g.scorer.team.name,"score_report").colspan(2).center();
+					event_table.row();
+					event_table.add(String.valueOf(current_minute)+": ","event_report").right().maxWidth(40);
+					event_table.add(g.scorer.getName()+" ("+g.scorer.getPosition().toString()+")" ,"event_report").left().expandX();
+					event_table.row();
 					action_pane.fling(1f, 0f, -500f);
 					
 				}
@@ -121,7 +124,6 @@ public class MatchView extends BaseScreen{
 		home_score_label = new Label(" 0 ",Assets.skin,"score");
 		away_score_label = new Label(" 0 ",Assets.skin,"score");
 		
-		
 		table.add(home_label).expandX().fillX().left();
 		table.add(home_score_label).right().padLeft(2);
 		table.row().padTop(2);
@@ -131,30 +133,19 @@ public class MatchView extends BaseScreen{
 		table.row().padTop(2);
 		Table table2 = new Table();
 		Image stopwatch = new Image(Assets.skin,"stopwatch");
-		//stopwatch.scaleBy(-0.5f);
-		table2.add(stopwatch).maxSize(17,25);
+		
+		table2.add(stopwatch).maxSize(23,29);
 		clock_label = new Label(" 0 ",Assets.skin,"timer");
 		clock_label.getStyle().background = Assets.skin.newDrawable("base",Color.WHITE); //TODO should be properly assigned in skin
 		table2.add(clock_label);
 		table.add(table2).colspan(2);
 		table.row().padTop(2);
 		
-		
-		Table action_table = new Table();
-		//action_table.setSize(500, 600);
-		action_table.setDebug(true);
-		action_table.setBackground(Assets.skin.getDrawable("darken"));
-		
-		action_group = new VerticalGroup();
-		action_group.align(Align.left);
-		action_group.setSize(500,600);
-		action_pane = new ScrollPane(action_group);
-		action_pane.setScrollingDisabled(true, false);
-				
-		action_pane.setSize(500, 600);
-		
-		action_table.add(action_pane).expand().fill().align(Align.left);
-		table.add(action_table).colspan(2).width(500).height(600).expand().fill();
+		event_table = new Table(Assets.skin);
+		event_table.setBackground(Assets.skin.getDrawable("darken"));
+		//event_table.setDebug(true);		
+		action_pane = new ScrollPane(event_table);
+		table.add(action_pane).colspan(2).width(600).height(650).expand().fill();
 		
 		table.row();
 		button = new TextButton("Leave Match", Assets.skin);	
@@ -210,12 +201,11 @@ public class MatchView extends BaseScreen{
 		button.setText("Kick Off");
 		away_score_label.setText(" "+String.valueOf(current_away)+" ");
 		home_score_label.setText(" "+String.valueOf(current_home)+" ");
-		action_group.clear();
+		event_table.clear();
 		
 		//do gate
-		
-		action_group.addActor(new Label("We join "+String.valueOf(match.result.gate)+" fans at "+match.home.stadium,Assets.skin,"event_report"));
-		
+		event_table.add(" We join "+String.valueOf(match.result.gate)+" fans at "+match.home.stadium,"event_report").colspan(2).left().fillX().expandX();
+		event_table.row();
 		current_state = MatchState.PRE;
 		if(SKIP_MATCH){
 			current_state = MatchState.FT;

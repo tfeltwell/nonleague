@@ -27,7 +27,7 @@ public class MatchEvent implements Comparable<MatchEvent>{
 			return(player.getName() + " is sent off! "+player.team.name+" are a man down");
 		}
 		if(type==MatchEventType.YELLOWCARD) {
-			return("Yellow card for "+player.getName()+" ("+player.team.name+")");
+			return("Yellow card for "+player.getSurname()+" ("+player.team.name+")");
 		}
 		if(type==MatchEventType.KNOCK) {
 			return(player.getSurname()+" ("+player.team.name+") picks up a knock");
@@ -35,7 +35,6 @@ public class MatchEvent implements Comparable<MatchEvent>{
 		else {
 			return("Ref warns "+player.getSurname()+" ("+player.team.name+")");
 		}
-		
 	}
 	
 	/**
