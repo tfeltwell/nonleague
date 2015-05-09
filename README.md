@@ -29,3 +29,8 @@ Typefaces:
 - Babas Neue; http://dharmatype.com/ ; SIL Open Font License: http://scripts.sil.org/cms/scripts/page.php?site_id=nrsi&id=OFL_web
 - TGL 0-1451 Engschrift; Peter Wiegel; CC-BY; http://www.peter-wiegel.de/TGL_0-1451.html- 
 - MPH 2B Damase; Mark Williamson; OFL
+
+Images:
+-------
+Football field; See-ming Lee, CC-BY; https://www.flickr.com/photos/seeminglee/8688505741
+Supporter with Beer; Russell James Smith, CC-BY; https://www.flickr.com/photos/russelljsmith/488207808/
