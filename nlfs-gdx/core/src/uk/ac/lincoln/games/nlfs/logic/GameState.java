@@ -21,25 +21,31 @@ public class GameState {
 	public static Assets assets;
 	public static League league;
 	public static Team player_team;
-	public static Random rand;
+	public static Random rand; //this is seeded to be always the same - used for generation
+	public static Random rand2; //this is NOT seeded, used for match engine.
 	public static String SAVEFILE = "nlfs.dat";
+	private static boolean enable_saving = true; //all should be true for normal operation
+	private static boolean enable_seed = true;
 	
 	
-	public static GameState getGameState() {
+	
+	public static GameState getGameState(long seed) {
 		if(state==null) {
-			state = new GameState();
+			state = new GameState(seed);
 		}
 		return state;
 	}
 	
-	public GameState() {
+	public GameState(long seed) {
 		assets = new Assets();
-		rand = new Random();
+		if(enable_seed)	rand = new Random(seed);
+		else rand = new Random();
+		rand2 = new Random();
 		//Try to load game from storage. If none exists create a new league
 		if(!this.loadGame()) {
 			Gdx.app.log("Start","no savefile found, creating new league");
 			league = new League(assets);
-			player_team = league.teams.get(new Random().nextInt(league.teams.size()));//randomly select a player team
+			player_team = league.teams.get(rand.nextInt(league.teams.size()));//randomly select a player team
 			player_team.setPlayerControlled(true);
 		} else {
 			Gdx.app.log("Start","Savefile found, loaded league");
@@ -57,27 +63,26 @@ public class GameState {
 	 * Methods to load/save game from local storage
 	 */
 	public void saveGame() {
-		/* TODO temporary not saving to stop committing new save files all the time 
+		if(!enable_saving) return;
 		Json json = new Json();
 		String o = json.toJson(league);
 		FileHandle file = Gdx.files.local(SAVEFILE);
-	    //file.writeString(com.badlogic.gdx.utils.Base64Coder.encodeString(o), false);
-		file.writeString(o, false);//TODO Base64
-	    Gdx.app.log("SAVE","Game Saved to "+SAVEFILE);*/ 
+	    file.writeString(com.badlogic.gdx.utils.Base64Coder.encodeString(o), false);
+		//file.writeString(o, false);
+	    Gdx.app.log("SAVE","Game Saved to "+SAVEFILE);
 	}
 	public boolean loadGame() {
-		return false;
-		//TODO temporary doing new game every time
-		/*Json json = new Json();
+		if(!enable_saving) return false;
+		Json json = new Json();
 		String s = "";
 		FileHandle file = Gdx.files.local(SAVEFILE);
 	    if (file != null && file.exists()) {
 	    	s = file.readString();
 	    }
 	    if(s.isEmpty()) return false;
-	    //league = json.fromJson(League.class, com.badlogic.gdx.utils.Base64Coder.decodeString(s));
-	    league = json.fromJson(League.class, s);
+	    league = json.fromJson(League.class, com.badlogic.gdx.utils.Base64Coder.decodeString(s));
+	    //league = json.fromJson(League.class, s);
 		league.reinit();
-		return true;*/
+		return true;
 	}
 }

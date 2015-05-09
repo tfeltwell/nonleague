@@ -53,7 +53,7 @@ public class Match {
 	public String getWeather() {
 		//random weather
 		String[] possible_weather = {"Mild","Wet","Overcast","Sleet","Stormy","Snow","Drizzle","Showers","Pouring","Cats and Dogs","Misty"};
-	    return possible_weather[(new Random().nextInt(possible_weather.length))]; 
+	    return possible_weather[(GameState.rand2.nextInt(possible_weather.length))]; 
 	}
 	
 	/**
@@ -67,7 +67,7 @@ public class Match {
 		List<Double> results = asList(14.0,29.5,42.8,55.0,64.6,72.0,76.4,83.8,88.2,90.0,91.1,91.8,92.5,93.6,94.3,94.7,95.8,96.5,97.6,98.0,99.4,100.0);
 		List<String> scores = asList("0-0","1-0","1-1","2-0","2-1","2-2","3-0","3-1","3-2","4-0","4-1","4-2","4-3","5-0","5-1","5-2","5-3","5-4","6-0","7-0","3-3","4-4");
 		
-		double pip = Math.random()*100;
+		double pip = GameState.rand2.nextDouble()*100;
 		String actual_result = "0-0";
 		for (int i=0;i<22;i++) {
 			if(pip<results.get(i)) {
@@ -83,7 +83,7 @@ public class Match {
 		home_goals = away_goals = win_goals;//presume tie
 		if(win_goals!=lose_goals) {//not a tie
 			//there was a winner, who was it (using bias)
-			if((home.win_bias+Match.HOME_ADVANTAGE+(Math.random()*2))>(away.win_bias+(Math.random()*2))) {
+			if((home.win_bias+Match.HOME_ADVANTAGE+(GameState.rand2.nextDouble()*2))>(away.win_bias+(GameState.rand2.nextDouble()*2))) {
 				home_goals = win_goals;//winner
 				away_goals = lose_goals;//loser
 			}

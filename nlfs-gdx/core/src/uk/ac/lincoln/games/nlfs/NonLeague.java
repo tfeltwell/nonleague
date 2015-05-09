@@ -16,7 +16,7 @@ public class NonLeague extends Game {
 	//public Skin skin;
 	public FitViewport viewport;
 	public GameState state;
-	
+	private String hardware_id;
 	
 	public TeamStatus teamstatus_screen;//messy architecture but saves on garbage collection
 	public PreMatch prematch_screen;
@@ -52,7 +52,9 @@ public class NonLeague extends Game {
 	
 	public void create () {
 		viewport = new FitViewport(720,1280);
-		state = GameState.getGameState();
+		
+		
+		state = GameState.getGameState(Long.valueOf(hardware_id));
 		
 		teamstatus_screen = new TeamStatus(this);
 		prematch_screen = new PreMatch(this);
@@ -68,7 +70,7 @@ public class NonLeague extends Game {
 	}
 
 	public void pause () {
-		GameState.getGameState().saveGame();
+		GameState.getGameState(Long.valueOf(hardware_id)).saveGame();
 	}
 
 	public void resume () {
@@ -76,5 +78,10 @@ public class NonLeague extends Game {
 	
 	public void dispose () {
 		Assets.skin.dispose();
+	}
+	
+	public NonLeague(String hardware_id) {
+		super();
+		this.hardware_id = hardware_id;
 	}
 }

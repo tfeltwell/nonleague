@@ -35,18 +35,18 @@ public class Team {
 		this.player_control = false;
 		this.league = league;
 		
-		win_bias = 0.5 - Math.random(); //gain a random bias between -0.5 and +0.5
+		win_bias = 0.5 - GameState.rand.nextDouble(); //gain a random bias between -0.5 and +0.5
 		
 		//generate name, stadium
 		do {
-		name = assets.town_names.get((new Random()).nextInt(assets.town_names.size()));//random town name 
-		if (Math.random()<0.45&&name.length()<9) //not all teams have suffices
-			name = name +" "+ assets.team_names.get((new Random()).nextInt(assets.team_names.size()));
+		name = assets.town_names.get(GameState.rand.nextInt(assets.town_names.size()));//random town name 
+		if (GameState.rand.nextDouble()<0.45&&name.length()<9) //not all teams have suffices
+			name = name +" "+ assets.team_names.get(GameState.rand.nextInt(assets.team_names.size()));
 		}while(league.teamNameInUse(name));
 		
 		
-		stadium = assets.stadium_names.get(new Random().nextInt(assets.stadium_names.size())) +" "+ assets.road_names.get(new Random().nextInt(assets.road_names.size()));
-		ArrayList<String> colour = assets.team_colours.get(new Random().nextInt(assets.team_colours.size()));
+		stadium = assets.stadium_names.get(GameState.rand.nextInt(assets.stadium_names.size())) +" "+ assets.road_names.get(GameState.rand.nextInt(assets.road_names.size()));
+		ArrayList<String> colour = assets.team_colours.get(GameState.rand.nextInt(assets.team_colours.size()));
 		
 		colour_base = colour.get(1);
 		colour_primary = colour.get(0);
@@ -95,10 +95,10 @@ public class Team {
 	 * @return
 	 */
 	public Footballer getFootballerAtPosition(Position position){
-		if(position==Position.GK) return goalkeepers.get(new Random().nextInt(goalkeepers.size()));
-		if(position==Position.ST) return strikers.get(new Random().nextInt(strikers.size()));
-		if(position==Position.DF) return defenders.get(new Random().nextInt(defenders.size()));
-		return midfielders.get(new Random().nextInt(midfielders.size()));
+		if(position==Position.GK) return goalkeepers.get(GameState.rand.nextInt(goalkeepers.size()));
+		if(position==Position.ST) return strikers.get(GameState.rand.nextInt(strikers.size()));
+		if(position==Position.DF) return defenders.get(GameState.rand.nextInt(defenders.size()));
+		return midfielders.get(GameState.rand.nextInt(midfielders.size()));
 	}
 	
 	public int countUnplayedMatches() {

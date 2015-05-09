@@ -19,12 +19,12 @@ public class Footballer {
 	public Footballer(Assets assets, Team team, Position pos){
 		position = pos;
 		this.team = team;
-		Random rand = new Random();
+		
 		do{
-		first_name = assets.first_names.get(rand.nextInt(assets.first_names.size()));
-		surname = assets.surnames.get(rand.nextInt(assets.surnames.size()));
+		first_name = assets.first_names.get(GameState.rand.nextInt(assets.first_names.size()));
+		surname = assets.surnames.get(GameState.rand.nextInt(assets.surnames.size()));
 		}while(team.footballerNameInUse(getName()));
-		age = rand.nextInt(15)+18;
+		age = GameState.rand.nextInt(15)+18;
 		//Gdx.app.log("ftgen", getName()+" is a "+getPositionName(position)+" for "+team.name+" at "+team.stadium);
 		
 	}

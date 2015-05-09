@@ -24,10 +24,10 @@ public class MatchResult {
 		this.match_events = new ArrayList<MatchEvent>();
 		//calculate scorers
 		for(int i=0;i<h_goals;i++){
-			this.home_goals.add(new Goal(pickScorer(match.home),(new Random().nextInt(96))));
+			this.home_goals.add(new Goal(pickScorer(match.home),(GameState.rand2.nextInt(96))));
 		}
 		for(int i=0;i<a_goals;i++){
-			this.away_goals.add(new Goal(pickScorer(match.away),(new Random().nextInt(96))));
+			this.away_goals.add(new Goal(pickScorer(match.away),(GameState.rand2.nextInt(96))));
 		}
 		//calculate events
 		ArrayList<Footballer> players = new ArrayList<Footballer>();
@@ -35,9 +35,9 @@ public class MatchResult {
 		players.addAll(match.away.footballers);
 		for(int i=0;i<20;i++) { //TODO Fix odds
 			//TODO: players can be sent off//if(rand.nextInt(20)==1) match_events.add(new MatchEvent(players.get(rand.nextInt(players.size())),MatchEvent.MatchEventType.REDCARD,match,rand.nextInt(94)));
-			if(new Random().nextInt(30)==1) match_events.add(new MatchEvent(players.get(new Random().nextInt(players.size())),MatchEvent.MatchEventType.YELLOWCARD,match,new Random().nextInt(96)));
-			if(new Random().nextInt(15)==1) match_events.add(new MatchEvent(players.get(new Random().nextInt(players.size())),MatchEvent.MatchEventType.WARNING,match,new Random().nextInt(96)));
-			if(new Random().nextInt(20)==1) match_events.add(new MatchEvent(players.get(new Random().nextInt(players.size())),MatchEvent.MatchEventType.KNOCK,match,new Random().nextInt(96)));
+			if(GameState.rand2.nextInt(30)==1) match_events.add(new MatchEvent(players.get(GameState.rand2.nextInt(players.size())),MatchEvent.MatchEventType.YELLOWCARD,match,GameState.rand2.nextInt(96)));
+			if(GameState.rand2.nextInt(15)==1) match_events.add(new MatchEvent(players.get(GameState.rand2.nextInt(players.size())),MatchEvent.MatchEventType.WARNING,match,GameState.rand2.nextInt(96)));
+			if(GameState.rand2.nextInt(20)==1) match_events.add(new MatchEvent(players.get(GameState.rand2.nextInt(players.size())),MatchEvent.MatchEventType.KNOCK,match,GameState.rand2.nextInt(96)));
 		}
 		Collections.sort(match_events);
 		
@@ -57,7 +57,7 @@ public class MatchResult {
 		}
 		
 		//calculate match length
-		match_length = 91+(new Random().nextInt(5));
+		match_length = 91+(GameState.rand2.nextInt(7));
 		//make sure length is right for goals and events
 		for(MatchEvent me: match_events)
 			if(me.minute>match_length) match_length=me.minute;
@@ -66,7 +66,7 @@ public class MatchResult {
 		for(Goal g:away_goals)
 			if(g.time>match_length) match_length = g.time;
 		//set gate for this match
-		gate = 70 + new Random().nextInt(200) + ((League.LEAGUE_SIZE - GameState.league.getTeamPosition(match.home))*8)+((League.LEAGUE_SIZE - GameState.league.getTeamPosition(match.away))*5);
+		gate = 70 + GameState.rand2.nextInt(200) + ((League.LEAGUE_SIZE - GameState.league.getTeamPosition(match.home))*8)+((League.LEAGUE_SIZE - GameState.league.getTeamPosition(match.away))*5);
 		
 	}
 	public MatchResult(){}
@@ -83,7 +83,7 @@ public class MatchResult {
 	 */
 	private Footballer pickScorer(Team team){
 		//60% of goals are scored by strikers, 30% by midfielders and 9% by DF and 1% by GK!
-		float s = new Random().nextFloat();
+		float s = GameState.rand2.nextFloat();
 		if(s<0.6) return team.getFootballerAtPosition(Position.ST);
 		if(s<0.9) return team.getFootballerAtPosition(Position.MF);
 		if(s<0.99) return team.getFootballerAtPosition(Position.DF);
@@ -109,7 +109,7 @@ public class MatchResult {
 		}
 		
 		ArrayList<String> news_items = Assets.news_summaries.get(scoreline);
-        String news_item = news_items.get(new Random().nextInt(news_items.size()));//random description
+        String news_item = news_items.get(GameState.rand2.nextInt(news_items.size()));//random description
         // Tokens: yourteam, opposition, goalkeeper, defender, midfielder, attacker, stadium
         news_item = news_item.replace("{yourteam}",team.name);
         news_item = news_item.replace("{opposition}",opposition.name);
