@@ -9,6 +9,7 @@ import uk.ac.lincoln.games.nlfs.logic.Match;
 import uk.ac.lincoln.games.nlfs.logic.MatchEvent;
 import uk.ac.lincoln.games.nlfs.ui.TeamLabel;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
@@ -88,7 +89,8 @@ public class MatchView extends BaseScreen{
 			}
 			for(Goal g : goals) {
 				if(g.time==current_minute){
-					//TODO: vibrate
+					//vibrate
+					Gdx.input.vibrate(800);
 					if(g.scorer.team==match.home) {
 						current_home++;
 						home_score_label.setText(" "+String.valueOf(current_home)+" ");
