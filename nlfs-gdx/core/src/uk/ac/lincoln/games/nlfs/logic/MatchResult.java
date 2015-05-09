@@ -15,6 +15,7 @@ public class MatchResult {
 	public ArrayList<Goal> home_goals, away_goals;
 	public ArrayList<MatchEvent> match_events;
 	public int match_length;
+	public int gate;
 	
 	public MatchResult(Match match,int h_goals,int a_goals){
 		this.match = match;
@@ -64,6 +65,9 @@ public class MatchResult {
 			if(g.time>match_length) match_length = g.time;
 		for(Goal g:away_goals)
 			if(g.time>match_length) match_length = g.time;
+		//set gate for this match
+		gate = 70 + new Random().nextInt(200) + ((League.LEAGUE_SIZE - GameState.league.getTeamPosition(match.home))*8)+((League.LEAGUE_SIZE - GameState.league.getTeamPosition(match.away))*5);
+		
 	}
 	public MatchResult(){}
 

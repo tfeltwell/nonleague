@@ -38,8 +38,8 @@ public class MatchView extends BaseScreen{
 	private ArrayList<Goal> goals;
 	//private int mins_in_match;
 	private int current_minute, current_home, current_away;
-	public static float SIMULATION_S_PER_MIN = 0.4f;//lower this is, faster the simulation gets
-	private static boolean SKIP_MATCH = true;//debug setting skips slow match report
+	public static float SIMULATION_S_PER_MIN = 0.2f;//lower this is, faster the simulation gets (0.4f is about right)
+	private static boolean SKIP_MATCH = false;//debug setting skips slow match report
 	private enum MatchState {PRE,H1,HT,H2,FT};
 	private MatchState current_state;
 	
@@ -57,7 +57,7 @@ public class MatchView extends BaseScreen{
 				button.setText("Leave Match");
 				button.setDisabled(false);
 				action_group.addActor(new Label("Full Time at "+match.home.stadium ,Assets.skin,"score_report"));
-				
+				action_pane.fling(1f, 0f, -500f);
 				return;
 			}
 			if(current_state==MatchState.H1&&current_minute>(match.result.match_length/2)) {
@@ -66,7 +66,7 @@ public class MatchView extends BaseScreen{
 				button.setText("Second Half");
 				button.setDisabled(false);
 				action_group.addActor(new Label("Half Time at "+match.home.stadium ,Assets.skin,"score_report"));
-				
+				action_pane.fling(1f, 0f, -500f);
 				return;
 			}
 			//resolve a minute's worth of match time
@@ -76,10 +76,12 @@ public class MatchView extends BaseScreen{
 			for(MatchEvent me:match.result.match_events) {
 				if(current_minute==me.minute) {
 					action_group.addActor(new Label(String.valueOf(current_minute)+": "+me.getDescription() ,Assets.skin,"event_report"));
+					action_pane.fling(1f, 0f, -500f);
 				}
 			}
 			for(Goal g : goals) {
 				if(g.time==current_minute){
+					//TODO: vibrate
 					if(g.scorer.team==match.home) {
 						current_home++;
 						home_score_label.setText(" "+String.valueOf(current_home)+" ");
@@ -99,12 +101,13 @@ public class MatchView extends BaseScreen{
 					scorer.setWidth(300);
 					scorer.setAlignment(Align.right);
 					action_group.addActor(scorer);
+					action_pane.fling(1f, 0f, -500f);
 					
 				}
 					
 			}
 			current_minute++;
-			action_pane.fling(0f, 0f, 90f);
+			
 		}
 	}
 	
@@ -138,25 +141,25 @@ public class MatchView extends BaseScreen{
 		
 		
 		Table action_table = new Table();
-		action_table.setSize(300, 500);
+		//action_table.setSize(500, 600);
 		action_table.setDebug(true);
 		action_table.setBackground(Assets.skin.getDrawable("darken"));
 		
 		action_group = new VerticalGroup();
 		action_group.align(Align.left);
+		action_group.setSize(500,600);
 		action_pane = new ScrollPane(action_group);
 		action_pane.setScrollingDisabled(true, false);
+				
+		action_pane.setSize(500, 600);
 		
-		
-		action_pane.setSize(300, 500);
-		
-		action_table.add(action_pane).expand().align(Align.left);
-		table.add(action_table).colspan(2).prefSize(300, 500);
+		action_table.add(action_pane).expand().fill().align(Align.left);
+		table.add(action_table).colspan(2).width(500).height(600).expand().fill();
 		
 		table.row();
 		button = new TextButton("Leave Match", Assets.skin);	
 
-		table.add(button).width(200).height(40).colspan(2);
+		table.add(button).width(480).height(85).colspan(2);
 		table.row();
 		button.addListener(new InputListener() {
             public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
@@ -188,7 +191,6 @@ public class MatchView extends BaseScreen{
 		match = GameState.league.findTeamsNextFixture(GameState.player_team);
 		GameState.league.playWeek();
 		
-		
 		goals = new ArrayList<Goal>();
 		goals.addAll(match.result.home_goals);
 		goals.addAll(match.result.away_goals);
@@ -201,7 +203,6 @@ public class MatchView extends BaseScreen{
 		if(match.away.colour_base==match.home.colour_base&&match.away.colour_primary==match.home.colour_primary) {
 			away_label.getStyle().background = Assets.skin.newDrawable("base",Assets.skin.getColor(match.away.colour_primary));
 			away_label.getStyle().fontColor = Assets.skin.getColor(match.away.colour_base);
-
 		} 
 		
 		button.setDisabled(false);
@@ -210,6 +211,11 @@ public class MatchView extends BaseScreen{
 		away_score_label.setText(" "+String.valueOf(current_away)+" ");
 		home_score_label.setText(" "+String.valueOf(current_home)+" ");
 		action_group.clear();
+		
+		//do gate
+		
+		action_group.addActor(new Label("We join "+String.valueOf(match.result.gate)+" fans at "+match.home.stadium,Assets.skin,"event_report"));
+		
 		current_state = MatchState.PRE;
 		if(SKIP_MATCH){
 			current_state = MatchState.FT;
