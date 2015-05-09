@@ -32,5 +32,5 @@ Typefaces:
 
 Images:
 -------
-Football field; See-ming Lee, CC-BY; https://www.flickr.com/photos/seeminglee/8688505741
-Supporter with Beer; Russell James Smith, CC-BY; https://www.flickr.com/photos/russelljsmith/488207808/
+- Football field; See-ming Lee, CC-BY; https://www.flickr.com/photos/seeminglee/8688505741
+- Supporter with Beer; Russell James Smith, CC-BY; https://www.flickr.com/photos/russelljsmith/488207808/
