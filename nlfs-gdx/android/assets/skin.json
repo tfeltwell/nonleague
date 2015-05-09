@@ -42,11 +42,11 @@
       	newspaper: { font: mph_38, fontColor: black },
      },  
      com.badlogic.gdx.scenes.scene2d.ui.Button$ButtonStyle: {  
-      default: { up: button_patch, down: button_patch_down, checked: button_patch, disabled: button_patch_disabled },
+      default: { up: button_patch, down: button_patch_down, checked: button_patch, disabled: button_patch_disabled },  
+      ritual: { up: button_patch, down: button_patch_down, checked: button_patch_down, disabled: button_patch_disabled },  
+     
      },  
      com.badlogic.gdx.scenes.scene2d.ui.TextButton$TextButtonStyle: {  
       default: { up: button_patch, down: button_patch_down, checked: button_patch, disabled: button_patch_disabled, font: tgl_60, fontColor: white },  
-      ritual_button: { up: button_patch, down: button_patch_down, checked: button_patch_down, disabled: button_patch_disabled, font: tgl_60, fontColor: white },  
-     
      },
 }  
