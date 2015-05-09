@@ -1,12 +1,11 @@
-Non-League Football Supporter - GDX edition
+Non-League Football Supporter
 =========
-The game is currently **semi-functional**.
+The game is currently at alpha state, and works well on Android (4.0+)
 
 Outstanding Tasks
 ------------------
-- MatchView is currently skipped for debug purposes. Check the flag in MatchView
-- Seasons end, new leagues are all generated nicely, but it needs an interstitial screen to summarise team season results.
-- General beautification throughout
+- Iconography needs doing nicely
+- Tutorial on first match for new players
 
 Bugs
 ----
