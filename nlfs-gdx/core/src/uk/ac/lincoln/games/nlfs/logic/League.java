@@ -26,7 +26,7 @@ public class League {
 	public ArrayList<Team> teams;
 	private int current_week;
 	public ArrayList<MatchResult> weekly_results;
-	public transient ArrayList<LeagueTableItem> table;
+	public ArrayList<LeagueTableItem> table;
 	public String name;
 	public static int POINTS_WIN = 3;
 	public static int POINTS_DRAW = 1;
@@ -367,7 +367,12 @@ public class League {
 	 */
 	public void reinit(){
 		for(Team t:teams) {t.reinit(this);}
-		for(Match m:fixtures) {m.reinit(this);}
+		
+		for(Match m:fixtures)
+			m.reinit(this);
+		for(LeagueTableItem lti: table)
+			lti.reinit(this);
+		
 		//regenerate league table
 		resetLeagueTable();
 	}

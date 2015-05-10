@@ -3,12 +3,13 @@ package uk.ac.lincoln.games.nlfs.logic;
 import java.util.ArrayList;
 
 public class LeagueTableItem implements Comparable<LeagueTableItem> {
-	public Team team;
+	public transient Team team;
 	public int wins,losses,draws,points,gf,ga;
 	public ArrayList<Integer> position_history;
-	
+	private String team_name;//for serialisation
 	public LeagueTableItem(Team team) {
 		this.team = team;
+		this.team_name = team.name;
 		wins = 0;
 		losses = 0;
 		draws = 0;
@@ -44,5 +45,12 @@ public class LeagueTableItem implements Comparable<LeagueTableItem> {
 	//allows them to be sorted
 	public int compareTo(LeagueTableItem another) {
 		return  another.points - this.points;
+	}
+	
+	public void reinit(League league) {
+		//find team
+		for(Team t:league.teams) {
+			if(t.name.equals(team_name)) this.team = t;			
+		}
 	}
 }
