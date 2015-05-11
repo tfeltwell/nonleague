@@ -33,5 +33,11 @@ Images:
 -------
 - Football field; See-ming Lee, CC-BY; https://www.flickr.com/photos/seeminglee/8688505741
 - Supporter with Beer; Russell James Smith, CC-BY; https://www.flickr.com/photos/russelljsmith/488207808/
-- Icons; CC-BY; http://www.geekchamp.com/icon-explorer/introduction & Min Kim, http://www.endlessicons.com/terms-of-use/
-- Further Icons; <div>Icons made by <a href="http://www.flaticon.com/authors/freepik" title="Freepik">Freepik</a>, <a href="http://www.flaticon.com/authors/picol" title="Picol">Picol</a>, <a href="http://www.flaticon.com/authors/tutsplus" title="TutsPlus">TutsPlus</a>, <a href="http://www.flaticon.com/authors/spovv" title="spovv">spovv</a> from <a href="http://www.flaticon.com" title="Flaticon">www.flaticon.com</a>             is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0">CC BY 3.0</a></div><div>Icons made by <a href="http://www.flaticon.com/authors/icons8" title="Icons8">Icons8</a>, <a href="http://www.flaticon.com/authors/freepik" title="Freepik">Freepik</a> from <a href="http://www.flaticon.com" title="Flaticon">www.flaticon.com</a>             is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0">CC BY 3.0</a></div>
+- Icons; All [CC-BY](http://creativecommons.org/licenses/by/3.0/):
+	- [Geekchamp](http://www.geekchamp.com/icon-explorer/introduction)
+	- [Min Kim](http://www.endlessicons.com/terms-of-use/)
+	- <a href="http://www.flaticon.com/authors/freepik" title="Freepik">Freepik</a>
+	- <a href="http://www.flaticon.com/authors/picol" title="Picol">Picol</a>
+	- <a href="http://www.flaticon.com/authors/tutsplus" title="TutsPlus">TutsPlus</a> 
+	- <a href="http://www.flaticon.com/authors/spovv" title="spovv">spovv</a>
+	- <a href="http://www.flaticon.com/authors/icons8" title="Icons8">Icons8</a>
