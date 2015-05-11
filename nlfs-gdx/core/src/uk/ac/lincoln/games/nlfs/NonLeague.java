@@ -74,6 +74,7 @@ public class NonLeague extends Game {
 	}
 
 	public void resume () {
+		GameState.assets.manager.finishLoading();
 	}
 	
 	public void dispose () {

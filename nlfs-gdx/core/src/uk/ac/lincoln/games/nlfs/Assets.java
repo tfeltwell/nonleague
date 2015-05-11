@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.Pixmap.Format;
@@ -25,12 +26,16 @@ public class Assets {
 	public ArrayList<ArrayList<String>> team_colours;
 	public static HashMap<String,ArrayList<String>> news_summaries;
 	
+	public AssetManager manager;
+	
 	private boolean gen_loaded;
 	
 	public Assets() {
 		gen_loaded = false;
+		manager = new AssetManager();
 		loadSkin();
 		loadRunData();
+		
 	}
 	
 	public boolean isGenLoaded() { return gen_loaded;}
@@ -96,9 +101,13 @@ public class Assets {
 	 * Load the skin data into memory (must be done before anything is displayed)
 	 */
 	private void loadSkin() {
-		TextureAtlas atlas = new TextureAtlas(Gdx.files.internal("pack.atlas"));
 		
-		skin = new Skin(Gdx.files.internal("skin.json"),atlas);
+		manager.load("skin.json",Skin.class);
+		manager.finishLoading();
+		//TextureAtlas atlas = new TextureAtlas(Gdx.files.internal("pack.atlas"));
+		
+		skin = manager.get("skin.json");//new Skin(Gdx.files.internal("skin.json"),atlas);
+		//skin.
 		
 		// Generate a 1x1 white texture and store it in the skin named "white".
 		Pixmap pixmap = new Pixmap(1, 1, Format.RGBA8888);
