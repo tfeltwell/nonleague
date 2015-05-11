@@ -186,6 +186,7 @@ public class League {
 			lti.addWeeklyPosition(i);
 			i++;
 		}
+		GameState.getGameState(0).saveGame();//save game after each week
 	}
 	
 	public boolean isSeasonFinished() {
@@ -224,8 +225,9 @@ public class League {
 			table.add(new LeagueTableItem(t));
 		}
 		for(Match m: fixtures) { 
-			if(!m.has_run||m.result==null)//only run matches go into the table
+			if(!m.has_run||m.result==null)//only run matches go into the table . //TODO: THIS BREAKS POSITION HISTORIES. Needs to be fixed to keep position histories correct each week too.
 				continue;//presumably all the others will be not run either (since they are in the future) however just in case.
+			
 			addResult(m.result);
 		}
 	}
@@ -374,7 +376,7 @@ public class League {
 			lti.reinit(this);
 		
 		//regenerate league table
-		resetLeagueTable();
+		//resetLeagueTable();
 	}
 	
 }

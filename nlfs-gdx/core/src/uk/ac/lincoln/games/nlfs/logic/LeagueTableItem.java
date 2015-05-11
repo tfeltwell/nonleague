@@ -18,6 +18,7 @@ public class LeagueTableItem implements Comparable<LeagueTableItem> {
 		ga = 0;
 		position_history = new ArrayList<Integer>();
 		}
+	public LeagueTableItem() {}//serialisation helper
 	public int getGamesPlayed() {
 		return wins+losses+draws;
 	}

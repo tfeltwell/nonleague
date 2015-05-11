@@ -70,13 +70,14 @@ public class NonLeague extends Game {
 	}
 
 	public void pause () {
-		GameState.getGameState(Long.valueOf(hardware_id)).saveGame();
+		
 	}
 
 	public void resume () {
 	}
 	
 	public void dispose () {
+		GameState.getGameState(Long.valueOf(hardware_id)).saveGame();
 		Assets.skin.dispose();
 	}
 	

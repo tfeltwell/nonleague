@@ -41,7 +41,7 @@ public class MatchView extends BaseScreen{
 	//private int mins_in_match;
 	private int current_minute, current_home, current_away;
 	public static float SIMULATION_S_PER_MIN = 0.3f;//lower this is, faster the simulation gets (0.3f is about right)
-	private static boolean SKIP_MATCH = false;//debug setting skips slow match report
+	private static boolean SKIP_MATCH = true;//debug setting skips slow match report
 	private enum MatchState {PRE,H1,HT,H2,FT};
 	private MatchState current_state;
 	
@@ -128,20 +128,12 @@ public class MatchView extends BaseScreen{
 		
 		table.add(home_label).expandX().fillX().left();
 		table.add(home_score_label).right().padLeft(2);
-		table.row().padTop(2);
+		table.row().padTop(5);
 		table.add(away_label).expandX().fillX().left();
 		table.add(away_score_label).right().padLeft(2);
 		home_score_label.getStyle().background = Assets.skin.newDrawable("base",Color.WHITE); //TODO should be properly assigned in skin
-		table.row().padTop(2);
-		Table table2 = new Table();
-		Image stopwatch = new Image(Assets.skin,"stopwatch");
+		table.row().padTop(5);
 		
-		table2.add(stopwatch).maxSize(23,29);
-		clock_label = new Label(" 0 ",Assets.skin,"timer");
-		clock_label.getStyle().background = Assets.skin.newDrawable("base",Color.WHITE); //TODO should be properly assigned in skin
-		table2.add(clock_label);
-		table.add(table2).colspan(2);
-		table.row().padTop(2);
 		
 		event_table = new Table(Assets.skin);
 		event_table.setBackground(Assets.skin.getDrawable("darken"));
@@ -149,11 +141,22 @@ public class MatchView extends BaseScreen{
 		action_pane = new ScrollPane(event_table);
 		table.add(action_pane).colspan(2).width(600).height(650).expand().fill();
 		
-		table.row();
+		table.row().padTop(5);
+		
+		Table table2 = new Table();
+		Image stopwatch = new Image(Assets.skin,"stopwatch");
+		table2.add(stopwatch).maxSize(68,75).padRight(4).right();
+		clock_label = new Label(" 0 ",Assets.skin,"timer");
+		clock_label.getStyle().background = Assets.skin.newDrawable("base",Color.WHITE); //TODO should be properly assigned in skin
+		table2.add(clock_label).width(67).right();
 		button = new TextButton("Leave Match", Assets.skin);	
 
-		table.add(button).width(480).height(85).colspan(2);
-		table.row();
+		table2.add(button).width(480).height(85).padLeft(5).left();
+		
+		table.add(table2).colspan(2);
+		
+		table.row().padTop(5);
+		
 		button.addListener(new InputListener() {
             public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
             	return true;

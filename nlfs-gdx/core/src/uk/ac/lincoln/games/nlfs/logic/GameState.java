@@ -25,7 +25,8 @@ public class GameState {
 	public static Random rand2; //this is NOT seeded, used for match engine.
 	public static String SAVEFILE = "nlfs.dat";
 	private static boolean enable_saving = true; //all should be true for normal operation
-	private static boolean enable_seed = true;
+	private static boolean enable_b64_savefile = true;//NB existing saves will be made invalid when changing this setting
+	private static boolean enable_seed = true; //enable or disable fixed seeds based on hardware
 	
 	
 	
@@ -38,7 +39,7 @@ public class GameState {
 	
 	public GameState(long seed) {
 		assets = new Assets();
-		if(enable_seed)	rand = new Random(seed);
+		if(enable_seed && seed != 0)	rand = new Random(seed);
 		else rand = new Random();
 		rand2 = new Random();
 		//Try to load game from storage. If none exists create a new league
@@ -67,8 +68,10 @@ public class GameState {
 		Json json = new Json();
 		String o = json.toJson(league);
 		FileHandle file = Gdx.files.local(SAVEFILE);
-	    file.writeString(com.badlogic.gdx.utils.Base64Coder.encodeString(o), false);
-		//file.writeString(o, false);
+	    if(enable_b64_savefile)
+	    	file.writeString(com.badlogic.gdx.utils.Base64Coder.encodeString(o), false);
+	    else
+	    	file.writeString(o, false);
 	    Gdx.app.log("SAVE","Game Saved to "+SAVEFILE);
 	}
 	public boolean loadGame() {
@@ -80,8 +83,10 @@ public class GameState {
 	    	s = file.readString();
 	    }
 	    if(s.isEmpty()) return false;
-	    league = json.fromJson(League.class, com.badlogic.gdx.utils.Base64Coder.decodeString(s));
-	    //league = json.fromJson(League.class, s);
+	    if(enable_b64_savefile)
+	    	league = json.fromJson(League.class, com.badlogic.gdx.utils.Base64Coder.decodeString(s));
+	    else
+	    	league = json.fromJson(League.class, s);
 		league.reinit();
 		return true;
 	}

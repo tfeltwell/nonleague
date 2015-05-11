@@ -29,7 +29,7 @@
       	
       	score: { font: bebas_80, fontColor: black },
       	score_smaller: { font: bebas_40, fontColor: white },
-      	timer: { font: tgl_40, fontColor: black },
+      	timer: { font: tgl_60, fontColor: black },
       	score_report: {font: tgl_60, fontColor:white},
       	event_report: {font: tgl_40, fontColor:white},
       	scorer_report: {font: tgl_40, fontColor:white}, 
