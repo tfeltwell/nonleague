@@ -21,7 +21,7 @@ public class TeamStatus extends BaseScreen {
 	//private Image position_graph;
 	private Table position_table;
 	private TeamLabel team_label,next_opponent_label;
-	private Label league_pos_label,unplayed_label,stadium_label,home_away_label,forecast_label;
+	private Label league_pos_label,unplayed_label,stadium_label,home_away_label,forecast_label, opp_pos_label;
 	
 	public TeamStatus(final NonLeague game) {
 		super(game);
@@ -32,9 +32,10 @@ public class TeamStatus extends BaseScreen {
 		next_opponent_label = new TeamLabel(null,"teamname_smaller");
 		league_pos_label = new Label("X",Assets.skin);
 		unplayed_label = new Label("X",Assets.skin);
-		home_away_label = new Label("X",Assets.skin,"default_small");
+		home_away_label = new Label("X",Assets.skin,"default");
 		stadium_label = new Label(GameState.player_team.stadium,Assets.skin,"default_small");
 		forecast_label = new Label("X",Assets.skin);
+		opp_pos_label = new Label("X",Assets.skin);
 		position_table = new Table();
 		
 		table.add(team_label).fillX().expandX().center().colspan(2);
@@ -49,7 +50,11 @@ public class TeamStatus extends BaseScreen {
 		table.add("Next match: ").right();
 		table.add(next_opponent_label).fillX().expandX();
 		table.row();
-		table.add(home_away_label).right().colspan(2);
+		table.add();
+		table.add(home_away_label).left();
+		table.row();
+		table.add("Their Position: ").right();
+		table.add(opp_pos_label).left();
 		table.row();
 		table.add("Forecast: ").right();
 		table.add(forecast_label).left();
@@ -94,9 +99,12 @@ public class TeamStatus extends BaseScreen {
 		league_pos_label.setText(GameState.league.getTeamPositionOrdinal(GameState.player_team) + " in " + GameState.league.name);
 		unplayed_label.setText(String.valueOf(GameState.player_team.countUnplayedMatches()));
 		if(GameState.player_team == GameState.league.findTeamsNextFixture(GameState.player_team).home)
-			home_away_label.setText("(Home)");
+			home_away_label.setText("Home at "+GameState.player_team.stadium);
 		else
-			home_away_label.setText("(Away)");
+			home_away_label.setText("Away at "+GameState.league.findTeamsNextFixture(GameState.player_team).home.stadium);
+		
+		opp_pos_label.setText(GameState.league.getTeamPositionOrdinal(GameState.league.findTeamsNextFixture(GameState.player_team).opponentFor(GameState.player_team)));
+		
 		forecast_label.setText(GameState.league.findTeamsNextFixture(GameState.player_team).getWeather());
 		position_table.clear();
 		Image graph = new Image(LeaguePositionGraph.generateLeaguePositionGraph(GameState.league.getTeamPositionHistory(GameState.player_team)));
