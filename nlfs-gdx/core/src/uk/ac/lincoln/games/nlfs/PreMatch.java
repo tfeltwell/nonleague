@@ -28,8 +28,8 @@ public class PreMatch extends BaseScreen{
 		"none",
 		"bovril",
 		"lager",
-		"bitter",
-		"brew",
+		"beer",
+		"tea",
 		"pop",
 		
 	};
@@ -37,35 +37,35 @@ public class PreMatch extends BaseScreen{
 		"Nothing Special",
 		"Meaty Drink",
 		"Warm Lager",
-		"Flat Bitter",
+		"Lively Bitter",
 		"Milky Cuppa",
 		"Supermarket Pop",
 	};
 	
 	private static String[] food_icons = {
 		"none",
-		"bovril",
-		"lager",
-		"bitter",
-		"brew",
-		"pop",
+		"pie",
+		"sandwich",
+		"chips",
+		"burger",
+		"barm",
 	};
 	private static String[] food_names = {
 		"Nothing Special",
 		"'Meat' Pie",
-		"Cheese Pie",
-		"Chip Pie",
-		"Curry Pie",
-		"Pie Barm",
+		"Jam Sarnie",
+		"Soggy Chips",
+		"Dry Burger",
+		"Butter Barm",
 	};
 	
 	private static String[] clothing_icons = {
 		"none",
-		"bovril",
-		"lager",
-		"bitter",
-		"brew",
-		"pop",
+		"shirt",
+		"anorak",
+		"scarf",
+		"pants",
+		"chest",
 	};
 	private static String[] clothing_names = {
 		"Nothing Special",
@@ -77,11 +77,11 @@ public class PreMatch extends BaseScreen{
 	};
 	private static String[] bringing_icons = {
 		"none",
-		"bovril",
-		"lager",
-		"bitter",
-		"brew",
-		"pop",
+		"dog",
+		"boy",
+		"vuvuzela",
+		"brolly",
+		"tuba",
 	};
 	private static String[] bringing_names = {
 		"Nothing Special",

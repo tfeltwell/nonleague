@@ -36,7 +36,7 @@ public class RitualSelector {
 		RitualButton(String icon, String name) {
 			super(Assets.skin,"ritual");
 			description = name;
-			ritual_icon = new Texture(Gdx.files.internal(icon+".png"));
+			ritual_icon = new Texture(Gdx.files.internal("icons/"+icon+".png"));
 			add(new Image(ritual_icon));
 			addListener(new ChangeListener() {
 				public void changed(ChangeEvent event, Actor actor) {
