@@ -32,7 +32,7 @@ public class League {
 	public static int POINTS_DRAW = 1;
 	public static int POINTS_LOSE = 0;
 	
-	public static int LEAGUE_SIZE = 14; //number of teams in the league. Even numbers only, dickhead.
+	public static int LEAGUE_SIZE = 12; //number of teams in the league. Even numbers only, dickhead.
 	public static int PROMOTION = 2; //number of teams promoted/relegated at the end of the season. (promotion + relegation) < league size, dickhead.
 	public static int RELEGATION = 2;
 	
@@ -113,8 +113,8 @@ public class League {
 		current_week = 1;
 		//final_week = 2*(LEAGUE_SIZE-1);
 		resetLeagueTable(); 
-		for (Team t:teams) System.out.println(t.name);
-		for (Match m:fixtures) System.out.println(m.getDescription());
+		//for (Team t:teams) System.out.println(t.name);
+		//for (Match m:fixtures) System.out.println(m.getDescription());
 	}
 	
 	/**

@@ -24,7 +24,7 @@ public class GameState {
 	public static Random rand; //this is seeded to be always the same - used for generation
 	public static Random rand2; //this is NOT seeded, used for match engine.
 	public static String SAVEFILE = "nlfs.dat";
-	private static boolean enable_saving = true; //all should be true for normal operation
+	private static boolean enable_saving = false; //all should be true for normal operation
 	private static boolean enable_b64_savefile = true;//NB existing saves will be made invalid when changing this setting
 	private static boolean enable_seed = true; //enable or disable fixed seeds based on hardware
 	

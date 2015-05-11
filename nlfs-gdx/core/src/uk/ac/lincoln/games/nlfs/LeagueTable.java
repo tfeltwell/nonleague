@@ -78,6 +78,8 @@ public class LeagueTable extends BaseScreen {
 			
 			league_table.row().pad(2);
 		}
+		league_table.add(new Label(" ",Assets.skin)).colspan(4);
+		league_table.row().pad(2);
 	}
 	
 	@Override
