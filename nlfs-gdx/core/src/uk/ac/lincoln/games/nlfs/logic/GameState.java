@@ -31,7 +31,15 @@ public class GameState {
 	
 	
 	public static GameState getGameState(long seed) {
+		
 		if(state==null) {
+			state = new GameState(seed);
+		}
+		return state;
+	}
+	public static GameState getGameState(long seed, boolean force) {
+		
+		if(state==null || force) {
 			state = new GameState(seed);
 		}
 		return state;

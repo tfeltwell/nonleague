@@ -1,12 +1,26 @@
 
 pack.png
-size: 512,64
+size: 1024,256
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
+base
+  rotate: false
+  xy: 504, 191
+  size: 1, 1
+  orig: 1, 1
+  offset: 0, 0
+  index: -1
+bg_fill
+  rotate: false
+  xy: 158, 44
+  size: 8, 8
+  orig: 8, 8
+  offset: 0, 0
+  index: -1
 button_patch
   rotate: false
-  xy: 54, 12
+  xy: 2, 2
   size: 50, 50
   split: 7, 9, 8, 10
   orig: 50, 50
@@ -14,7 +28,7 @@ button_patch
   index: -1
 button_patch_disabled
   rotate: false
-  xy: 106, 12
+  xy: 54, 2
   size: 50, 50
   split: 7, 9, 8, 10
   orig: 50, 50
@@ -22,23 +36,190 @@ button_patch_disabled
   index: -1
 button_patch_down
   rotate: false
-  xy: 158, 12
+  xy: 106, 2
   size: 50, 50
   split: 7, 8, 8, 8
   orig: 50, 50
   offset: 0, 0
   index: -1
-football
+darken
   rotate: false
-  xy: 210, 13
-  size: 50, 49
-  orig: 50, 49
+  xy: 556, 253
+  size: 1, 1
+  orig: 1, 1
+  offset: 0, 0
+  index: -1
+paper
+  rotate: false
+  xy: 2, 54
+  size: 500, 200
+  orig: 500, 200
   offset: 0, 0
   index: -1
 stopwatch
   rotate: false
-  xy: 2, 2
+  xy: 504, 194
   size: 50, 60
   orig: 50, 60
+  offset: 0, 0
+  index: -1
+transparent
+  rotate: false
+  xy: 158, 41
+  size: 1, 1
+  orig: 1, 1
+  offset: 0, 0
+  index: -1
+
+pack2.png
+size: 512,512
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+icons/anorak
+  rotate: false
+  xy: 2, 394
+  size: 96, 96
+  orig: 96, 96
+  offset: 0, 0
+  index: -1
+icons/barm
+  rotate: false
+  xy: 2, 296
+  size: 96, 96
+  orig: 96, 96
+  offset: 0, 0
+  index: -1
+icons/beer
+  rotate: false
+  xy: 100, 394
+  size: 96, 96
+  orig: 96, 96
+  offset: 0, 0
+  index: -1
+icons/bovril
+  rotate: false
+  xy: 2, 198
+  size: 96, 96
+  orig: 96, 96
+  offset: 0, 0
+  index: -1
+icons/boy
+  rotate: false
+  xy: 100, 296
+  size: 96, 96
+  orig: 96, 96
+  offset: 0, 0
+  index: -1
+icons/brolly
+  rotate: false
+  xy: 198, 394
+  size: 96, 96
+  orig: 96, 96
+  offset: 0, 0
+  index: -1
+icons/burger
+  rotate: false
+  xy: 2, 100
+  size: 96, 96
+  orig: 96, 96
+  offset: 0, 0
+  index: -1
+icons/chest
+  rotate: false
+  xy: 100, 198
+  size: 96, 96
+  orig: 96, 96
+  offset: 0, 0
+  index: -1
+icons/chips
+  rotate: false
+  xy: 198, 296
+  size: 96, 96
+  orig: 96, 96
+  offset: 0, 0
+  index: -1
+icons/dog
+  rotate: false
+  xy: 296, 394
+  size: 96, 96
+  orig: 96, 96
+  offset: 0, 0
+  index: -1
+icons/lager
+  rotate: false
+  xy: 2, 2
+  size: 96, 96
+  orig: 96, 96
+  offset: 0, 0
+  index: -1
+icons/none
+  rotate: false
+  xy: 100, 100
+  size: 96, 96
+  orig: 96, 96
+  offset: 0, 0
+  index: -1
+icons/pants
+  rotate: false
+  xy: 198, 198
+  size: 96, 96
+  orig: 96, 96
+  offset: 0, 0
+  index: -1
+icons/pie
+  rotate: false
+  xy: 296, 296
+  size: 96, 96
+  orig: 96, 96
+  offset: 0, 0
+  index: -1
+icons/pop
+  rotate: false
+  xy: 394, 394
+  size: 96, 96
+  orig: 96, 96
+  offset: 0, 0
+  index: -1
+icons/sandwich
+  rotate: false
+  xy: 100, 2
+  size: 96, 96
+  orig: 96, 96
+  offset: 0, 0
+  index: -1
+icons/scarf
+  rotate: false
+  xy: 198, 100
+  size: 96, 96
+  orig: 96, 96
+  offset: 0, 0
+  index: -1
+icons/shirt
+  rotate: false
+  xy: 296, 198
+  size: 96, 96
+  orig: 96, 96
+  offset: 0, 0
+  index: -1
+icons/tea
+  rotate: false
+  xy: 394, 296
+  size: 96, 96
+  orig: 96, 96
+  offset: 0, 0
+  index: -1
+icons/tuba
+  rotate: false
+  xy: 198, 2
+  size: 96, 96
+  orig: 96, 96
+  offset: 0, 0
+  index: -1
+icons/vuvuzela
+  rotate: false
+  xy: 296, 100
+  size: 96, 96
+  orig: 96, 96
   offset: 0, 0
   index: -1

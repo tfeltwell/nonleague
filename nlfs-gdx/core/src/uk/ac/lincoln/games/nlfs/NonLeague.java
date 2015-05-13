@@ -54,7 +54,7 @@ public class NonLeague extends Game {
 		viewport = new FitViewport(720,1280);
 		
 		
-		state = GameState.getGameState(Long.valueOf(hardware_id));
+		state = GameState.getGameState(Long.valueOf(hardware_id),true);
 		
 		teamstatus_screen = new TeamStatus(this);
 		prematch_screen = new PreMatch(this);
@@ -70,15 +70,19 @@ public class NonLeague extends Game {
 	}
 
 	public void pause () {
-		
+		GameState.getGameState(Long.valueOf(hardware_id)).saveGame();
+		//Assets.skin.dispose();
+		//Gdx.app.exit();
 	}
 
 	public void resume () {
-		GameState.assets.manager.finishLoading();
+		//create();
+		System.out.println("back in focus");
+	    Assets.manager.finishLoading();
 	}
 	
 	public void dispose () {
-		GameState.getGameState(Long.valueOf(hardware_id)).saveGame();
+		//GameState.getGameState(Long.valueOf(hardware_id)).saveGame();//pause always happens before quit anyway
 		Assets.skin.dispose();
 	}
 	

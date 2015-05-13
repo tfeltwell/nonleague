@@ -26,7 +26,7 @@ public class Assets {
 	public ArrayList<ArrayList<String>> team_colours;
 	public static HashMap<String,ArrayList<String>> news_summaries;
 	
-	public AssetManager manager;
+	public static AssetManager manager;
 	
 	private boolean gen_loaded;
 	
@@ -103,13 +103,22 @@ public class Assets {
 	private void loadSkin() {
 		
 		manager.load("skin.json",Skin.class);
+		//manager.load("darken.png",Texture.class);
+		//manager.load("base.png",Texture.class);
+		//manager.load("transparent.png",Texture.class);
+		
 		manager.finishLoading();
 		//TextureAtlas atlas = new TextureAtlas(Gdx.files.internal("pack.atlas"));
 		
 		skin = manager.get("skin.json");//new Skin(Gdx.files.internal("skin.json"),atlas);
 		//skin.
 		
-		// Generate a 1x1 white texture and store it in the skin named "white".
+		//skin.add("darken", manager.get("darken.png"),Texture.class);
+		//skin.add("base", manager.get("base.png"),Texture.class);
+		//skin.add("transparent", manager.get("transparent.png"),Texture.class);
+		
+		// Generate a 1x1 white texture andtore it in the skin named "white".
+		/*
 		Pixmap pixmap = new Pixmap(1, 1, Format.RGBA8888);
 		pixmap.setColor(Color.WHITE);
 		pixmap.fill();
@@ -126,7 +135,7 @@ public class Assets {
 		pm3.setColor(0f, 0f, 0f, 0.3f);
 		pm3.fill();
 		skin.add("darken",new Texture(pm3));
-				
+		*/		
 		//Texture texture = new Texture(Gdx.files.internal("titlefont.png"));
 		//texture.setFilter(TextureFilter.Linear, TextureFilter.Linear);
 		

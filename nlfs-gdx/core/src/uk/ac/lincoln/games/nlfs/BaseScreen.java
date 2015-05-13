@@ -5,7 +5,9 @@ import uk.ac.lincoln.games.nlfs.NonLeague.Background;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 
 public abstract class BaseScreen implements Screen {
@@ -31,7 +33,7 @@ public abstract class BaseScreen implements Screen {
 		
 		//stage.addActor(table);
 		table.pad(10);
-		table.setBackground(Assets.skin.getDrawable("transparent"));
+		table.setBackground(Assets.skin.getDrawable("transparent"));//.skin.getDrawable("transparent"));
 		//table.setSize(stage.getWidth()-50, stage.getHeight()-50);
 		//table.setPosition(25, 25);
 		table.setDebug(false);
@@ -60,6 +62,7 @@ public abstract class BaseScreen implements Screen {
 
     @Override
     public void show() {        
+    	//Assets.manager.finishLoading();
     }
 
     @Override
@@ -74,7 +77,8 @@ public abstract class BaseScreen implements Screen {
 
     @Override
     public void resume() {
-       
+    	
+    	
     }
 
     @Override
