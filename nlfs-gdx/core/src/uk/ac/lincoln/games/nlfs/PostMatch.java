@@ -24,7 +24,6 @@ public class PostMatch extends BaseScreen {
 	private MatchResult result;
 	private Label stadium_label,description_label,home_score_label,away_score_label;
 	private TeamLabel home_label,away_label;
-	private Texture paper;
 	private Table results_table;
 	
 	public PostMatch (final NonLeague game) {
@@ -33,9 +32,7 @@ public class PostMatch extends BaseScreen {
 		away_label = new TeamLabel(null,"teamname_bigger");
 		home_score_label = new Label(" 0 ",Assets.skin,"score");
 		away_score_label = new Label(" 0 ",Assets.skin,"score");
-		
-		paper = new Texture(Gdx.files.internal("paper.png"));
-		
+						
 		table.add(home_label).expandX().fillX().left();
 		table.add(home_score_label).right().padLeft(2);
 		table.row().padTop(2);
@@ -49,7 +46,7 @@ public class PostMatch extends BaseScreen {
 		description_label.setWrap(true);
 		
 		Table newspaper_table = new Table();
-		newspaper_table.background(new Image(paper).getDrawable());
+		newspaper_table.background(Assets.skin.getDrawable("paper"));
 		newspaper_table.add(description_label).expandX().fill().pad(20);
 			
 		//description_label.setWidth(200);

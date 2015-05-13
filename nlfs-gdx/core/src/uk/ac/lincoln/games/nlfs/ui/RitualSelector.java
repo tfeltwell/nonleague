@@ -31,13 +31,12 @@ public class RitualSelector {
 	
 	public class RitualButton extends Button {
 		private String description;
-		private Texture ritual_icon;
 		
 		RitualButton(String icon, String name) {
 			super(Assets.skin,"ritual");
 			description = name;
-			ritual_icon = new Texture(Gdx.files.internal("icons/"+icon+".png"));
-			add(new Image(ritual_icon));
+			
+			add(new Image(Assets.skin.getDrawable("icons/"+icon)));
 			addListener(new ChangeListener() {
 				public void changed(ChangeEvent event, Actor actor) {
 					selected_label.setText(description);

@@ -21,12 +21,10 @@ import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
  */
 public class EndOfSeason extends BaseScreen {
 	private Label title, description_label;
-	private Texture paper;
 	private Table position_table;
 	
 	public EndOfSeason(final NonLeague game) {
 		super(game);
-		paper = new Texture(Gdx.files.internal("paper.png"));
 		title = new Label("END OF SEASON",Assets.skin,"pagetitle");
 		position_table = new Table();
 		table.add(title).expandX().fillX();
@@ -36,7 +34,7 @@ public class EndOfSeason extends BaseScreen {
 		description_label.setWrap(true);
 		
 		Table newspaper_table = new Table();
-		newspaper_table.background(new Image(paper).getDrawable());
+		newspaper_table.background(Assets.skin.getDrawable("paper"));
 		newspaper_table.add(description_label).expandX().fill().pad(20);
 			
 		table.add(newspaper_table).expand().fillX().colspan(2).padBottom(10).minWidth(600);

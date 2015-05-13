@@ -7,7 +7,10 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.Texture.TextureWrap;
 import com.badlogic.gdx.graphics.g2d.Batch;
+import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 
 public class NonLeague extends Game {
@@ -31,8 +34,8 @@ public class NonLeague extends Game {
 	 *
 	 */
 	public class Background extends Actor {
-		Texture bg = new Texture("bg_fill.png");
-		
+		Texture bg = new Texture(Gdx.files.internal("bg_fill.png"));
+				
 		public Background() {
 			super();
 			bg.setWrap(TextureWrap.Repeat,TextureWrap.Repeat);
