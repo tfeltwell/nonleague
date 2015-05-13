@@ -3,7 +3,9 @@ package uk.ac.lincoln.games.nlfs;
 import uk.ac.lincoln.games.nlfs.logic.GameState;
 import uk.ac.lincoln.games.nlfs.ui.LeaguePositionGraph;
 import uk.ac.lincoln.games.nlfs.ui.TeamLabel;
+import uk.ac.lincoln.games.nlfs.ui.TutorialWindow;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
@@ -22,6 +24,7 @@ public class TeamStatus extends BaseScreen {
 	private Table position_table;
 	private TeamLabel team_label,next_opponent_label;
 	private Label league_pos_label,unplayed_label,stadium_label,home_away_label,forecast_label, opp_pos_label;
+	
 	
 	public TeamStatus(final NonLeague game) {
 		super(game);
@@ -74,6 +77,14 @@ public class TeamStatus extends BaseScreen {
 		table.row();
 		table.add(button).width(480).height(85).colspan(2);
 		table.row();
+		
+		
+		if (GameState.first_run) {
+			
+			stage.addActor(new TutorialWindow("Welcome", "Welcome to the most authentic football supporter simulation in the world!\n You support "+GameState.player_team.name+". You always have and always will. This cannot be changed.\n This screen shows your team's status, league position and next opponent. Once you get familiar with your team, prepare for your next match","Get Started"));
+			Gdx.input.setInputProcessor(stage);
+		}
+		
 		button.addListener(new InputListener() {
             public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
             	return true;
@@ -117,6 +128,7 @@ public class TeamStatus extends BaseScreen {
 	@Override
 	public void render(float delta){
 		super.render(delta);
+		
 	}
 
 }

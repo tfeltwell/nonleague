@@ -111,6 +111,14 @@ public class Assets {
 		//TextureAtlas atlas = new TextureAtlas(Gdx.files.internal("pack.atlas"));
 		
 		skin = manager.get("skin.json");//new Skin(Gdx.files.internal("skin.json"),atlas);
+		
+		
+		Pixmap pm = new Pixmap(1,1,Format.RGBA8888);
+		pm.setColor(0f, 0.3f, 0f, 0.95f);
+		pm.fill();
+		skin.add("tutorial",new Texture(pm));
+		
+		
 		//skin.
 		
 		//skin.add("darken", manager.get("darken.png"),Texture.class);
