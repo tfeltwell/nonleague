@@ -1,5 +1,9 @@
 Non-League Football Supporter
 =========
+**NOTE Active dev has moved to https://github.com/bkirman/nonleague**
+Check there for open issues and latest versions.
+Stable tags will be merged back here eventually.
+
 The game is currently at alpha state, and works well on Android (4.0+)
 
 Outstanding Tasks
